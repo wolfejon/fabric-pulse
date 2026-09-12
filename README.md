@@ -29,8 +29,23 @@ npm run preview
 5. **Suggested product-team actions** with effort/impact, owner hint, and related themes. Filterable by workload, high impact, or low effort.
 6. **News & announcements** — official Microsoft plus community/press samples.
 7. **Switchable aesthetic themes** — clickable prototypes for design review (see below).
+8. **Switchable presentation layouts** — Classic, Diagnosis Object, Spike Cinema, Ask the Pulse, War Room (see below).
 
 The dashboard is desktop-first and responsive: header, KPI row, volume/sentiment charts, click-to-filter workload breakdown, theme explorer with sample mentions, actions, news, and a mention stream.
+
+## Presentation layout modes
+
+Use the **layout switcher** in the header (layout icon, next to the theme switcher) to change the product presentation. Choice persists in `localStorage` (`fabric-pulse-layout`). Color themes still apply across every layout. Demo data labeling stays visible.
+
+| Id | Switcher label | What you get |
+| --- | --- | --- |
+| `classic` | Classic | Original scroll dashboard (KPIs, charts, workloads, themes, actions, news, feed) |
+| `diagnosis-object` | Diagnosis Object | Volume×Pain treemap (size=volume, color=net/pain); click filters; side rail with sample mentions + top action. Stacked bars demoted. |
+| `spike-cinema` | Spike Cinema | Full-width sentiment/volume timeline with spike markers + optional news diamonds; selecting a spike opens a why story panel (brief + themes + mentions). |
+| `ask-the-pulse` | Ask the Pulse | Prompt-first home with suggested asks; selecting an ask shows a **template** brief (no live LLM) + evidence cards + Open Classic / Explore. Absorbs Morning Brief. |
+| `war-room` | War Room | Dense triage: severity inbox left, evidence center, action assign right. Claim/snooze is local demo state. |
+
+Legacy stored ids (`morning-brief`, `volume-pain`, `story-timeline`) migrate automatically.
 
 ## Aesthetic themes
 
@@ -60,6 +75,8 @@ Tokens live as CSS variables on `[data-theme="…"]` in `src/index.css` (canvas/
 | `src/data/actions.ts` / `news.ts` | Suggested actions and news items |
 | `src/lib/aggregate.ts` | Theme clustering, daily series, KPIs, workload rollups |
 | `src/theme/` | Aesthetic theme registry, provider, and chart color helpers |
+| `src/layout/` | Presentation layout registry, provider, brief/spike helpers |
+| `src/components/layouts/` | Classic, Diagnosis Object, Spike Cinema, Ask the Pulse, War Room |
 
 A future live provider should implement:
 
@@ -76,4 +93,4 @@ and be exported as `pulseProvider`. Keep classification and theme clustering on 
 - All handles, names, and post text are fictional samples.
 - News URLs point at public section homepages, not specific live articles.
 - Charts use Recharts. Icons use lucide-react.
-- Aesthetic wireframe notes: `wireframe-ia-and-aesthetics.md` (design brief; layout IA concepts not all implemented yet).
+- Aesthetic / IA notes: `wireframe-ia-and-aesthetics.md` (design brief). Layout modes above are clickable prototypes.

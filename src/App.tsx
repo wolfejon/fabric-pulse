@@ -1,18 +1,18 @@
 import { useEffect, useMemo, useState } from 'react'
 import { DemoBanner } from './components/DemoBanner'
 import { Header } from './components/Header'
-import { KpiRow } from './components/KpiRow'
-import { MentionStream } from './components/MentionStream'
-import { NewsFeed } from './components/NewsFeed'
-import { SentimentCharts } from './components/SentimentCharts'
-import { SuggestedActions } from './components/SuggestedActions'
-import { ThemeExplorer } from './components/ThemeExplorer'
-import { WorkloadBreakdown } from './components/WorkloadBreakdown'
+import { AskThePulse } from './components/layouts/AskThePulse'
+import { ClassicDashboard } from './components/layouts/ClassicDashboard'
+import { StoryTimeline } from './components/layouts/StoryTimeline'
+import { VolumePainMap } from './components/layouts/VolumePainMap'
+import { WarRoom } from './components/layouts/WarRoom'
 import { pulseProvider } from './data/provider'
+import { useLayout } from './layout/LayoutProvider'
 import { filterMentions, viewFromMentions } from './lib/aggregate'
 import type { PulseSnapshot, WorkloadFilter } from './types'
 
 export default function App() {
+  const { layoutId } = useLayout()
   const [snapshot, setSnapshot] = useState<PulseSnapshot | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [workload, setWorkload] = useState<WorkloadFilter>('all')
@@ -48,6 +48,11 @@ export default function App() {
     }
   }, [snapshot, themeId, workload])
 
+  const onClearFilters = () => {
+    setWorkload('all')
+    setThemeId(null)
+  }
+
   if (error) {
     return (
       <div className="flex min-h-svh items-center justify-center bg-canvas px-6 text-neg">
@@ -64,6 +69,16 @@ export default function App() {
     )
   }
 
+  const layoutProps = {
+    snapshot,
+    view,
+    workload,
+    themeId,
+    setWorkload,
+    setThemeId,
+    onClearFilters,
+  }
+
   return (
     <div className="pulse-grid min-h-svh">
       <DemoBanner />
@@ -72,37 +87,18 @@ export default function App() {
         daily={view.daily}
         dateRange={snapshot.dateRange}
         workload={workload}
-        onClear={() => {
-          setWorkload('all')
-          setThemeId(null)
-        }}
+        themeFilterLabel={view.selectedTheme?.name ?? null}
+        onClear={onClearFilters}
       />
       <main className="mx-auto flex w-full max-w-[1440px] flex-col gap-3 px-4 py-4 pb-10 lg:px-6">
-        <KpiRow kpis={view.kpis} />
-        <SentimentCharts daily={view.daily} kpis={view.kpis} />
-        <WorkloadBreakdown
-          workloads={view.workloads}
-          selected={workload}
-          onSelect={(next) => {
-            setWorkload(next)
-            setThemeId(null)
-          }}
-        />
-        <div className="grid grid-cols-1 gap-3 xl:grid-cols-2">
-          <ThemeExplorer
-            themes={view.themes}
-            mentions={view.mentions}
-            selectedId={themeId}
-            onSelect={setThemeId}
-          />
-          <SuggestedActions actions={snapshot.actions} themes={view.themes} workload={workload} />
-        </div>
-        <div className="grid grid-cols-1 gap-3 xl:grid-cols-2">
-          <NewsFeed news={snapshot.news} workload={workload} />
-          <MentionStream mentions={view.mentions} now={snapshot.generatedAt} />
-        </div>
+        {layoutId === 'classic' ? <ClassicDashboard {...layoutProps} /> : null}
+        {layoutId === 'diagnosis-object' ? <VolumePainMap {...layoutProps} /> : null}
+        {layoutId === 'spike-cinema' ? <StoryTimeline {...layoutProps} /> : null}
+        {layoutId === 'ask-the-pulse' ? <AskThePulse {...layoutProps} /> : null}
+        {layoutId === 'war-room' ? <WarRoom {...layoutProps} /> : null}
         <footer className="pt-2 text-center text-[11px] text-faint">
-          Fabric Pulse prototype · {snapshot.demoDisclaimer} · {snapshot.dateRange.label}
+          Fabric Pulse prototype · {snapshot.demoDisclaimer} · {snapshot.dateRange.label} · layout:{' '}
+          {layoutId}
         </footer>
       </main>
     </div>

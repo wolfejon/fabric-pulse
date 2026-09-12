@@ -7,6 +7,7 @@ import type { DailyPoint, DateRange, PulseKpis, WorkloadFilter } from '../types'
 import { WORKLOAD_CATALOG } from '../data/catalog'
 import { formatNet, sentimentWord } from '../lib/format'
 import { useThemeColors } from '../theme/colors'
+import { LayoutSwitcher } from './LayoutSwitcher'
 import { ThemeSwitcher } from './ThemeSwitcher'
 import { ToneBadge } from './ui'
 
@@ -30,18 +31,21 @@ export function Header({
   daily,
   dateRange,
   workload,
+  themeFilterLabel,
   onClear,
 }: {
   kpis: PulseKpis
   daily: DailyPoint[]
   dateRange: DateRange
   workload: WorkloadFilter
+  themeFilterLabel?: string | null
   onClear: () => void
 }) {
   const colors = useThemeColors()
   const word = sentimentWord(kpis.netSentiment)
   const wordColor =
     word === 'positive' ? 'text-pos' : word === 'negative' ? 'text-neg' : 'text-mute'
+  const filtered = workload !== 'all' || Boolean(themeFilterLabel)
 
   return (
     <header className="flex flex-col gap-5 border-b border-line px-5 py-5 lg:flex-row lg:items-center lg:justify-between">
@@ -58,16 +62,20 @@ export function Header({
         </div>
       </div>
 
-      <div className="flex flex-1 flex-wrap items-center justify-end gap-4 lg:gap-6">
+      <div className="flex flex-1 flex-wrap items-center justify-end gap-3 lg:gap-4">
+        <LayoutSwitcher />
         <ThemeSwitcher />
 
-        {workload !== 'all' ? (
+        {filtered ? (
           <button
             type="button"
             onClick={onClear}
             className="rounded-full border border-teal/40 bg-teal/10 px-3 py-1 text-xs text-teal-bright hover:bg-teal/20"
           >
-            Filtered: {WORKLOAD_CATALOG[workload].shortLabel} · Clear
+            Filtered
+            {workload !== 'all' ? `: ${WORKLOAD_CATALOG[workload].shortLabel}` : ''}
+            {themeFilterLabel ? ` · ${themeFilterLabel}` : ''}
+            {' · Clear'}
           </button>
         ) : null}
 
