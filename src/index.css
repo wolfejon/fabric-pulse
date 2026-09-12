@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI", Inter, ui-sans-serif, system-ui, sans-serif;
+
+  --color-canvas: #0b1118;
+  --color-panel: #121a24;
+  --color-elevated: #182230;
+  --color-line: #243040;
+  --color-ink: #e8eef4;
+  --color-mute: #8b9bb0;
+  --color-faint: #5d6d82;
+  --color-teal: #00b7c3;
+  --color-teal-bright: #3ee0ea;
+  --color-pos: #3ddc97;
+  --color-neg: #ff6b7a;
+  --color-neu: #8b9bb0;
+  --color-amber: #e8b84a;
+  --color-official: #6ea8ff;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+.pulse-grid {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(0, 183, 195, 0.12), transparent),
+    radial-gradient(ellipse 50% 40% at 90% 0%, rgba(110, 168, 255, 0.08), transparent),
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
+  background-position: 0 0, 0 0, 0 0, 0 0;
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: #8b9bb0;
+}
+
+.recharts-default-tooltip {
+  background: #182230 !important;
+  border: 1px solid #243040 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35) !important;
+}
