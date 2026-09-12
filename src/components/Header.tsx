@@ -6,15 +6,17 @@ import {
 import type { DailyPoint, DateRange, PulseKpis, WorkloadFilter } from '../types'
 import { WORKLOAD_CATALOG } from '../data/catalog'
 import { formatNet, sentimentWord } from '../lib/format'
+import { useThemeColors } from '../theme/colors'
+import { ThemeSwitcher } from './ThemeSwitcher'
 import { ToneBadge } from './ui'
 
-function PulseMark() {
+function PulseMark({ accent, canvas }: { accent: string; canvas: string }) {
   return (
     <svg viewBox="0 0 32 32" className="size-9" aria-hidden="true">
-      <rect width="32" height="32" rx="9" fill="#0b1118" stroke="#00b7c3" strokeWidth="1.2" />
+      <rect width="32" height="32" rx="9" fill={canvas} stroke={accent} strokeWidth="1.2" />
       <path
         d="M5 18c3-8 5 8 8 0s5 8 8 0 5 8 6 0"
-        stroke="#00b7c3"
+        stroke={accent}
         strokeWidth="2.2"
         strokeLinecap="round"
         fill="none"
@@ -36,6 +38,7 @@ export function Header({
   workload: WorkloadFilter
   onClear: () => void
 }) {
+  const colors = useThemeColors()
   const word = sentimentWord(kpis.netSentiment)
   const wordColor =
     word === 'positive' ? 'text-pos' : word === 'negative' ? 'text-neg' : 'text-mute'
@@ -43,7 +46,7 @@ export function Header({
   return (
     <header className="flex flex-col gap-5 border-b border-line px-5 py-5 lg:flex-row lg:items-center lg:justify-between">
       <div className="flex items-center gap-3">
-        <PulseMark />
+        <PulseMark accent={colors.teal} canvas={colors.canvas} />
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-xl font-semibold tracking-tight text-ink">Fabric Pulse</h1>
@@ -55,7 +58,9 @@ export function Header({
         </div>
       </div>
 
-      <div className="flex flex-1 flex-wrap items-center justify-end gap-6">
+      <div className="flex flex-1 flex-wrap items-center justify-end gap-4 lg:gap-6">
+        <ThemeSwitcher />
+
         {workload !== 'all' ? (
           <button
             type="button"
@@ -80,8 +85,8 @@ export function Header({
               <Area
                 type="monotone"
                 dataKey="net"
-                stroke="#00b7c3"
-                fill="#00b7c3"
+                stroke={colors.teal}
+                fill={colors.teal}
                 fillOpacity={0.18}
                 strokeWidth={2}
                 isAnimationActive={false}

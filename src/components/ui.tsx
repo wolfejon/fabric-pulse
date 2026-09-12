@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import type { EffortLevel, ImpactLevel, NewsSourceType, SentimentLabel } from '../types'
-import { SENTIMENT_COLOR } from '../data/catalog'
 import { sentimentWord } from '../lib/format'
+import { useThemeColors } from '../theme/colors'
 
 export function Card({
   children,
@@ -11,7 +11,7 @@ export function Card({
   className?: string
 }) {
   return (
-    <section className={`rounded-2xl border border-line bg-panel/90 shadow-[0_10px_40px_rgba(0,0,0,0.22)] ${className}`}>
+    <section className={`pulse-card border border-line ${className}`}>
       {children}
     </section>
   )
@@ -38,7 +38,9 @@ export function SectionTitle({
 }
 
 export function SentimentPill({ sentiment }: { sentiment: SentimentLabel }) {
-  const color = SENTIMENT_COLOR[sentiment]
+  const colors = useThemeColors()
+  const color =
+    sentiment === 'positive' ? colors.pos : sentiment === 'negative' ? colors.neg : colors.neu
   return (
     <span
       className="inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium capitalize"

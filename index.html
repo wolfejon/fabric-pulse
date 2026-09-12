@@ -9,6 +9,24 @@
       name="description"
       content="Demo social-listening and sentiment dashboard for Microsoft Fabric product teams."
     />
+    <script>
+      try {
+        var t = localStorage.getItem('fabric-pulse-theme')
+        var ok = {
+          pulse: 1,
+          fluent: 1,
+          paper: 1,
+          ops: 1,
+          glass: 1,
+          narrative: 1,
+          enterprise: 1,
+          radar: 1,
+        }
+        document.documentElement.setAttribute('data-theme', ok[t] ? t : 'pulse')
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'pulse')
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

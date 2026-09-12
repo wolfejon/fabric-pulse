@@ -13,14 +13,8 @@ import {
 } from 'recharts'
 import type { DailyPoint, PulseKpis } from '../types'
 import { formatNet } from '../lib/format'
+import { useThemeColors } from '../theme/colors'
 import { Card, SectionTitle } from './ui'
-
-const tooltipStyle = {
-  background: '#182230',
-  border: '1px solid #243040',
-  borderRadius: 10,
-  fontSize: 12,
-}
 
 export function SentimentCharts({
   daily,
@@ -29,10 +23,18 @@ export function SentimentCharts({
   daily: DailyPoint[]
   kpis: PulseKpis
 }) {
+  const colors = useThemeColors()
+  const tooltipStyle = {
+    background: colors.elevated,
+    border: `1px solid ${colors.line}`,
+    borderRadius: 10,
+    fontSize: 12,
+    color: colors.ink,
+  }
   const mix = [
-    { name: 'Positive', value: Math.round(kpis.positiveShare * 100), color: '#3ddc97' },
-    { name: 'Neutral', value: Math.round(kpis.neutralShare * 100), color: '#8b9bb0' },
-    { name: 'Negative', value: Math.round(kpis.negativeShare * 100), color: '#ff6b7a' },
+    { name: 'Positive', value: Math.round(kpis.positiveShare * 100), color: colors.pos },
+    { name: 'Neutral', value: Math.round(kpis.neutralShare * 100), color: colors.neu },
+    { name: 'Negative', value: Math.round(kpis.negativeShare * 100), color: colors.neg },
   ]
 
   return (
@@ -45,22 +47,32 @@ export function SentimentCharts({
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart data={daily} margin={{ top: 8, right: 8, left: -12, bottom: 0 }}>
-              <CartesianGrid stroke="#243040" strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="label" tick={{ fill: '#8b9bb0', fontSize: 12 }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fill: '#8b9bb0', fontSize: 12 }} axisLine={false} tickLine={false} allowDecimals={false} />
+              <CartesianGrid stroke={colors.chartGrid} strokeDasharray="3 3" vertical={false} />
+              <XAxis
+                dataKey="label"
+                tick={{ fill: colors.mute, fontSize: 12 }}
+                axisLine={false}
+                tickLine={false}
+              />
+              <YAxis
+                tick={{ fill: colors.mute, fontSize: 12 }}
+                axisLine={false}
+                tickLine={false}
+                allowDecimals={false}
+              />
               <Tooltip
                 contentStyle={tooltipStyle}
                 formatter={(value, name) => [String(value), String(name)]}
               />
-              <Bar dataKey="positive" stackId="s" fill="#3ddc97" name="Positive" radius={[0, 0, 0, 0]} />
-              <Bar dataKey="neutral" stackId="s" fill="#5d6d82" name="Neutral" />
-              <Bar dataKey="negative" stackId="s" fill="#ff6b7a" name="Negative" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="positive" stackId="s" fill={colors.pos} name="Positive" radius={[0, 0, 0, 0]} />
+              <Bar dataKey="neutral" stackId="s" fill={colors.faint} name="Neutral" />
+              <Bar dataKey="negative" stackId="s" fill={colors.neg} name="Negative" radius={[4, 4, 0, 0]} />
               <Area
                 type="monotone"
                 dataKey="volume"
-                fill="#00b7c3"
+                fill={colors.teal}
                 fillOpacity={0.08}
-                stroke="#00b7c3"
+                stroke={colors.teal}
                 strokeWidth={2}
                 name="Volume"
               />

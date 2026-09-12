@@ -30,7 +30,7 @@ export function WorkloadBreakdown({
           ) : null
         }
       />
-      <div className="space-y-1">
+      <div className="ops-dense space-y-1">
         {workloads.map((item) => {
           const active = selected === item.id
           const pos = item.volume === 0 ? 0 : (item.positive / item.volume) * 100

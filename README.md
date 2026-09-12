@@ -28,8 +28,26 @@ npm run preview
 4. **Theme clustering** from configurable keyword definitions (`src/data/themes.ts`). Add or edit definitions to retarget the taxonomy without changing mention records.
 5. **Suggested product-team actions** with effort/impact, owner hint, and related themes. Filterable by workload, high impact, or low effort.
 6. **News & announcements** — official Microsoft plus community/press samples.
+7. **Switchable aesthetic themes** — clickable prototypes for design review (see below).
 
 The dashboard is desktop-first and responsive: header, KPI row, volume/sentiment charts, click-to-filter workload breakdown, theme explorer with sample mentions, actions, news, and a mention stream.
+
+## Aesthetic themes
+
+Use the **theme switcher** in the header (palette control) to re-skin the whole dashboard. Choice persists in `localStorage` (`fabric-pulse-theme`). The demo banner stays visible in every theme.
+
+| Id | Name | Notes |
+| --- | --- | --- |
+| `pulse` | Pulse Teal | Baseline dark teal (current demo look) |
+| `fluent` | Fluent Fabric | Neutrals + Fabric cyan brand moments |
+| `paper` | Soft Paper | Calm light PM brief |
+| `ops` | Dense Ops | Compact ops console, 12px dense lists, no glow |
+| `glass` | Marketing Glass | Deep navy/purple glass chrome; matte data panes |
+| `narrative` | Narrative Board | Light leadership slabs |
+| `enterprise` | Light Enterprise | Teams / SharePoint adjacent |
+| `radar` | Signal Radar | Experimental HUD (labeled Experimental) |
+
+Tokens live as CSS variables on `[data-theme="…"]` in `src/index.css` (canvas/panel/elevated/line/ink/mute/accent via `teal`, pos/neg/neu, amber, official, chart grid). `ThemeProvider` + `useThemeColors()` keep Recharts and inline styles in sync.
 
 ## Architecture
 
@@ -41,6 +59,7 @@ The dashboard is desktop-first and responsive: header, KPI row, volume/sentiment
 | `src/data/themes.ts` | Generalizable theme keyword definitions |
 | `src/data/actions.ts` / `news.ts` | Suggested actions and news items |
 | `src/lib/aggregate.ts` | Theme clustering, daily series, KPIs, workload rollups |
+| `src/theme/` | Aesthetic theme registry, provider, and chart color helpers |
 
 A future live provider should implement:
 
@@ -57,3 +76,4 @@ and be exported as `pulseProvider`. Keep classification and theme clustering on 
 - All handles, names, and post text are fictional samples.
 - News URLs point at public section homepages, not specific live articles.
 - Charts use Recharts. Icons use lucide-react.
+- Aesthetic wireframe notes: `wireframe-ia-and-aesthetics.md` (design brief; layout IA concepts not all implemented yet).

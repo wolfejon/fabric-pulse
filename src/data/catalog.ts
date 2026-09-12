@@ -69,8 +69,3 @@ export const WORKLOAD_CATALOG: Record<WorkloadId, WorkloadMeta> = {
   },
 }
 
-export const SENTIMENT_COLOR = {
-  positive: '#3ddc97',
-  neutral: '#8b9bb0',
-  negative: '#ff6b7a',
-} as const

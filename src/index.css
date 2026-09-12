@@ -3,20 +3,251 @@
 @theme {
   --font-sans: "Segoe UI", Inter, ui-sans-serif, system-ui, sans-serif;
 
-  --color-canvas: #0b1118;
-  --color-panel: #121a24;
-  --color-elevated: #182230;
-  --color-line: #243040;
-  --color-ink: #e8eef4;
-  --color-mute: #8b9bb0;
-  --color-faint: #5d6d82;
-  --color-teal: #00b7c3;
-  --color-teal-bright: #3ee0ea;
-  --color-pos: #3ddc97;
-  --color-neg: #ff6b7a;
-  --color-neu: #8b9bb0;
-  --color-amber: #e8b84a;
-  --color-official: #6ea8ff;
+  --color-canvas: var(--theme-canvas);
+  --color-panel: var(--theme-panel);
+  --color-elevated: var(--theme-elevated);
+  --color-line: var(--theme-line);
+  --color-ink: var(--theme-ink);
+  --color-mute: var(--theme-mute);
+  --color-faint: var(--theme-faint);
+  --color-teal: var(--theme-teal);
+  --color-teal-bright: var(--theme-teal-bright);
+  --color-pos: var(--theme-pos);
+  --color-neg: var(--theme-neg);
+  --color-neu: var(--theme-neu);
+  --color-amber: var(--theme-amber);
+  --color-official: var(--theme-official);
+  --color-chart-grid: var(--theme-chart-grid);
+  --color-slab: var(--theme-slab);
+  --shadow-card: var(--theme-shadow-card);
+  --radius-card: var(--theme-radius-card);
+}
+
+/* ── Pulse Teal (baseline / default) ─────────────────────────── */
+:root,
+[data-theme="pulse"] {
+  --theme-canvas: #0b1118;
+  --theme-panel: #121a24;
+  --theme-elevated: #182230;
+  --theme-line: #243040;
+  --theme-ink: #e8eef4;
+  --theme-mute: #8b9bb0;
+  --theme-faint: #5d6d82;
+  --theme-teal: #00b7c3;
+  --theme-teal-bright: #3ee0ea;
+  --theme-pos: #3ddc97;
+  --theme-neg: #ff6b7a;
+  --theme-neu: #8b9bb0;
+  --theme-amber: #e8b84a;
+  --theme-official: #6ea8ff;
+  --theme-chart-grid: #243040;
+  --theme-slab: #182230;
+  --theme-shadow-card: 0 10px 40px rgba(0, 0, 0, 0.22);
+  --theme-radius-card: 1rem;
+  --theme-grid-glow-a: rgba(0, 183, 195, 0.12);
+  --theme-grid-glow-b: rgba(110, 168, 255, 0.08);
+  --theme-grid-size: 48px;
+  --theme-density: 1;
+  --theme-card-opacity: 0.9;
+  --theme-body-size: 14px;
+  --theme-meta-size: 11px;
+  color-scheme: dark;
+}
+
+/* ── B Fluent Fabric Accent ──────────────────────────────────── */
+[data-theme="fluent"] {
+  --theme-canvas: #0f1115;
+  --theme-panel: #1a1d24;
+  --theme-elevated: #22262f;
+  --theme-line: #2e3440;
+  --theme-ink: #f3f4f6;
+  --theme-mute: #9aa3b2;
+  --theme-faint: #6b7380;
+  --theme-teal: #00bcf2;
+  --theme-teal-bright: #50e6ff;
+  --theme-pos: #3dbf8c;
+  --theme-neg: #f15b67;
+  --theme-neu: #9aa3b2;
+  --theme-amber: #e8b84a;
+  --theme-official: #6ea8ff;
+  --theme-chart-grid: #2e3440;
+  --theme-slab: #22262f;
+  --theme-shadow-card: 0 8px 28px rgba(0, 0, 0, 0.28);
+  --theme-radius-card: 0.75rem;
+  --theme-grid-glow-a: rgba(0, 188, 242, 0.07);
+  --theme-grid-glow-b: transparent;
+  --theme-grid-size: 48px;
+  --theme-body-size: 14px;
+  --theme-meta-size: 12px;
+  color-scheme: dark;
+}
+
+/* ── A Soft Paper ────────────────────────────────────────────── */
+[data-theme="paper"] {
+  --theme-canvas: #f7f6f3;
+  --theme-panel: #ffffff;
+  --theme-elevated: #eef0f2;
+  --theme-line: #e2e5e9;
+  --theme-ink: #1b1f24;
+  --theme-mute: #5c6570;
+  --theme-faint: #8a929c;
+  --theme-teal: #2563eb;
+  --theme-teal-bright: #3b82f6;
+  --theme-pos: #0f9f6e;
+  --theme-neg: #e11d48;
+  --theme-neu: #5c6570;
+  --theme-amber: #d97706;
+  --theme-official: #2563eb;
+  --theme-chart-grid: #e2e5e9;
+  --theme-slab: #eef0f2;
+  --theme-shadow-card: 0 4px 24px rgba(27, 31, 36, 0.06);
+  --theme-radius-card: 1rem;
+  --theme-grid-glow-a: transparent;
+  --theme-grid-glow-b: transparent;
+  --theme-grid-size: 56px;
+  --theme-body-size: 14px;
+  --theme-meta-size: 12px;
+  color-scheme: light;
+}
+
+/* ── D Dense Ops Console ─────────────────────────────────────── */
+[data-theme="ops"] {
+  --theme-canvas: #0a0c0f;
+  --theme-panel: #12151a;
+  --theme-elevated: #181c22;
+  --theme-line: #2a3038;
+  --theme-ink: #e6edf3;
+  --theme-mute: #7d8b99;
+  --theme-faint: #5a6673;
+  --theme-teal: #e8b84a;
+  --theme-teal-bright: #f0c95c;
+  --theme-pos: #3ddc97;
+  --theme-neg: #ff6b7a;
+  --theme-neu: #7d8b99;
+  --theme-amber: #e8b84a;
+  --theme-official: #6ea8ff;
+  --theme-chart-grid: #1a222c;
+  --theme-slab: #181c22;
+  --theme-shadow-card: none;
+  --theme-radius-card: 0.375rem;
+  --theme-grid-glow-a: transparent;
+  --theme-grid-glow-b: transparent;
+  --theme-grid-size: 32px;
+  --theme-body-size: 12px;
+  --theme-meta-size: 11px;
+  color-scheme: dark;
+}
+
+/* ── C Marketing Glass ───────────────────────────────────────── */
+[data-theme="glass"] {
+  --theme-canvas: #0b0620;
+  --theme-panel: #16102ccc;
+  --theme-elevated: #1e1638;
+  --theme-line: #3d2a6d66;
+  --theme-ink: #f5f0ff;
+  --theme-mute: #a89bc8;
+  --theme-faint: #7c6fa3;
+  --theme-teal: #a855f7;
+  --theme-teal-bright: #c084fc;
+  --theme-pos: #34d399;
+  --theme-neg: #fb7185;
+  --theme-neu: #a89bc8;
+  --theme-amber: #fbbf24;
+  --theme-official: #6366f1;
+  --theme-chart-grid: #3d2a6d;
+  --theme-slab: #1e1638;
+  --theme-shadow-card: 0 12px 40px rgba(88, 28, 135, 0.25);
+  --theme-radius-card: 1rem;
+  --theme-grid-glow-a: rgba(124, 58, 237, 0.22);
+  --theme-grid-glow-b: rgba(0, 188, 242, 0.1);
+  --theme-grid-size: 48px;
+  --theme-body-size: 14px;
+  --theme-meta-size: 11px;
+  color-scheme: dark;
+}
+
+/* ── E Narrative Leadership Board ────────────────────────────── */
+[data-theme="narrative"] {
+  --theme-canvas: #f5f7fa;
+  --theme-panel: #ffffff;
+  --theme-elevated: #e8eef5;
+  --theme-line: #d0d7e2;
+  --theme-ink: #0f172a;
+  --theme-mute: #64748b;
+  --theme-faint: #94a3b8;
+  --theme-teal: #4f46e5;
+  --theme-teal-bright: #6366f1;
+  --theme-pos: #059669;
+  --theme-neg: #dc2626;
+  --theme-neu: #64748b;
+  --theme-amber: #d97706;
+  --theme-official: #4f46e5;
+  --theme-chart-grid: #d0d7e2;
+  --theme-slab: #eef2ff;
+  --theme-shadow-card: 0 6px 28px rgba(15, 23, 42, 0.06);
+  --theme-radius-card: 1rem;
+  --theme-grid-glow-a: transparent;
+  --theme-grid-glow-b: transparent;
+  --theme-grid-size: 64px;
+  --theme-body-size: 15px;
+  --theme-meta-size: 12px;
+  color-scheme: light;
+}
+
+/* ── F Light Enterprise ──────────────────────────────────────── */
+[data-theme="enterprise"] {
+  --theme-canvas: #f5f5f5;
+  --theme-panel: #ffffff;
+  --theme-elevated: #fafafa;
+  --theme-line: #e0e0e0;
+  --theme-ink: #242424;
+  --theme-mute: #616161;
+  --theme-faint: #8a8a8a;
+  --theme-teal: #5b5fc7;
+  --theme-teal-bright: #7b7fd6;
+  --theme-pos: #0d9e6d;
+  --theme-neg: #c4314b;
+  --theme-neu: #616161;
+  --theme-amber: #c19c00;
+  --theme-official: #00a4a6;
+  --theme-chart-grid: #e0e0e0;
+  --theme-slab: #fafafa;
+  --theme-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --theme-radius-card: 0.5rem;
+  --theme-grid-glow-a: transparent;
+  --theme-grid-glow-b: transparent;
+  --theme-grid-size: 48px;
+  --theme-body-size: 14px;
+  --theme-meta-size: 11px;
+  color-scheme: light;
+}
+
+/* ── G Signal Radar (experimental) ───────────────────────────── */
+[data-theme="radar"] {
+  --theme-canvas: #030712;
+  --theme-panel: #0b1224;
+  --theme-elevated: #111827;
+  --theme-line: #1e3a5f;
+  --theme-ink: #e0f2fe;
+  --theme-mute: #7dd3fc;
+  --theme-faint: #38bdf8;
+  --theme-teal: #22d3ee;
+  --theme-teal-bright: #67e8f9;
+  --theme-pos: #4ade80;
+  --theme-neg: #f43f5e;
+  --theme-neu: #7dd3fc;
+  --theme-amber: #f472b6;
+  --theme-official: #22d3ee;
+  --theme-chart-grid: #1e3a5f;
+  --theme-slab: #111827;
+  --theme-shadow-card: 0 0 32px rgba(34, 211, 238, 0.08);
+  --theme-radius-card: 0.5rem;
+  --theme-grid-glow-a: rgba(34, 211, 238, 0.14);
+  --theme-grid-glow-b: rgba(244, 114, 182, 0.08);
+  --theme-grid-size: 40px;
+  --theme-body-size: 13px;
+  --theme-meta-size: 10px;
+  color-scheme: dark;
 }
 
 html,
@@ -30,7 +261,11 @@ body {
   background: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  font-size: var(--theme-body-size, 14px);
   -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
 }
 
 #root {
@@ -39,21 +274,97 @@ body {
 
 .pulse-grid {
   background-image:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(0, 183, 195, 0.12), transparent),
-    radial-gradient(ellipse 50% 40% at 90% 0%, rgba(110, 168, 255, 0.08), transparent),
+    radial-gradient(ellipse 80% 50% at 20% -10%, var(--theme-grid-glow-a), transparent),
+    radial-gradient(ellipse 50% 40% at 90% 0%, var(--theme-grid-glow-b), transparent),
     linear-gradient(var(--color-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
-  background-size: auto, auto, 48px 48px, 48px 48px;
+  background-size:
+    auto,
+    auto,
+    var(--theme-grid-size) var(--theme-grid-size),
+    var(--theme-grid-size) var(--theme-grid-size);
   background-position: 0 0, 0 0, 0 0, 0 0;
 }
 
+.pulse-card {
+  border-radius: var(--theme-radius-card);
+  box-shadow: var(--theme-shadow-card);
+  background-color: color-mix(in srgb, var(--color-panel) 90%, transparent);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+/* Glass: matte data panes; soft chrome only on header shell */
+[data-theme="glass"] .pulse-card {
+  background-color: var(--color-elevated);
+  backdrop-filter: none;
+}
+
+[data-theme="glass"] header {
+  background: color-mix(in srgb, var(--theme-panel) 85%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+/* Ops: compact tables / dense chrome, no glow */
+[data-theme="ops"] .pulse-grid {
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: var(--theme-grid-size) var(--theme-grid-size);
+}
+
+[data-theme="ops"] .pulse-card {
+  background-color: var(--color-panel);
+}
+
+[data-theme="ops"] .ops-dense,
+[data-theme="ops"] table {
+  font-size: 12px;
+}
+
+/* Narrative: slab tint on section cards */
+[data-theme="narrative"] .pulse-card {
+  background-color: var(--color-panel);
+  border-color: var(--color-line);
+}
+
+[data-theme="narrative"] main {
+  max-width: 72rem;
+}
+
+/* Paper / enterprise: quiet grid */
+[data-theme="paper"] .pulse-grid,
+[data-theme="enterprise"] .pulse-grid,
+[data-theme="narrative"] .pulse-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-line) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-line) 55%, transparent) 1px, transparent 1px);
+  background-size: var(--theme-grid-size) var(--theme-grid-size);
+}
+
+/* Radar HUD accents */
+[data-theme="radar"] .pulse-card {
+  border-color: color-mix(in srgb, var(--color-teal) 35%, var(--color-line));
+}
+
+[data-theme="radar"] .pulse-grid {
+  background-image:
+    radial-gradient(circle at 50% 0%, var(--theme-grid-glow-a), transparent 55%),
+    radial-gradient(ellipse 40% 30% at 85% 15%, var(--theme-grid-glow-b), transparent),
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+}
+
 .recharts-cartesian-axis-tick-value {
-  fill: #8b9bb0;
+  fill: var(--color-mute);
 }
 
 .recharts-default-tooltip {
-  background: #182230 !important;
-  border: 1px solid #243040 !important;
+  background: var(--color-elevated) !important;
+  border: 1px solid var(--color-line) !important;
   border-radius: 10px !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35) !important;
+  box-shadow: var(--theme-shadow-card) !important;
+  color: var(--color-ink) !important;
 }

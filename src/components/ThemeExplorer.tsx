@@ -31,7 +31,7 @@ export function ThemeExplorer({
         <EmptyState label="No themes match this filter." />
       ) : (
         <div className="grid gap-3 lg:grid-cols-2">
-          <ul className="max-h-[420px] space-y-1 overflow-auto pr-1">
+          <ul className="ops-dense max-h-[420px] space-y-1 overflow-auto pr-1">
             {themes.map((theme) => {
               const active = theme.id === selectedId
               return (
