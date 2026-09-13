@@ -1,15 +1,17 @@
-import type { PulseDataProvider, PulseSnapshot } from '../types'
+import type {
+  DependencyRequest,
+  Mention,
+  NewsItem,
+  PulseDataProvider,
+  PulseSnapshot,
+  SemesterPlan,
+  SuggestedAction,
+  ThemeDefinition,
+  ThemeSignalMapping,
+  WorkItem,
+} from '../types'
 import { viewFromMentions } from '../lib/aggregate'
-import {
-  SAMPLE_DEPENDENCY_REQUESTS,
-  SAMPLE_SEMESTER_PLANS,
-  SAMPLE_THEME_MAPPINGS,
-  SAMPLE_WORK_ITEMS,
-} from './ado'
-import { SAMPLE_ACTIONS } from './actions'
-import { SAMPLE_MENTIONS } from './mentions'
-import { SAMPLE_NEWS } from './news'
-import { THEME_DEFINITIONS } from './themes'
+import corpus from './generated/corpus.json'
 
 const DEMO_DISCLAIMER = 'Demo data — not live X feed'
 
@@ -19,6 +21,16 @@ function delay(ms: number): Promise<void> {
   })
 }
 
+/** Generated synthetic corpus (see `npm run generate:demo`). */
+export const CORPUS_MENTIONS = corpus.mentions as Mention[]
+export const CORPUS_THEME_DEFINITIONS = corpus.themeDefinitions as ThemeDefinition[]
+export const CORPUS_ACTIONS = corpus.actions as SuggestedAction[]
+export const CORPUS_NEWS = corpus.news as NewsItem[]
+export const CORPUS_SEMESTER_PLANS = corpus.semesterPlans as SemesterPlan[]
+export const CORPUS_WORK_ITEMS = corpus.workItems as WorkItem[]
+export const CORPUS_DEPENDENCY_REQUESTS = corpus.dependencyRequests as DependencyRequest[]
+export const CORPUS_THEME_MAPPINGS = corpus.themeMappings as ThemeSignalMapping[]
+
 /**
  * Public demo provider. Swap `pulseProvider` export for a live public API
  * or an internal MS implementation — same PulseSnapshot contract.
@@ -27,29 +39,25 @@ function delay(ms: number): Promise<void> {
 export class MockPulseDataProvider implements PulseDataProvider {
   async getSnapshot(): Promise<PulseSnapshot> {
     await delay(280)
-    const derived = viewFromMentions(SAMPLE_MENTIONS, THEME_DEFINITIONS)
+    const derived = viewFromMentions(CORPUS_MENTIONS, CORPUS_THEME_DEFINITIONS)
 
     return {
-      generatedAt: '2026-09-12T21:00:00Z',
+      generatedAt: corpus.generatedAt,
       isDemo: true,
       demoDisclaimer: DEMO_DISCLAIMER,
-      dateRange: {
-        start: '2026-09-05',
-        end: '2026-09-12',
-        label: 'Sep 5 – Sep 12, 2026',
-      },
-      mentions: SAMPLE_MENTIONS,
-      themeDefinitions: THEME_DEFINITIONS,
+      dateRange: corpus.dateRange,
+      mentions: CORPUS_MENTIONS,
+      themeDefinitions: CORPUS_THEME_DEFINITIONS,
       themes: derived.themes,
-      actions: SAMPLE_ACTIONS,
-      news: SAMPLE_NEWS,
+      actions: CORPUS_ACTIONS,
+      news: CORPUS_NEWS,
       daily: derived.daily,
       workloads: derived.workloads,
       kpis: derived.kpis,
-      semesterPlans: SAMPLE_SEMESTER_PLANS,
-      workItems: SAMPLE_WORK_ITEMS,
-      dependencyRequests: SAMPLE_DEPENDENCY_REQUESTS,
-      themeMappings: SAMPLE_THEME_MAPPINGS,
+      semesterPlans: CORPUS_SEMESTER_PLANS,
+      workItems: CORPUS_WORK_ITEMS,
+      dependencyRequests: CORPUS_DEPENDENCY_REQUESTS,
+      themeMappings: CORPUS_THEME_MAPPINGS,
     }
   }
 }
