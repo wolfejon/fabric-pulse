@@ -1,8 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { ArrowLeft } from 'lucide-react'
+import { EvidenceBadge } from '../../atelier/EvidenceBadge'
+import { EvidenceSheet } from '../../atelier/EvidenceSheet'
+import {
+  DEMO_COMPETITOR_FEATURES,
+  DEMO_COMPETITOR_PAGES,
+} from '../../../data/competitors'
 import { buildNewspaperEdition, type NewspaperStory } from '../../../lib/newspaper'
+import type { Mention } from '../../../types'
 import type { LayoutProps } from '../types'
+import { CompetitorBackPage } from './CompetitorBackPage'
 
 function DropCapBody({ paragraphs }: { paragraphs: string[] }) {
   if (paragraphs.length === 0) return null
@@ -64,9 +72,11 @@ function Masthead({
 function LeadCard({
   story,
   onOpen,
+  onEvidence,
 }: {
   story: NewspaperStory
   onOpen: (id: string) => void
+  onEvidence: (story: NewspaperStory) => void
 }) {
   return (
     <article className="min-w-0">
@@ -83,6 +93,17 @@ function LeadCard({
         </h2>
         <p className="mt-3 font-serif text-[15px] leading-relaxed text-[#4a4842]">{story.dek}</p>
       </button>
+      {story.mentionCount != null && story.uniqueAuthorCount != null && story.volumeClass ? (
+        <div className="mt-3">
+          <EvidenceBadge
+            mentionCount={story.mentionCount}
+            uniqueAuthors={story.uniqueAuthorCount}
+            volumeClass={story.volumeClass}
+            tone="ink"
+            onClick={() => onEvidence(story)}
+          />
+        </div>
+      ) : null}
       <p className="mt-3 text-[11px] uppercase tracking-[0.12em] text-[#7a7870]">{story.byline}</p>
       {story.body[0] ? (
         <p className="newspaper-body mt-4 text-[14.5px] leading-[1.6] text-[#2a2a28]">
@@ -107,9 +128,11 @@ function LeadCard({
 function SecondaryCard({
   story,
   onOpen,
+  onEvidence,
 }: {
   story: NewspaperStory
   onOpen: (id: string) => void
+  onEvidence: (story: NewspaperStory) => void
 }) {
   return (
     <article className="border-t border-[#c8c2b4] pt-4 first:border-t-0 first:pt-0">
@@ -124,6 +147,18 @@ function SecondaryCard({
           {story.dek}
         </p>
       </button>
+      {story.mentionCount != null && story.uniqueAuthorCount != null && story.volumeClass ? (
+        <div className="mt-2">
+          <EvidenceBadge
+            mentionCount={story.mentionCount}
+            uniqueAuthors={story.uniqueAuthorCount}
+            volumeClass={story.volumeClass}
+            tone="ink"
+            compact
+            onClick={() => onEvidence(story)}
+          />
+        </div>
+      ) : null}
       <button
         type="button"
         onClick={() => onOpen(story.id)}
@@ -162,9 +197,13 @@ function BriefingColumn({
 function ArticleView({
   story,
   onBack,
+  onEvidence,
+  onBackPage,
 }: {
   story: NewspaperStory
   onBack: () => void
+  onEvidence: (story: NewspaperStory) => void
+  onBackPage: (pageId: string) => void
 }) {
   return (
     <motion.article
@@ -191,6 +230,17 @@ function ArticleView({
         {story.headline}
       </h2>
       <p className="mt-4 font-serif text-base leading-relaxed text-[#5a5850]">{story.dek}</p>
+      {story.mentionCount != null && story.uniqueAuthorCount != null && story.volumeClass ? (
+        <div className="mt-4">
+          <EvidenceBadge
+            mentionCount={story.mentionCount}
+            uniqueAuthors={story.uniqueAuthorCount}
+            volumeClass={story.volumeClass}
+            tone="ink"
+            onClick={() => onEvidence(story)}
+          />
+        </div>
+      ) : null}
       <p className="mt-4 border-y border-[#c8c2b4] py-2 text-[11px] uppercase tracking-[0.12em] text-[#7a7870]">
         {story.byline}
       </p>
@@ -207,6 +257,21 @@ function ArticleView({
         <DropCapBody paragraphs={story.body} />
       </div>
 
+      {story.competitorPageId ? (
+        <div className="mt-10 border-t border-[#1a1a18]/80 pt-6 text-center">
+          <button
+            type="button"
+            onClick={() => onBackPage(story.competitorPageId!)}
+            className="font-serif text-[15px] italic text-[#7A3FF2] underline-offset-4 transition hover:underline"
+          >
+            See who else ships this →
+          </button>
+          <p className="mt-2 text-[10px] uppercase tracking-[0.16em] text-[#9a968c]">
+            Chronicle back page · rival posture
+          </p>
+        </div>
+      ) : null}
+
       <p className="mt-10 text-center font-serif text-xs italic text-[#9a968c]">
         — End of {story.pageMark} —
       </p>
@@ -216,6 +281,8 @@ function ArticleView({
 
 export function Newspaper({ snapshot, view, workload }: LayoutProps) {
   const [openId, setOpenId] = useState<string | null>(null)
+  const [backPageId, setBackPageId] = useState<string | null>(null)
+  const [evidenceStory, setEvidenceStory] = useState<NewspaperStory | null>(null)
 
   const edition = useMemo(
     () =>
@@ -231,17 +298,42 @@ export function Newspaper({ snapshot, view, workload }: LayoutProps) {
     [view.kpis, view.themes, view.mentions, snapshot.news, snapshot.actions, workload, snapshot.dateRange.label],
   )
 
-  const editionKey = `${workload}-${edition.stories.map((s) => s.id).join('|')}`
+  const editionKey = `${workload}-${edition.stories.map((s) => s.id).join('|')}-${view.mentions.length}`
 
   useEffect(() => {
     setOpenId(null)
+    setBackPageId(null)
+    setEvidenceStory(null)
   }, [editionKey])
+
+  const evidenceMentions: Mention[] = useMemo(() => {
+    if (!evidenceStory?.themeId) return []
+    const theme = view.themes.find((t) => t.id === evidenceStory.themeId)
+    if (!theme) return []
+    const ids = new Set(theme.mentionIds)
+    return view.mentions
+      .filter((m) => ids.has(m.id))
+      .sort((a, b) => b.likes + b.reposts - (a.likes + a.reposts))
+      .slice(0, 8)
+  }, [evidenceStory, view.themes, view.mentions])
 
   const openStory = edition.stories.find((s) => s.id === openId) ?? null
   const lead = edition.stories.find((s) => s.kind === 'lead') ?? edition.stories[0] ?? null
   const secondaries = edition.stories.filter((s) => s.id !== lead?.id)
 
-  const open = (id: string) => setOpenId(id)
+  const pages = snapshot.competitorPages ?? DEMO_COMPETITOR_PAGES
+  const allFeatures = snapshot.competitorFeatures ?? DEMO_COMPETITOR_FEATURES
+  const activePage = backPageId ? pages.find((p) => p.id === backPageId) ?? null : null
+  const pageFeatures = activePage
+    ? allFeatures.filter((f) => activePage.featureIds.includes(f.id))
+    : []
+
+  const open = (id: string) => {
+    setBackPageId(null)
+    setOpenId(id)
+  }
+
+  const openEvidence = (story: NewspaperStory) => setEvidenceStory(story)
 
   return (
     <div className="newspaper-stage relative flex min-h-[calc(100svh-7rem)] flex-col">
@@ -249,8 +341,21 @@ export function Newspaper({ snapshot, view, workload }: LayoutProps) {
 
       <div className="relative z-10 mx-auto w-full max-w-6xl flex-1 px-4 pb-14 pt-2 sm:px-8">
         <AnimatePresence mode="wait">
-          {openStory ? (
-            <ArticleView key={`article-${openStory.id}`} story={openStory} onBack={() => setOpenId(null)} />
+          {activePage ? (
+            <CompetitorBackPage
+              key={`back-${activePage.id}`}
+              page={activePage}
+              features={pageFeatures}
+              onBack={() => setBackPageId(null)}
+            />
+          ) : openStory ? (
+            <ArticleView
+              key={`article-${openStory.id}`}
+              story={openStory}
+              onBack={() => setOpenId(null)}
+              onEvidence={openEvidence}
+              onBackPage={(pageId) => setBackPageId(pageId)}
+            />
           ) : (
             <motion.div
               key={`front-${editionKey}`}
@@ -268,9 +373,8 @@ export function Newspaper({ snapshot, view, workload }: LayoutProps) {
 
               {lead ? (
                 <div className="mt-6 grid gap-8 lg:grid-cols-12">
-                  {/* Lead + pull quote */}
                   <div className="lg:col-span-7 lg:border-r lg:border-[#c8c2b4] lg:pr-8">
-                    <LeadCard story={lead} onOpen={open} />
+                    <LeadCard story={lead} onOpen={open} onEvidence={openEvidence} />
                     {edition.pullQuote ? (
                       <blockquote className="newspaper-pull mt-8 hidden border-y border-[#1a1a18]/80 py-5 sm:block">
                         <p className="font-display text-center text-xl leading-snug text-[#1a1a18] sm:text-2xl">
@@ -283,11 +387,15 @@ export function Newspaper({ snapshot, view, workload }: LayoutProps) {
                     ) : null}
                   </div>
 
-                  {/* Secondary stack + briefing */}
                   <div className="flex flex-col gap-6 lg:col-span-5">
                     <div className="newspaper-columns space-y-0">
                       {secondaries.slice(0, 4).map((story) => (
-                        <SecondaryCard key={story.id} story={story} onOpen={open} />
+                        <SecondaryCard
+                          key={story.id}
+                          story={story}
+                          onOpen={open}
+                          onEvidence={openEvidence}
+                        />
                       ))}
                     </div>
                     <BriefingColumn items={edition.briefing} />
@@ -299,11 +407,15 @@ export function Newspaper({ snapshot, view, workload }: LayoutProps) {
                 </p>
               )}
 
-              {/* Bottom rail of remaining stories */}
               {secondaries.length > 4 ? (
                 <div className="mt-10 grid gap-6 border-t-2 border-[#1a1a18] pt-6 sm:grid-cols-2 lg:grid-cols-3">
                   {secondaries.slice(4).map((story) => (
-                    <SecondaryCard key={story.id} story={story} onOpen={open} />
+                    <SecondaryCard
+                      key={story.id}
+                      story={story}
+                      onOpen={open}
+                      onEvidence={openEvidence}
+                    />
                   ))}
                 </div>
               ) : null}
@@ -315,6 +427,18 @@ export function Newspaper({ snapshot, view, workload }: LayoutProps) {
           )}
         </AnimatePresence>
       </div>
+
+      <EvidenceSheet
+        open={evidenceStory != null}
+        onOpenChange={(o) => {
+          if (!o) setEvidenceStory(null)
+        }}
+        title={evidenceStory?.headline ?? 'Theme evidence'}
+        mentionCount={evidenceStory?.mentionCount ?? 0}
+        uniqueAuthors={evidenceStory?.uniqueAuthorCount ?? 0}
+        volumeClass={evidenceStory?.volumeClass ?? 'single'}
+        mentions={evidenceMentions}
+      />
     </div>
   )
 }

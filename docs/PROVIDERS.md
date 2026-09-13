@@ -57,3 +57,9 @@ export const pulseProvider: PulseDataProvider = new MockPulseDataProvider()
 | `src/data/themes.ts` | Keyword theme definitions + polarity |
 | `src/data/ado.ts` | Semester plans, work items, dependency requests, theme mappings |
 | `src/data/actions.ts` / `news.ts` | Suggested actions and news |
+
+## Prototype status (2026-09-13)
+
+- **Evidence:** `ThemeInsight.uniqueAuthorCount` / `volumeClass` derived in `clusterThemes`; Newspaper + Coverage badges open an evidence sheet with synthetic permalinks.
+- **Competitors:** `competitorFeatures` / `competitorPages` seeded for Pipelines (Glue, Lakeflow, Informatica, ADF-classic); Newspaper jump → Chronicle back page.
+- **Sources:** Demo `sourceRegistry` + MinimalChrome Sources drawer; enabled ids in `localStorage`; mentions/news filtered by `sourceEntryId`.

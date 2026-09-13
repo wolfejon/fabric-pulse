@@ -29,6 +29,23 @@ export type CloudBoundaryFilter = 'all' | 'commercial' | 'usgov' | 'usnat' | 'us
 export type ThemePolarity = 'want' | 'dont-like' | 'mixed'
 export type CoverageStatus = 'covered' | 'partial' | 'gap'
 
+/** One voice vs thin vs crowd — derived from unique authors / mention count. */
+export type VolumeClass = 'single' | 'thin' | 'crowd'
+
+export type FabricCompetitorStatus = 'ships' | 'planned' | 'gap' | 'unknown'
+
+export type SourceKind =
+  | 'rss'
+  | 'github-issues'
+  | 'reddit'
+  | 'x-api'
+  | 'stackexchange'
+  | 'gdelt'
+  | 'status-page'
+  | 'ado-rest'
+  | 'csv-upload'
+  | 'vendor-export'
+
 export interface WorkloadMeta {
   id: WorkloadId
   label: string
@@ -51,6 +68,12 @@ export interface Mention {
   replies: number
   /** Optional; omit ≈ commercial / unspecified. */
   cloudBoundary?: CloudBoundary
+  /** Source registry entry id (toggleable). */
+  sourceEntryId?: string
+  /** Upstream id when real; synthetic for demo. */
+  externalId?: string
+  /** Permalink back to original comment (synthetic OK for demo). */
+  permalink?: string
 }
 
 export interface ThemeDefinition {
@@ -70,6 +93,9 @@ export interface ThemeInsight {
   keywords: string[]
   mentionIds: string[]
   mentionCount: number
+  /** Distinct authors/handles in the matched set — derived, not random. */
+  uniqueAuthorCount: number
+  volumeClass: VolumeClass
   sentimentScore: number
   trend: number
   workloads: WorkloadId[]
@@ -97,6 +123,7 @@ export interface NewsItem {
   summary: string
   url: string
   workloads: WorkloadId[]
+  sourceEntryId?: string
 }
 
 export interface DailyPoint {
@@ -186,6 +213,61 @@ export interface ThemeSignalMapping {
   workload?: WorkloadId
 }
 
+/** Volume + receipts for a theme or story claim. */
+export interface EvidenceCluster {
+  id: string
+  themeId: string
+  workload?: WorkloadId
+  cloudBoundary?: CloudBoundary
+  mentionIds: string[]
+  mentionCount: number
+  uniqueAuthorCount: number
+  volumeClass: VolumeClass
+  sampleMentionIds: string[]
+  windowStart: string
+  windowEnd: string
+  notes?: string
+}
+
+/** Rival capability row tied to a customer theme. */
+export interface CompetitorFeature {
+  id: string
+  workload: WorkloadId
+  themeId: string
+  competitor: string
+  competitorLabel: string
+  capability: string
+  fabricStatus: FabricCompetitorStatus
+  themeMappingId?: string
+  workItemIds?: string[]
+  /** Optional ADO / plan link when planned. */
+  adoUrl?: string
+  evidenceUrls?: string[]
+  updatedAt: string
+  updatedBy?: string
+}
+
+/** Chronicle back page for a theme / complaint. */
+export interface CompetitorPage {
+  id: string
+  title: string
+  workload: WorkloadId
+  themeId: string
+  featureIds: string[]
+  summary: string
+}
+
+/** Toggleable ingest source (demo registry). */
+export interface SourceRegistryEntry {
+  id: string
+  kind: SourceKind
+  displayName: string
+  enabled: boolean
+  lastRefresh?: string
+  configBlurb: string
+  legalNote?: string
+}
+
 export interface PulseSnapshot {
   generatedAt: string
   isDemo: true
@@ -203,6 +285,11 @@ export interface PulseSnapshot {
   workItems: WorkItem[]
   dependencyRequests: DependencyRequest[]
   themeMappings: ThemeSignalMapping[]
+  /** Prototype: evidence clusters derived from themes. */
+  evidenceClusters?: EvidenceCluster[]
+  competitorFeatures?: CompetitorFeature[]
+  competitorPages?: CompetitorPage[]
+  sourceRegistry?: SourceRegistryEntry[]
 }
 
 /**

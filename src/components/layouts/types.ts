@@ -18,6 +18,8 @@ export type LayoutView = {
   kpis: PulseKpis
   mentions: Mention[]
   selectedTheme: ThemeInsight | null
+  /** Source-filtered news when Sources toggles are active. */
+  news?: NewsItem[]
 }
 
 export type LayoutProps = {

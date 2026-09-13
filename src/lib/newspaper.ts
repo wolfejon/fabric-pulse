@@ -1,4 +1,5 @@
 import { WORKLOAD_CATALOG } from '../data/catalog'
+import { competitorPageForTheme } from '../data/competitors'
 import type {
   Mention,
   NewsItem,
@@ -20,6 +21,12 @@ export type NewspaperStory = {
   body: string[]
   pullQuote?: string
   pageMark: string
+  /** Theme id when story is theme-derived. */
+  themeId?: string
+  mentionCount?: number
+  uniqueAuthorCount?: number
+  volumeClass?: 'single' | 'thin' | 'crowd'
+  competitorPageId?: string
 }
 
 export type NewspaperEdition = {
@@ -196,6 +203,7 @@ export function buildNewspaperEdition(
     const related = mentionsForTheme(theme, mentions)
     const quote = loudestMention(related.length ? related : mentions)
     const tone = sentimentTone(theme.sentimentScore)
+    const leadPage = competitorPageForTheme(theme.id)
     stories.push({
       id: `theme-${theme.id}`,
       kind: 'lead',
@@ -207,6 +215,11 @@ export function buildNewspaperEdition(
       pageMark: `A${page}`,
       pullQuote: quote ? quote.text : undefined,
       body: themeBody(theme, related, quote, workload, kpis),
+      themeId: theme.id,
+      mentionCount: theme.mentionCount,
+      uniqueAuthorCount: theme.uniqueAuthorCount,
+      volumeClass: theme.volumeClass,
+      competitorPageId: leadPage?.id,
     })
     page += 1
   }
@@ -216,6 +229,7 @@ export function buildNewspaperEdition(
     const related = mentionsForTheme(theme, mentions)
     const quote = loudestMention(related.length ? related : [])
     const tone = sentimentTone(theme.sentimentScore)
+    const secPage = competitorPageForTheme(theme.id)
     stories.push({
       id: `theme-${theme.id}`,
       kind: 'secondary',
@@ -227,6 +241,11 @@ export function buildNewspaperEdition(
       pageMark: `A${page}`,
       pullQuote: quote?.text,
       body: themeBody(theme, related, quote, workload, kpis),
+      themeId: theme.id,
+      mentionCount: theme.mentionCount,
+      uniqueAuthorCount: theme.uniqueAuthorCount,
+      volumeClass: theme.volumeClass,
+      competitorPageId: secPage?.id,
     })
     page += 1
   }

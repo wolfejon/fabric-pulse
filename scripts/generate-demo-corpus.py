@@ -91,6 +91,100 @@ CLOUD_WEIGHTS = [
     ("ussec", 4.5),
 ]
 
+# Strategy MVP source registry seed (toggleable in UI)
+SOURCE_WEIGHTS = [
+    ("reddit-microsoft-fabric", 38),
+    ("github-fabric-cicd-issues", 28),
+    ("rss-fabric-updates", 22),
+    ("x-api-fabric", 6),
+    ("stackexchange-fabric", 4),
+    ("gdelt-fabric-news", 2),
+]
+
+SOURCE_REGISTRY = [
+    {
+        "id": "rss-fabric-updates",
+        "kind": "rss",
+        "displayName": "Blog RSS — Fabric Updates",
+        "enabled": True,
+        "lastRefresh": "2026-09-13T15:00:00Z",
+        "configBlurb": "https://blog.fabric.microsoft.com/en-us/blog/feed/",
+        "legalNote": "Official RSS",
+    },
+    {
+        "id": "github-fabric-cicd-issues",
+        "kind": "github-issues",
+        "displayName": "GitHub — microsoft/fabric-cicd",
+        "enabled": True,
+        "lastRefresh": "2026-09-13T14:30:00Z",
+        "configBlurb": "Issues API · microsoft/fabric-cicd",
+        "legalNote": "Official GitHub API",
+    },
+    {
+        "id": "reddit-microsoft-fabric",
+        "kind": "reddit",
+        "displayName": "Reddit — r/MicrosoftFabric",
+        "enabled": True,
+        "lastRefresh": "2026-09-13T14:00:00Z",
+        "configBlurb": "r/MicrosoftFabric via Reddit Data API",
+        "legalNote": "Official Data API",
+    },
+    {
+        "id": "x-api-fabric",
+        "kind": "x-api",
+        "displayName": "X — Fabric keywords (capped)",
+        "enabled": False,
+        "lastRefresh": "2026-09-12T18:00:00Z",
+        "configBlurb": "Capped keyword set · deferred for MVP spend",
+        "legalNote": "Official X API — cost-gated",
+    },
+    {
+        "id": "stackexchange-fabric",
+        "kind": "stackexchange",
+        "displayName": "Stack Overflow — [microsoft-fabric]",
+        "enabled": False,
+        "lastRefresh": "2026-09-10T12:00:00Z",
+        "configBlurb": "Stack Exchange API · tag microsoft-fabric",
+        "legalNote": "Official API — deferred",
+    },
+    {
+        "id": "gdelt-fabric-news",
+        "kind": "gdelt",
+        "displayName": "GDELT — Fabric / ADF press",
+        "enabled": False,
+        "lastRefresh": "2026-09-11T08:00:00Z",
+        "configBlurb": "News / press color for Newspaper",
+        "legalNote": "GDELT public — deferred",
+    },
+]
+
+
+def synthetic_permalink(source_id: str, external_id: str) -> str:
+    if source_id == "reddit-microsoft-fabric":
+        return f"https://www.reddit.com/r/MicrosoftFabric/comments/{external_id}/"
+    if source_id == "github-fabric-cicd-issues":
+        return f"https://github.com/microsoft/fabric-cicd/issues/{external_id}"
+    if source_id == "rss-fabric-updates":
+        return f"https://blog.fabric.microsoft.com/en-us/blog/#comment-{external_id}"
+    if source_id == "x-api-fabric":
+        return f"https://x.com/i/web/status/{external_id}"
+    if source_id == "stackexchange-fabric":
+        return f"https://stackoverflow.com/q/{external_id}"
+    if source_id == "gdelt-fabric-news":
+        return f"https://api.gdeltproject.org/api/v2/doc/doc?query=fabric&id={external_id}"
+    return f"https://example.invalid/pulse/{source_id}/{external_id}"
+
+
+def external_id_for(source_id: str, mention_id: str) -> str:
+    n = abs(hash(mention_id)) % 900000 + 100000
+    if source_id == "github-fabric-cicd-issues":
+        return str(abs(hash(mention_id)) % 4000 + 120)
+    if source_id == "reddit-microsoft-fabric":
+        alphabet = "abcdefghijklmnopqrstuvwxyz0123456789"
+        x = abs(hash(mention_id))
+        return "".join(alphabet[(x // (36 ** i)) % 36] for i in range(7))
+    return str(n)
+
 DATES = [
     "2026-08-15",
     "2026-08-16",
@@ -690,8 +784,11 @@ def build_mentions(n):
         nonlocal mid
         author = make_author()
         score = rng.float(score_range[0], score_range[1])
+        mid_str = f"m{pad(mid)}"
+        source_id = rng.pick_weighted(SOURCE_WEIGHTS)
+        ext = external_id_for(source_id, mid_str)
         m = {
-            "id": f"m{pad(mid)}",
+            "id": mid_str,
             **author,
             "text": text,
             "createdAt": random_iso(rng.pick(DATES)),
@@ -701,6 +798,9 @@ def build_mentions(n):
             "likes": rng.int(2, 240),
             "reposts": rng.int(0, 65),
             "replies": rng.int(0, 55),
+            "sourceEntryId": source_id,
+            "externalId": ext,
+            "permalink": synthetic_permalink(source_id, ext),
         }
         mid += 1
         if not omit_cloud and cloud is not None:
@@ -1563,6 +1663,15 @@ def main():
     actions = build_actions()
     news = build_news()
 
+    # Stamp news with sourceEntryId for toggle filtering
+    for item in news:
+        if item.get("sourceType") == "official":
+            item["sourceEntryId"] = "rss-fabric-updates"
+        elif item.get("sourceType") == "press":
+            item["sourceEntryId"] = "gdelt-fabric-news"
+        else:
+            item["sourceEntryId"] = "reddit-microsoft-fabric"
+
     corpus = {
         "generatedAt": "2026-09-13T16:00:00Z",
         "seed": SEED,
@@ -1580,6 +1689,7 @@ def main():
         "workItems": work_items,
         "dependencyRequests": deps,
         "themeMappings": mappings,
+        "sourceRegistry": SOURCE_REGISTRY,
     }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)

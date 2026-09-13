@@ -15,6 +15,7 @@ import type {
   WorkloadStat,
 } from '../types'
 import { WORKLOAD_IDS } from '../types'
+import { classifyVolume, uniqueAuthorsFrom } from './evidence'
 
 function mean(values: number[]): number {
   if (values.length === 0) return 0
@@ -57,12 +58,27 @@ export function filterMentions(
   workload: WorkloadFilter,
   theme: ThemeInsight | null,
   cloud: CloudBoundaryFilter = 'all',
+  enabledSourceIds?: Set<string> | null,
 ): Mention[] {
   return mentions.filter((mention) => {
     if (workload !== 'all' && mention.workload !== workload) return false
     if (!matchesCloudFilter(mention.cloudBoundary, cloud)) return false
     if (theme && !theme.mentionIds.includes(mention.id)) return false
+    if (enabledSourceIds && mention.sourceEntryId && !enabledSourceIds.has(mention.sourceEntryId)) {
+      return false
+    }
     return true
+  })
+}
+
+export function filterByEnabledSources<T extends { sourceEntryId?: string }>(
+  items: T[],
+  enabledSourceIds: Set<string> | null | undefined,
+): T[] {
+  if (!enabledSourceIds) return items
+  return items.filter((item) => {
+    if (!item.sourceEntryId) return true
+    return enabledSourceIds.has(item.sourceEntryId)
   })
 }
 
@@ -114,6 +130,7 @@ export function clusterThemes(mentions: Mention[], definitions: ThemeDefinition[
         : []
 
       const workloads = [...new Set(matched.map((mention) => mention.workload))]
+      const uniqueAuthorCount = uniqueAuthorsFrom(matched)
 
       return {
         id: definition.id,
@@ -122,6 +139,8 @@ export function clusterThemes(mentions: Mention[], definitions: ThemeDefinition[
         keywords: definition.keywords,
         mentionIds: matched.map((mention) => mention.id),
         mentionCount: matched.length,
+        uniqueAuthorCount,
+        volumeClass: classifyVolume(uniqueAuthorCount, matched.length),
         sentimentScore: mean(matched.map((mention) => mention.sentimentScore)),
         trend: trendPct(late.length, early.length),
         workloads,

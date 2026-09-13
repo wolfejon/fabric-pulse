@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
+import { EvidenceBadge } from '../../atelier/EvidenceBadge'
+import { EvidenceSheet } from '../../atelier/EvidenceSheet'
 import { WORKLOAD_CATALOG } from '../../../data/catalog'
 import {
   resolveThemeMapping,
@@ -8,6 +10,7 @@ import {
 import type {
   CoverageStatus,
   DependencyRequest,
+  Mention,
   ThemeInsight,
   ThemePolarity,
   ThemeSignalMapping,
@@ -39,11 +42,13 @@ function ThemeRow({
   mapping,
   selected,
   onSelect,
+  onEvidence,
 }: {
   theme: ThemeInsight
   mapping: ThemeSignalMapping | null
   selected: boolean
   onSelect: () => void
+  onEvidence: () => void
 }) {
   const status: CoverageStatus = mapping?.coverage ?? 'gap'
   return (
@@ -67,12 +72,15 @@ function ThemeRow({
         >
           {theme.description}
         </span>
-        <span
-          className={`mt-2 block text-[10px] uppercase tracking-[0.14em] ${
-            selected ? 'text-white/45' : 'text-[#9a9186]'
-          }`}
-        >
-          {theme.mentionCount} mention{theme.mentionCount === 1 ? '' : 's'}
+        <span className="mt-2 block" onClick={(e) => e.stopPropagation()}>
+          <EvidenceBadge
+            mentionCount={theme.mentionCount}
+            uniqueAuthors={theme.uniqueAuthorCount}
+            volumeClass={theme.volumeClass}
+            tone={selected ? 'dark' : 'light'}
+            compact
+            onClick={onEvidence}
+          />
         </span>
       </span>
       <span
@@ -92,12 +100,14 @@ function DetailPanel({
   workItems,
   deps,
   semesterName,
+  onEvidence,
 }: {
   theme: ThemeInsight
   mapping: ThemeSignalMapping | null
   workItems: WorkItem[]
   deps: DependencyRequest[]
   semesterName: string | null
+  onEvidence: () => void
 }) {
   const status: CoverageStatus = mapping?.coverage ?? 'gap'
   const empty = workItems.length === 0 && deps.length === 0
@@ -117,6 +127,15 @@ function DetailPanel({
       <h3 className="font-display mt-2 text-xl font-medium tracking-tight text-[#1a1814]">
         {theme.name}
       </h3>
+      <div className="mt-3">
+        <EvidenceBadge
+          mentionCount={theme.mentionCount}
+          uniqueAuthors={theme.uniqueAuthorCount}
+          volumeClass={theme.volumeClass}
+          tone="light"
+          onClick={onEvidence}
+        />
+      </div>
       {mapping?.notes ? (
         <p className="mt-3 text-sm leading-relaxed text-[#5c554c]">{mapping.notes}</p>
       ) : null}
@@ -161,6 +180,7 @@ function DetailPanel({
  */
 export function Coverage({ snapshot, view, workload, cloud }: LayoutProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [evidenceThemeId, setEvidenceThemeId] = useState<string | null>(null)
 
   const workloadLabel =
     workload === 'all'
@@ -223,6 +243,16 @@ export function Coverage({ snapshot, view, workload, cloud }: LayoutProps) {
   const coveredCount = rows.filter((r) => r.mapping?.coverage === 'covered').length
   const gapCount = rows.filter((r) => !r.mapping || r.mapping.coverage === 'gap').length
 
+  const evidenceTheme = evidenceThemeId
+    ? view.themes.find((t) => t.id === evidenceThemeId) ?? null
+    : null
+  const evidenceMentions: Mention[] = evidenceTheme
+    ? view.mentions
+        .filter((m) => evidenceTheme.mentionIds.includes(m.id))
+        .sort((a, b) => b.likes + b.reposts - (a.likes + a.reposts))
+        .slice(0, 8)
+    : []
+
   return (
     <div className="relative mx-auto flex min-h-[calc(100svh-7rem)] w-full max-w-5xl flex-col px-5 pb-16 pt-6 sm:px-8">
       <header className="max-w-2xl">
@@ -260,6 +290,7 @@ export function Coverage({ snapshot, view, workload, cloud }: LayoutProps) {
                     onSelect={() =>
                       setSelectedId((id) => (id === theme.id ? null : theme.id))
                     }
+                    onEvidence={() => setEvidenceThemeId(theme.id)}
                   />
                 ))
               )}
@@ -285,6 +316,7 @@ export function Coverage({ snapshot, view, workload, cloud }: LayoutProps) {
                     onSelect={() =>
                       setSelectedId((id) => (id === theme.id ? null : theme.id))
                     }
+                    onEvidence={() => setEvidenceThemeId(theme.id)}
                   />
                 ))
               )}
@@ -302,6 +334,7 @@ export function Coverage({ snapshot, view, workload, cloud }: LayoutProps) {
                 workItems={selectedWorkItems}
                 deps={selectedDeps}
                 semesterName={semesterName}
+                onEvidence={() => setEvidenceThemeId(selected.theme.id)}
               />
             ) : (
               <motion.p
@@ -321,6 +354,18 @@ export function Coverage({ snapshot, view, workload, cloud }: LayoutProps) {
       <p className="mt-14 text-center text-[11px] text-[#b0a496]">
         Demo mappings · not live Azure DevOps · {snapshot.demoDisclaimer}
       </p>
+
+      <EvidenceSheet
+        open={evidenceTheme != null}
+        onOpenChange={(o) => {
+          if (!o) setEvidenceThemeId(null)
+        }}
+        title={evidenceTheme?.name ?? 'Theme evidence'}
+        mentionCount={evidenceTheme?.mentionCount ?? 0}
+        uniqueAuthors={evidenceTheme?.uniqueAuthorCount ?? 0}
+        volumeClass={evidenceTheme?.volumeClass ?? 'single'}
+        mentions={evidenceMentions}
+      />
     </div>
   )
 }

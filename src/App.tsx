@@ -26,9 +26,15 @@ import {
   WeaveThread,
 } from './components/layouts/atelier'
 import { pulseProvider } from './data/provider'
+import { DEMO_SOURCE_REGISTRY, loadEnabledSourceIds } from './data/sources'
 import { useLayout } from './layout/LayoutProvider'
 import { isArtisticLayout, type LayoutId } from './layout/layouts'
-import { filterMentions, matchesCloudFilter, viewFromMentions } from './lib/aggregate'
+import {
+  filterByEnabledSources,
+  filterMentions,
+  matchesCloudFilter,
+  viewFromMentions,
+} from './lib/aggregate'
 import { buildWeatherNarrative } from './lib/narrative'
 import type { CloudBoundaryFilter, PulseSnapshot, WorkloadFilter } from './types'
 
@@ -137,6 +143,9 @@ function AtelierFrame({
   setWorkload,
   cloud,
   setCloud,
+  sourceRegistry,
+  enabledSourceIds,
+  setEnabledSourceIds,
   children,
 }: {
   layoutId: LayoutId
@@ -146,6 +155,9 @@ function AtelierFrame({
   setWorkload: (next: WorkloadFilter) => void
   cloud: CloudBoundaryFilter
   setCloud: (next: CloudBoundaryFilter) => void
+  sourceRegistry: PulseSnapshot['sourceRegistry']
+  enabledSourceIds: Set<string>
+  setEnabledSourceIds: (next: Set<string>) => void
   children: ReactNode
 }) {
   const shell = ATELIER_SHELL[layoutId]
@@ -166,6 +178,9 @@ function AtelierFrame({
         cloud={cloud}
         setCloud={setCloud}
         tone={shell.tone}
+        sourceRegistry={sourceRegistry ?? DEMO_SOURCE_REGISTRY}
+        enabledSourceIds={enabledSourceIds}
+        setEnabledSourceIds={setEnabledSourceIds}
       />
       {children}
     </div>
@@ -179,13 +194,19 @@ export default function App() {
   const [workload, setWorkload] = useState<WorkloadFilter>('all')
   const [cloud, setCloud] = useState<CloudBoundaryFilter>('all')
   const [themeId, setThemeId] = useState<string | null>(null)
+  const [enabledSourceIds, setEnabledSourceIds] = useState<Set<string>>(() =>
+    loadEnabledSourceIds(DEMO_SOURCE_REGISTRY),
+  )
 
   useEffect(() => {
     let cancelled = false
     pulseProvider
       .getSnapshot()
       .then((data) => {
-        if (!cancelled) setSnapshot(data)
+        if (cancelled) return
+        setSnapshot(data)
+        const registry = data.sourceRegistry ?? DEMO_SOURCE_REGISTRY
+        setEnabledSourceIds(loadEnabledSourceIds(registry))
       })
       .catch((cause: unknown) => {
         if (!cancelled) setError(cause instanceof Error ? cause.message : 'Failed to load demo data')
@@ -197,20 +218,23 @@ export default function App() {
 
   const view = useMemo(() => {
     if (!snapshot) return null
-    const scopedMentions = snapshot.mentions.filter((mention) => {
+    const sourceScoped = filterByEnabledSources(snapshot.mentions, enabledSourceIds)
+    const scopedMentions = sourceScoped.filter((mention) => {
       if (workload !== 'all' && mention.workload !== workload) return false
       if (!matchesCloudFilter(mention.cloudBoundary, cloud)) return false
       return true
     })
     const derived = viewFromMentions(scopedMentions, snapshot.themeDefinitions)
     const selectedTheme = derived.themes.find((theme) => theme.id === themeId) ?? null
-    const mentions = filterMentions(snapshot.mentions, workload, selectedTheme, cloud)
+    const mentions = filterMentions(sourceScoped, workload, selectedTheme, cloud, enabledSourceIds)
+    const news = filterByEnabledSources(snapshot.news, enabledSourceIds)
     return {
       ...derived,
       mentions,
       selectedTheme,
+      news,
     }
-  }, [snapshot, themeId, workload, cloud])
+  }, [snapshot, themeId, workload, cloud, enabledSourceIds])
 
   const onClearFilters = () => {
     setWorkload('all')
@@ -225,6 +249,15 @@ export default function App() {
     return buildWeatherNarrative(view.kpis, view.themes, view.workloads)
   }, [view])
 
+  const filteredSnapshot = useMemo(() => {
+    if (!snapshot) return null
+    return {
+      ...snapshot,
+      news: view?.news ?? filterByEnabledSources(snapshot.news, enabledSourceIds),
+      mentions: filterByEnabledSources(snapshot.mentions, enabledSourceIds),
+    }
+  }, [snapshot, view, enabledSourceIds])
+
   if (error) {
     return (
       <div className="flex min-h-svh items-center justify-center bg-canvas px-6 text-neg">
@@ -233,7 +266,7 @@ export default function App() {
     )
   }
 
-  if (!snapshot || !view) {
+  if (!snapshot || !view || !filteredSnapshot) {
     return (
       <div className="flex min-h-svh flex-col items-center justify-center bg-canvas text-mute">
         <p className="text-sm">Loading Fabric Pulse demo…</p>
@@ -242,7 +275,7 @@ export default function App() {
   }
 
   const layoutProps = {
-    snapshot,
+    snapshot: filteredSnapshot,
     view,
     workload,
     cloud,
@@ -280,6 +313,9 @@ export default function App() {
         setWorkload={setWorkload}
         cloud={cloud}
         setCloud={setCloud}
+        sourceRegistry={snapshot.sourceRegistry ?? DEMO_SOURCE_REGISTRY}
+        enabledSourceIds={enabledSourceIds}
+        setEnabledSourceIds={setEnabledSourceIds}
       >
         {body}
       </AtelierFrame>
