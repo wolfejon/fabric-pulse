@@ -14,8 +14,8 @@ import json
 import math
 from pathlib import Path
 
-SEED = 20260912
-TARGET_MENTIONS = 1200
+SEED = 20260913
+TARGET_MENTIONS = 2000
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "src" / "data" / "generated" / "corpus.json"
 
@@ -84,14 +84,35 @@ WORKLOAD_WEIGHTS = [
 
 # ~78% commercial, ~7% unknown, ~15% sovereign total
 CLOUD_WEIGHTS = [
-    ("commercial", 78),
+    ("commercial", 74),
     ("unknown", 7),
-    ("usgov", 8),
-    ("usnat", 3.5),
-    ("ussec", 3.5),
+    ("usgov", 10),
+    ("usnat", 4.5),
+    ("ussec", 4.5),
 ]
 
 DATES = [
+    "2026-08-15",
+    "2026-08-16",
+    "2026-08-17",
+    "2026-08-18",
+    "2026-08-19",
+    "2026-08-20",
+    "2026-08-21",
+    "2026-08-22",
+    "2026-08-23",
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28",
+    "2026-08-29",
+    "2026-08-30",
+    "2026-08-31",
+    "2026-09-01",
+    "2026-09-02",
+    "2026-09-03",
+    "2026-09-04",
     "2026-09-05",
     "2026-09-06",
     "2026-09-07",
@@ -100,6 +121,7 @@ DATES = [
     "2026-09-10",
     "2026-09-11",
     "2026-09-12",
+    "2026-09-13",
 ]
 
 FIRST = [
@@ -342,6 +364,147 @@ THEME_DEFINITIONS = [
         "keywords": ["parity roadmap", "feature lag", "sovereign cloud", "commercial ga"],
         "polarity": "want",
     },
+
+    {
+        "id": "theme-connectors",
+        "name": "Connector coverage & throughput",
+        "description": "SAP/Oracle/SQL connector gaps, throughput limits, and self-hosted IR dependency for enterprise sources.",
+        "keywords": ["connector", "sap connector", "oracle", "throughput", "self-hosted ir"],
+        "polarity": "mixed",
+    },
+    {
+        "id": "theme-monitoring",
+        "name": "Monitoring, alerts & observability",
+        "description": "Missing alerts on pipeline failures, metrics lag, and dual truths between monitoring hub and workspace.",
+        "keywords": ["monitoring", "alert", "observability", "metrics app", "monitoring hub"],
+        "polarity": "dont-like",
+    },
+    {
+        "id": "theme-medallion",
+        "name": "Medallion architecture guidance",
+        "description": "Lakehouse-only vs warehouse-at-gold debates; teams want a clear medallion decision tree.",
+        "keywords": ["medallion", "bronze", "silver", "gold lakehouse", "star schema"],
+        "polarity": "mixed",
+    },
+    {
+        "id": "theme-sql-endpoint",
+        "name": "Lakehouse SQL endpoint reliability",
+        "description": "SQL endpoint cold starts, permission quirks, and warehouse-vs-endpoint chooser confusion.",
+        "keywords": ["sql endpoint", "lakehouse sql", "tds", "endpoint"],
+        "polarity": "mixed",
+    },
+    {
+        "id": "theme-delta-optimize",
+        "name": "Delta OPTIMIZE & V-Order",
+        "description": "Praise for OPTIMIZE + V-Order wins on Direct Lake; ask for scheduling and auto-compaction guidance.",
+        "keywords": ["delta optimize", "v-order", "optimize", "compaction"],
+        "polarity": "like",
+    },
+    {
+        "id": "theme-capacity-pause",
+        "name": "Capacity pause / resume footguns",
+        "description": "Paused F SKUs silently miss scheduled triggers and confuse cost-saving weekends.",
+        "keywords": ["capacity pause", "resume", "weekend pause", "f64 pause"],
+        "polarity": "dont-like",
+    },
+    {
+        "id": "theme-expression-builder",
+        "name": "Pipeline expression builder UX",
+        "description": "Nested expressions, ForEach readability, and expression syntax disagreements in docs.",
+        "keywords": ["expression builder", "expression syntax", "nested foreach", "pipeline expression"],
+        "polarity": "mixed",
+    },
+    {
+        "id": "theme-webhook-triggers",
+        "name": "Webhook & event-driven triggers",
+        "description": "Customers want native webhook triggers to retire Logic App hops for pipeline starts.",
+        "keywords": ["webhook", "webhook trigger", "event-driven", "logic app"],
+        "polarity": "want",
+    },
+    {
+        "id": "theme-semantic-model",
+        "name": "Semantic model refresh vs Direct Lake",
+        "description": "Authors schedule useless refreshes on Direct Lake models; mode semantics still confusing.",
+        "keywords": ["semantic model", "model refresh", "direct lake", "refresh schedule"],
+        "polarity": "dont-like",
+    },
+    {
+        "id": "theme-mlflow",
+        "name": "MLflow & model deployment path",
+        "description": "Enough MLflow for small teams; online endpoint happy path still fuzzy vs Azure ML leftovers.",
+        "keywords": ["mlflow", "online endpoint", "model deploy", "scoring"],
+        "polarity": "mixed",
+    },
+    {
+        "id": "theme-gpu-spark",
+        "name": "GPU Spark queue transparency",
+        "description": "GPU jobs queue forever on shared capacity with no visibility into wait time.",
+        "keywords": ["gpu spark", "gpu queue", "shared capacity", "scoring sla"],
+        "polarity": "dont-like",
+    },
+    {
+        "id": "theme-private-links",
+        "name": "Private links (commercial networking)",
+        "description": "Private endpoints for workspaces and OneLake shortcuts — blogs disagree with Learn.",
+        "keywords": ["private link", "private endpoint", "private links", "networking"],
+        "polarity": "want",
+    },
+    {
+        "id": "theme-sku-confusion",
+        "name": "SKU & F-SKU sizing confusion",
+        "description": "F64 vs F128 vs Premium leftovers; CU math feels like a consulting engagement.",
+        "keywords": ["sku", "f64", "f128", "premium", "sizing"],
+        "polarity": "dont-like",
+    },
+    {
+        "id": "theme-metrics-lag",
+        "name": "Capacity metrics lag",
+        "description": "2-hour metrics lag makes CU spike investigation guesswork for ops teams.",
+        "keywords": ["metrics lag", "capacity metrics", "cu spike", "near-real-time"],
+        "polarity": "dont-like",
+    },
+    {
+        "id": "theme-parameter-promotion",
+        "name": "Environment parameter promotion",
+        "description": "Dev/Test/Prod parameter promotion across deployment pipelines still under-documented.",
+        "keywords": ["parameter promotion", "environment", "dev/test/prod", "linked service"],
+        "polarity": "want",
+    },
+    {
+        "id": "theme-child-pipelines",
+        "name": "Child pipeline orchestration",
+        "description": "Parameter passing, failure bubbling, and parent/child status inconsistencies.",
+        "keywords": ["child pipeline", "parent pipeline", "failure bubbling", "orchestration"],
+        "polarity": "mixed",
+    },
+    {
+        "id": "theme-copy-activity",
+        "name": "Copy activity reliability",
+        "description": "Long-running ADLS pulls, retry policy weaker than ADF, opaque timeout failures.",
+        "keywords": ["copy activity", "adls pull", "retry policy", "timed out"],
+        "polarity": "dont-like",
+    },
+    {
+        "id": "theme-kql-eventhouse",
+        "name": "KQL & Eventhouse on OneLake",
+        "description": "Strong KQL praise; Eventhouse-on-OneLake architecture still needs clearer dual-query guidance.",
+        "keywords": ["kql", "eventhouse", "adx", "dual-query"],
+        "polarity": "like",
+    },
+    {
+        "id": "theme-workspace-identity",
+        "name": "Workspace identity & auth mental models",
+        "description": "Workspace identity vs user vs service principal — three models for shortcuts and pipelines.",
+        "keywords": ["workspace identity", "service principal", "auth", "token rotate"],
+        "polarity": "dont-like",
+    },
+    {
+        "id": "theme-git-integration",
+        "name": "Git integration for workspaces",
+        "description": "Git integration wins for pipelines; branch policies and multi-item commits still rough edges.",
+        "keywords": ["git integration", "branch", "workspace git", "source control"],
+        "polarity": "mixed",
+    },
 ]
 
 
@@ -378,6 +541,14 @@ PIPELINE_TEMPLATES = [
     T(lambda: 'Fabric Data Factory naming vs azure data factory still derails stakeholder meetings. Please publish a one-pager on what is parity vs what is new.', (-0.25, 0.1)),
     T(lambda: 'Self-hosted integration runtime on Fabric pipelines works for our hybrid estate, but managed vnet would retire two jump boxes.', (0.15, 0.45)),
     T(lambda: 'Git integration for pipelines is good; deployment pipeline gates across Dev/Test/Prod still need clearer parameter docs.', (0.25, 0.55)),
+    T(lambda: 'Copy activity on a large ADLS pull timed out again — retry policy still weaker than ADF for the same sink.', (-0.6, -0.3)),
+    T(lambda: 'Child pipeline failure bubbling bit us: parent succeeded while child failed. Orchestration status needs one truth.', (-0.65, -0.3)),
+    T(lambda: 'Webhook trigger for Fabric pipelines would let us drop a Logic App hop. Event-driven starts are table stakes.', (0.25, 0.55)),
+    T(lambda: 'Expression builder nested ForEach is readable now; pipeline expression syntax in Learn still disagrees with the UI.', (-0.15, 0.25)),
+    T(lambda: 'Parameter promotion across Dev/Test/Prod deployment pipelines is the CI/CD blocker for our linked service secrets.', (-0.45, -0.1)),
+    T(lambda: 'Git integration for pipeline source control is solid; branch policies on multi-item commits still rough.', (0.3, 0.6)),
+    T(lambda: 'Capacity pause over the weekend + missed Monday trigger — F64 pause footgun is still undefeated.', (-0.75, -0.45)),
+    T(lambda: 'Observability win: pipeline activity duration charts caught our slow copy. More monitoring like that please.', (0.4, 0.7)),
 ]
 
 PIPELINE_GOV = [
@@ -396,6 +567,9 @@ DE_TEMPLATES = [
     T(lambda: 'Livy session reuse in Fabric notebooks is a game changer. Second job on the same session starts in seconds. Please make this the default.', (0.65, 0.9)),
     T(lambda: 'Spark session pool warm-up still unpredictable on shared capacity. Cold start variance wrecks our morning SLA.', (-0.55, -0.25)),
     T(lambda: 'Notebook + pipeline orchestration for bronze to silver is working well. Livy logs in-product would seal it.', (0.35, 0.65)),
+    T(lambda: 'Delta OPTIMIZE + V-Order scheduled nightly — Direct Lake gold stayed sub-second. Compaction guidance finally clicked.', (0.55, 0.85)),
+    T(lambda: 'Lakehouse SQL endpoint cold start still surprises analysts. TDS connectivity is fine once warm.', (-0.45, -0.1)),
+    T(lambda: 'Medallion question again: bronze/silver in lakehouse, gold in warehouse — or gold lakehouse + Direct Lake?', (-0.05, 0.2)),
 ]
 
 DI_TEMPLATES = [
@@ -404,6 +578,9 @@ DI_TEMPLATES = [
     T(lambda: f'The SAP connector set in Dataflow Gen2 just saved a multi-month extract project. {rng.int(20, 50)}+ connectors and no self-hosted IR. Impressed.', (0.7, 0.9)),
     T(lambda: f'When do you pick Dataflow Gen2 vs Pipeline copy vs Spark notebook for a {rng.int(20, 100)}GB SQL Server pull? Still no clean decision tree.', (-0.1, 0.15)),
     T(lambda: 'Dataflow Gen2 incremental refresh finally stable for us. Connector throughput on Oracle is the remaining gap.', (0.3, 0.6)),
+    T(lambda: 'Oracle connector throughput in Dataflow Gen2 still bottlenecks our finance extract. Self-hosted IR feels inevitable.', (-0.5, -0.15)),
+    T(lambda: 'SAP connector coverage is the reason we stayed on Fabric for ERP extracts — connector story is a real differentiator.', (0.55, 0.85)),
+    T(lambda: 'When is a connector vs Spark notebook the right call for 80GB SQL Server? Still need that decision tree.', (-0.1, 0.15)),
 ]
 
 ONELAKE_TEMPLATES = [
@@ -413,6 +590,8 @@ ONELAKE_TEMPLATES = [
     T(lambda: 'Single copy of data in OneLake is actually working for our domains this quarter. No more three gold copies. Pitch delivered.', (0.65, 0.9)),
     T(lambda: 'Can OneLake shortcuts be endorsed / certified the same way as lakehouse tables? Stewards want first-class endorsement on the shortcut.', (-0.05, 0.25)),
     T(lambda: 'OneLake catalog search improved, but lineage discoverability across shortcuts is still weak. Domain folder UX helps though.', (-0.2, 0.3)),
+    T(lambda: 'Workspace identity vs service principal for OneLake shortcuts — three auth mental models, one token rotate outage.', (-0.55, -0.2)),
+    T(lambda: 'Private link to OneLake shortcuts works in our commercial tenant now; Learn still lags the blogs.', (0.2, 0.5)),
 ]
 
 WH_TEMPLATES = [
@@ -420,6 +599,8 @@ WH_TEMPLATES = [
     T(lambda: 'T-SQL surface in Fabric Warehouse is finally enough for our analysts. Retired the extra Synapse dedicated pool this week.', (0.65, 0.9)),
     T(lambda: 'Result set caching in the warehouse feels inconsistent. Same query, morning cache hit, afternoon full scan.', (-0.55, -0.25)),
     T(lambda: 'Honest question: warehouse vs lakehouse SQL endpoint for a star schema that Power BI will hit via Direct Lake?', (-0.05, 0.2)),
+    T(lambda: 'Lakehouse SQL endpoint vs warehouse for our star schema — still no crisp guidance for Direct Lake consumers.', (-0.15, 0.2)),
+    T(lambda: 'Near-real-time warehouse CU attribution would stop our overnight bill spike fire drills.', (-0.5, -0.15)),
 ]
 
 RTA_TEMPLATES = [
@@ -428,12 +609,16 @@ RTA_TEMPLATES = [
     T(lambda: 'Eventstream destination to lakehouse silently dropped a partition. No dead-letter, no alert. Caught it because a KPI went flat.', (-0.85, -0.55)),
     T(lambda: 'Is it Activator or Reflex this month? Naming is still confusing customers in every workshop. Please pick one and update the docs.', (-0.25, 0.05)),
     T(lambda: 'Please add Eventstream dead-lettering to a lakehouse destination. Silently dropped events are unacceptable in prod.', (0.15, 0.45)),
+    T(lambda: 'KQL in Eventhouse remains excellent — dual-query estate with OneLake underneath is the architecture we wanted.', (0.65, 0.9)),
+    T(lambda: 'Eventhouse ADX migration done; monitoring for Eventstream destination health is the remaining gap.', (0.2, 0.5)),
 ]
 
 DS_TEMPLATES = [
     T(lambda: 'MLflow tracking in Fabric Data Science is enough for our small team. Do not need a separate Databricks workspace for experiments anymore.', (0.55, 0.85)),
     T(lambda: 'GPU Spark jobs in Fabric still queue forever on shared capacity. Fine for demos, not fine for a weekly scoring SLA.', (-0.7, -0.4)),
     T(lambda: 'How are people deploying Fabric models to online endpoints in 2026? Notebook + pipeline + Azure ML leftover? Happy path still fuzzy.', (-0.1, 0.15)),
+    T(lambda: 'MLflow tracking covers our experiments; online endpoint / model deploy happy path still fuzzy vs Azure ML leftovers.', (-0.15, 0.25)),
+    T(lambda: 'GPU Spark queue on shared capacity blew our weekly scoring SLA — need queue transparency, not silence.', (-0.7, -0.35)),
 ]
 
 PBI_TEMPLATES = [
@@ -442,6 +627,8 @@ PBI_TEMPLATES = [
     T(lambda: 'Semantic model refresh vs Direct Lake is still confusing new authors. They schedule a refresh that does nothing useful.', (-0.5, -0.2)),
     T(lambda: 'Visual calculations in Power BI are great. Replaced calculated columns we were ashamed of. Small feature, huge authoring win.', (0.55, 0.85)),
     T(lambda: 'Planning the Premium to Fabric F64 move. Capacity metrics + bursting still feel like folklore. Need a real sizing worksheet.', (-0.1, 0.2)),
+    T(lambda: 'Semantic model refresh schedule on a Direct Lake model confused two new authors this week. Mode semantics need a banner.', (-0.5, -0.2)),
+    T(lambda: 'F128 vs F64 sizing worksheet please — SKU confusion is eating our capacity planning meetings.', (-0.4, -0.05)),
 ]
 
 COPILOT_TEMPLATES = [
@@ -458,6 +645,8 @@ GOVSEC_TEMPLATES = [
     T(lambda: 'Shortcut security finally inherited workspace + OneLake roles the way we expected. Closed audit findings this week.', (0.6, 0.85)),
     T(lambda: 'Admin monitoring hub is still missing pipeline failures that show up in the workspace. Cannot run a platform on two truths.', (-0.75, -0.45)),
     T(lambda: 'Is there official guidance yet for private links + OneLake shortcuts to ADLS in another tenant? Every blog disagrees with Learn.', (-0.1, 0.2)),
+    T(lambda: 'Monitoring hub still disagrees with workspace pipeline failures. Observability cannot mean two truths.', (-0.7, -0.4)),
+    T(lambda: 'Private links guidance for commercial Fabric finally usable; cross-tenant shortcut networking still sparse.', (-0.2, 0.25)),
 ]
 
 OTHER_TEMPLATES = [
@@ -465,6 +654,8 @@ OTHER_TEMPLATES = [
     T(lambda: 'Fabric vs Databricks for mid-size teams: we picked Fabric because Power BI + OneLake are the center of gravity. Synapse leftovers still haunt us.', (0.2, 0.55)),
     T(lambda: 'SKU confusion continues — F64 vs F128 vs Premium leftovers. Capacity unit math should not require a consulting engagement.', (-0.55, -0.2)),
     T(lambda: 'Metrics app lag makes capacity ops guesswork. CU spike investigation with a 2-hour delay is not an ops story.', (-0.65, -0.35)),
+    T(lambda: 'Metrics lag on the capacity metrics app is still ~2 hours. Near-real-time CU is an ops requirement, not a nice-to-have.', (-0.65, -0.3)),
+    T(lambda: 'SKU confusion — F64 vs F128 vs Premium leftovers — should not require a partner engagement to size.', (-0.55, -0.2)),
 ]
 
 SOVEREIGN_FLAVOR = [
@@ -642,6 +833,36 @@ WI_TITLES = [
     ("pipelines", "feature", "Conditional split activity completeness"),
     ("data-integration", "feature", "Oracle connector throughput improvements"),
     ("power-bi", "feature", "Direct Lake mode change timestamp in report"),
+    ("pipelines", "feature", "Webhook trigger GA for Fabric pipelines"),
+    ("pipelines", "bug", "Child pipeline failure bubbling to parent status"),
+    ("pipelines", "feature", "Copy activity retry policy parity with ADF"),
+    ("pipelines", "task", "Docs: pipeline expression builder nested syntax"),
+    ("pipelines", "feature", "Git integration branch policy for multi-item commits"),
+    ("pipelines", "feature", "Linked service parameter promotion Dev/Test/Prod"),
+    ("data-integration", "feature", "Oracle connector throughput tier"),
+    ("data-integration", "feature", "SAP connector incremental patterns guide"),
+    ("data-integration", "task", "Connector vs Spark decision tree (Learn)"),
+    ("onelake", "feature", "Workspace identity auth diagnostics for shortcuts"),
+    ("onelake", "feature", "Commercial private link shortcut checklist"),
+    ("data-warehouse", "feature", "Lakehouse SQL endpoint warm-pool option"),
+    ("data-warehouse", "task", "Star schema: warehouse vs SQL endpoint chooser"),
+    ("data-engineering", "feature", "Scheduled Delta OPTIMIZE / V-Order recipes"),
+    ("data-engineering", "feature", "Medallion reference architectures (2026)"),
+    ("realtime-analytics", "feature", "Eventhouse dual-query guidance with OneLake"),
+    ("realtime-analytics", "task", "KQL migration from ADX checklist"),
+    ("copilot-ai", "feature", "Copilot admin switches for connector suggestions"),
+    ("power-bi", "bug", "Semantic model refresh no-op on Direct Lake — warn authors"),
+    ("power-bi", "feature", "F64 vs F128 in-product sizing helper"),
+    ("data-science", "feature", "MLflow to online endpoint happy path"),
+    ("data-science", "bug", "GPU Spark queue wait-time visibility"),
+    ("security-governance", "feature", "Unified monitoring alerts for pipeline + dataflow"),
+    ("security-governance", "task", "Private links Learn vs blog reconciliation"),
+    ("other", "feature", "Near-real-time capacity metrics bus (≤5 min)"),
+    ("other", "bug", "Metrics app CU spike lag > 90 minutes"),
+    ("other", "task", "SKU sizing explainer: F64 / F128 / Premium"),
+    ("pipelines", "feature", "Observability: pipeline run alert webhooks"),
+    ("onelake", "bug", "Token rotate without shortcut health probe"),
+    ("pipelines", "epic", "Copy activity long-running ADLS reliability"),
 ]
 
 STATES = ["New", "Active", "Resolved", "Proposed", "Closed", "Committed"]
@@ -676,7 +897,7 @@ def build_work_items():
             "url": f"https://dev.azure.com/demo/Fabric/_workitems/edit/{ado_id}",
         })
     i = len(items)
-    while len(items) < 65:
+    while len(items) < 100:
         i += 1
         wl = rng.pick(WORKLOADS)
         ado_id = str(190000 + i * 13)
@@ -751,6 +972,16 @@ def build_deps(work_items):
         ("Private endpoint DNS for USNat OneLake", "OneLake", "Azure Networking", "usnat"),
         ("Warehouse CU attribution shares metrics pipeline with capacity app", "Warehouse", "Fabric Capacity", "commercial"),
         ("Activator/Reflex rename needs Docs + product chrome lockstep", "Real-Time Intelligence", "Docs", "commercial"),
+        ("Connector throughput telemetry shared with capacity metrics", "Data Integration", "Fabric Capacity", "commercial"),
+        ("Webhook trigger control-plane depends on Event Grid stamp", "Fabric Pipelines", "Azure Event Grid", "commercial"),
+        ("SQL endpoint warm-pool needs capacity scheduler hooks", "Warehouse", "Fabric Capacity", "commercial"),
+        ("Delta OPTIMIZE scheduler shares notebook job runtime", "Spark runtime", "Data Engineering", "commercial"),
+        ("Private link commercial checklist needs Networking sign-off", "OneLake", "Azure Networking", "commercial"),
+        ("MLflow endpoint path depends on Azure ML residual APIs", "Data Science", "Azure ML", "commercial"),
+        ("GPU queue visibility needs capacity platform queue API", "Data Science", "Fabric Capacity", "commercial"),
+        ("Semantic model Direct Lake banner shares report chrome", "Power BI / Direct Lake", "Power BI platform", "commercial"),
+        ("Git branch policies need Azure DevOps fabric extension", "Fabric Pipelines", "Azure DevOps", "commercial"),
+        ("Monitoring alert webhooks depend on admin platform bus", "Purview / Governance", "Admin platform", "commercial"),
     ]
     for i, (title, frm, to, cloud) in enumerate(extras, start=4):
         related = [rng.pick(work_items)["id"]]
@@ -1013,6 +1244,167 @@ def build_mappings(theme_defs, work_items, deps):
         workload="pipelines",
     )
 
+
+    add(
+        themeId="theme-connectors",
+        workItemIds=wi(lambda w: "connector" in w["title"].lower() or "Oracle" in w["title"] or "SAP" in w["title"], 2),
+        coverage="partial",
+        notes="Throughput work filed; decision tree still a doc gap.",
+        cloudBoundary="commercial",
+        workload="data-integration",
+    )
+    add(
+        themeId="theme-monitoring",
+        workItemIds=wi(lambda w: "monitoring" in w["title"].lower() or "alert" in w["title"].lower(), 2),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="security-governance",
+    )
+    add(
+        themeId="theme-medallion",
+        workItemIds=wi(lambda w: "medallion" in w["title"].lower(), 1),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="data-engineering",
+    )
+    add(
+        themeId="theme-sql-endpoint",
+        workItemIds=wi(lambda w: "sql endpoint" in w["title"].lower(), 1),
+        coverage="covered",
+        cloudBoundary="commercial",
+        workload="data-warehouse",
+    )
+    add(
+        themeId="theme-delta-optimize",
+        workItemIds=wi(lambda w: "OPTIMIZE" in w["title"] or "V-Order" in w["title"], 1),
+        coverage="covered",
+        cloudBoundary="commercial",
+        workload="data-engineering",
+    )
+    add(
+        themeId="theme-capacity-pause",
+        workItemIds=wi(lambda w: "pause" in w["title"].lower() or "Capacity pause" in w["title"], 2),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="pipelines",
+    )
+    add(
+        themeId="theme-expression-builder",
+        workItemIds=wi(lambda w: "expression" in w["title"].lower(), 1),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="pipelines",
+    )
+    add(
+        themeId="theme-webhook-triggers",
+        workItemIds=wi(lambda w: "webhook" in w["title"].lower(), 1),
+        coverage="covered",
+        cloudBoundary="commercial",
+        workload="pipelines",
+    )
+    add(
+        themeId="theme-semantic-model",
+        workItemIds=wi(lambda w: "semantic model" in w["title"].lower() or "Direct Lake" in w["title"], 2),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="power-bi",
+    )
+    add(
+        themeId="theme-mlflow",
+        workItemIds=wi(lambda w: "MLflow" in w["title"] or "endpoint" in w["title"].lower(), 1),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="data-science",
+    )
+    add(
+        themeId="theme-gpu-spark",
+        workItemIds=wi(lambda w: "GPU" in w["title"], 1),
+        coverage="covered",
+        cloudBoundary="commercial",
+        workload="data-science",
+    )
+    add(
+        themeId="theme-private-links",
+        workItemIds=wi(lambda w: "private link" in w["title"].lower(), 1),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="security-governance",
+    )
+    add(
+        themeId="theme-sku-confusion",
+        workItemIds=[],
+        coverage="gap",
+        notes="Sizing explainer tasked but no committed epic.",
+        cloudBoundary="commercial",
+        workload="other",
+    )
+    add(
+        themeId="theme-metrics-lag",
+        workItemIds=wi(lambda w: "metrics" in w["title"].lower() or "Near-real-time" in w["title"], 2),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="other",
+    )
+    add(
+        themeId="theme-parameter-promotion",
+        workItemIds=wi(lambda w: "parameter" in w["title"].lower() or "promotion" in w["title"].lower(), 2),
+        coverage="covered",
+        cloudBoundary="commercial",
+        workload="pipelines",
+    )
+    add(
+        themeId="theme-child-pipelines",
+        workItemIds=wi(lambda w: "child" in w["title"].lower() or "Parent pipeline" in w["title"], 2),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="pipelines",
+    )
+    add(
+        themeId="theme-copy-activity",
+        workItemIds=wi(lambda w: "Copy activity" in w["title"] or "copy activity" in w["title"].lower(), 2),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="pipelines",
+    )
+    add(
+        themeId="theme-kql-eventhouse",
+        workItemIds=wi(lambda w: "Eventhouse" in w["title"] or "KQL" in w["title"], 1),
+        coverage="partial",
+        notes="Docs task filed; little product work.",
+        cloudBoundary="commercial",
+        workload="realtime-analytics",
+    )
+    add(
+        themeId="theme-workspace-identity",
+        workItemIds=wi(lambda w: "identity" in w["title"].lower() or "auth" in w["title"].lower(), 1),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="onelake",
+    )
+    add(
+        themeId="theme-git-integration",
+        workItemIds=wi(lambda w: "git" in w["title"].lower() or "Git" in w["title"], 1),
+        coverage="partial",
+        cloudBoundary="commercial",
+        workload="pipelines",
+    )
+    add(
+        themeId="theme-connectors",
+        workItemIds=[],
+        coverage="gap",
+        notes="USGov connector parity untracked.",
+        cloudBoundary="usgov",
+        workload="data-integration",
+    )
+    add(
+        themeId="theme-monitoring",
+        workItemIds=[],
+        coverage="gap",
+        notes="Sovereign monitoring hub lag — no work item.",
+        cloudBoundary="ussec",
+        workload="security-governance",
+    )
+
     covered = {m["themeId"] for m in mappings}
     for t in theme_defs:
         if t["id"] not in covered:
@@ -1059,7 +1451,27 @@ def build_actions():
         {"id": "a29", "title": "Idempotent pipeline trigger replay API", "rationale": "Duplicate fires after capacity resume cause double loads.", "workload": "pipelines", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-pipelines", "theme-capacity"], "ownerHint": "Pipelines"},
         {"id": "a30", "title": "Docs: private links + cross-tenant OneLake shortcuts", "rationale": "Blog posts disagree with Learn — ship one official path.", "workload": "security-governance", "effort": "low", "impact": "medium", "relatedThemeIds": ["theme-governance", "theme-gov-private-link"], "ownerHint": "Docs + Networking"},
         {"id": "a31", "title": "Webhook triggers for Fabric pipelines", "rationale": "Customers replace brittle Logic App hops with native webhooks.", "workload": "pipelines", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-pipelines", "theme-adf-migration"], "ownerHint": "Pipelines"},
-        {"id": "a32", "title": "GPU Spark queue transparency on shared capacity", "rationale": "Data Science SLAs fail when GPU jobs queue invisibly.", "workload": "data-science", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-spark-start"], "ownerHint": "Data Science + Capacity"},
+        {"id": "a32", "title": "GPU Spark queue transparency on shared capacity", "rationale": "Data Science SLAs fail when GPU jobs queue invisibly.", "workload": "data-science", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-spark-start", "theme-gpu-spark"], "ownerHint": "Data Science + Capacity"},
+        {"id": "a33", "title": "Publish connector vs Spark vs Copy decision tree", "rationale": "Enterprise extracts stall on chooser confusion; SAP/Oracle throughput questions dominate DI threads.", "workload": "data-integration", "effort": "low", "impact": "medium", "relatedThemeIds": ["theme-connectors", "theme-naming", "theme-dataflow"], "ownerHint": "Docs + Data Integration"},
+        {"id": "a34", "title": "Unified monitoring alerts for pipelines and dataflows", "rationale": "Operators reject two truths between monitoring hub and workspace. One alert bus.", "workload": "security-governance", "effort": "high", "impact": "high", "relatedThemeIds": ["theme-monitoring", "theme-governance"], "ownerHint": "Admin platform"},
+        {"id": "a35", "title": "Ship medallion reference architectures for 2026", "rationale": "Lakehouse-only vs warehouse-at-gold debates burn consulting hours every quarter.", "workload": "data-engineering", "effort": "low", "impact": "medium", "relatedThemeIds": ["theme-medallion", "theme-positioning"], "ownerHint": "Docs + PMO"},
+        {"id": "a36", "title": "Lakehouse SQL endpoint warm-pool option", "rationale": "Cold TDS starts surprise analysts on morning dashboards.", "workload": "data-warehouse", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-sql-endpoint", "theme-warehouse"], "ownerHint": "Warehouse"},
+        {"id": "a37", "title": "Document scheduled Delta OPTIMIZE + V-Order recipes", "rationale": "Direct Lake wins are real when compaction is routine; make the recipe first-class.", "workload": "data-engineering", "effort": "low", "impact": "medium", "relatedThemeIds": ["theme-delta-optimize", "theme-direct-lake"], "ownerHint": "Spark + Docs"},
+        {"id": "a38", "title": "Hardening for capacity pause → trigger miss", "rationale": "Weekend F64 pause still silently drops Monday schedules.", "workload": "pipelines", "effort": "medium", "impact": "high", "relatedThemeIds": ["theme-capacity-pause", "theme-pipelines"], "ownerHint": "Pipelines + Capacity"},
+        {"id": "a39", "title": "Align expression builder UI with Learn syntax", "rationale": "Nested ForEach readability improved; docs still contradict the builder.", "workload": "pipelines", "effort": "low", "impact": "low", "relatedThemeIds": ["theme-expression-builder", "theme-naming"], "ownerHint": "Pipelines + Docs"},
+        {"id": "a40", "title": "GA webhook triggers for Fabric pipelines", "rationale": "Retire Logic App hops for event-driven pipeline starts.", "workload": "pipelines", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-webhook-triggers", "theme-adf-migration"], "ownerHint": "Pipelines"},
+        {"id": "a41", "title": "Warn authors when semantic model refresh is a no-op on Direct Lake", "rationale": "Scheduled refreshes that do nothing confuse every new Direct Lake author.", "workload": "power-bi", "effort": "low", "impact": "medium", "relatedThemeIds": ["theme-semantic-model", "theme-direct-lake"], "ownerHint": "Power BI"},
+        {"id": "a42", "title": "Publish MLflow → online endpoint happy path", "rationale": "Small teams stay on Fabric only if model deploy is not an Azure ML scavenger hunt.", "workload": "data-science", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-mlflow"], "ownerHint": "Data Science"},
+        {"id": "a43", "title": "Surface GPU Spark queue wait times", "rationale": "Invisible GPU queues blow scoring SLAs on shared capacity.", "workload": "data-science", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-gpu-spark", "theme-spark-start"], "ownerHint": "Data Science + Capacity"},
+        {"id": "a44", "title": "Reconcile private link Learn vs community blogs", "rationale": "Commercial networking guidance still fragments across blogs.", "workload": "security-governance", "effort": "low", "impact": "medium", "relatedThemeIds": ["theme-private-links", "theme-gov-private-link"], "ownerHint": "Docs + Networking"},
+        {"id": "a45", "title": "In-product F64 vs F128 sizing helper", "rationale": "SKU confusion dominates capacity planning meetings.", "workload": "other", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-sku-confusion", "theme-capacity"], "ownerHint": "Capacity + PMO"},
+        {"id": "a46", "title": "Cut capacity metrics lag to ≤ 5 minutes", "rationale": "CU spike fire drills cannot wait on a 2-hour metrics app.", "workload": "other", "effort": "high", "impact": "high", "relatedThemeIds": ["theme-metrics-lag", "theme-capacity", "theme-cu-throttling"], "ownerHint": "Capacity platform"},
+        {"id": "a47", "title": "First-class environment parameter promotion", "rationale": "Linked service secrets and Dev/Test/Prod promotion block CI/CD adoption.", "workload": "pipelines", "effort": "medium", "impact": "high", "relatedThemeIds": ["theme-parameter-promotion", "theme-cicd"], "ownerHint": "Pipelines + DevOps"},
+        {"id": "a48", "title": "Fix parent/child pipeline failure bubbling", "rationale": "Parent-succeeded / child-failed is a classic orchestration footgun.", "workload": "pipelines", "effort": "medium", "impact": "high", "relatedThemeIds": ["theme-child-pipelines", "theme-pipelines"], "ownerHint": "Pipelines"},
+        {"id": "a49", "title": "Copy activity retry parity with ADF", "rationale": "Long ADLS pulls fail more opaquely than classic azure data factory copy.", "workload": "pipelines", "effort": "medium", "impact": "high", "relatedThemeIds": ["theme-copy-activity", "theme-retry-diagnostics", "theme-adf-migration"], "ownerHint": "Pipelines"},
+        {"id": "a50", "title": "Eventhouse dual-query architecture guide", "rationale": "KQL praise is high; dual-query with OneLake still needs a crisp sketch.", "workload": "realtime-analytics", "effort": "low", "impact": "low", "relatedThemeIds": ["theme-kql-eventhouse", "theme-eventstream"], "ownerHint": "Real-Time + Docs"},
+        {"id": "a51", "title": "Workspace identity auth diagnostics", "rationale": "Token rotate + three auth models blank reports without a health signal.", "workload": "onelake", "effort": "medium", "impact": "high", "relatedThemeIds": ["theme-workspace-identity", "theme-shortcuts"], "ownerHint": "OneLake + Identity"},
+        {"id": "a52", "title": "Harden workspace git branch policies", "rationale": "Git integration is liked; multi-item commit policies still rough.", "workload": "pipelines", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-git-integration", "theme-cicd"], "ownerHint": "Pipelines + DevOps"},
     ]
 
 
@@ -1097,6 +1509,26 @@ def build_news():
         ("n30", "Activator naming update — product chrome alignment", "Microsoft Fabric blog", "official", "2026-09-11T18:00:00Z", "Product team acknowledges Activator / Reflex confusion and outlines rename plan.", "https://blog.fabric.microsoft.com/", ["realtime-analytics"]),
         ("n31", "Hybrid IR patterns while waiting on managed VNet", "Community blog", "community", "2026-09-08T19:20:00Z", "Workarounds ADF veterans use for on-prem sources in Fabric pipelines today.", "https://medium.com/", ["pipelines", "data-integration"]),
         ("n32", "KQL and Eventhouse on OneLake: architecture sketch", "Microsoft Learn", "official", "2026-09-10T13:00:00Z", "How Eventhouse sits on OneLake and what that means for dual-query estates.", "https://learn.microsoft.com/fabric/", ["realtime-analytics", "onelake"]),
+        ("n33", "Fabric August 2026 feature summary", "Microsoft Fabric blog", "official", "2026-08-18T15:00:00Z", "Official August roundup: pipeline expression builder polish, OneLake private link GA notes, warehouse CU attribution preview.", "https://blog.fabric.microsoft.com/", ["other", "pipelines", "onelake", "data-warehouse"]),
+        ("n34", "Connector throughput benchmarks: SAP and Oracle on Dataflow Gen2", "Community blog", "community", "2026-08-20T11:00:00Z", "Practitioner benchmarks comparing connector throughput vs Spark notebook extracts.", "https://medium.com/", ["data-integration"]),
+        ("n35", "Capacity pause best practices for F SKUs", "Microsoft Learn", "official", "2026-08-22T09:30:00Z", "Learn article on pause/resume side effects for scheduled pipeline triggers.", "https://learn.microsoft.com/fabric/", ["pipelines", "other"]),
+        ("n36", "Medallion on Fabric: lakehouse vs warehouse at gold", "SQLBI", "community", "2026-08-25T08:00:00Z", "Community architecture notes on medallion layers and Direct Lake consumers.", "https://www.sqlbi.com/", ["data-engineering", "power-bi", "data-warehouse"]),
+        ("n37", "Webhook triggers for Fabric pipelines (public preview)", "Microsoft Fabric blog", "official", "2026-08-27T14:00:00Z", "Preview of native webhook triggers to replace Logic App hops.", "https://blog.fabric.microsoft.com/", ["pipelines"]),
+        ("n38", "Lakehouse SQL endpoint cold-start deep dive", "Community blog", "community", "2026-08-28T16:20:00Z", "Measuring TDS endpoint warm vs cold behavior for analyst workloads.", "https://medium.com/", ["data-warehouse", "onelake"]),
+        ("n39", "Delta OPTIMIZE and V-Order recipes for Direct Lake", "Microsoft Learn", "official", "2026-08-29T10:00:00Z", "Official compaction recipes that keep Direct Lake packs sub-second.", "https://learn.microsoft.com/fabric/", ["data-engineering", "power-bi"]),
+        ("n40", "Press: Fabric CI/CD matures with deployment pipelines", "InfoWorld", "press", "2026-09-01T12:00:00Z", "Industry coverage of git integration and parameter promotion patterns.", "https://www.infoworld.com/", ["pipelines", "other"]),
+        ("n41", "Workspace identity vs service principal: chooser guide", "Microsoft Learn", "official", "2026-09-02T13:15:00Z", "Auth mental models for shortcuts, pipelines, and gateway connections.", "https://learn.microsoft.com/fabric/", ["onelake", "security-governance", "pipelines"]),
+        ("n42", "GPU Spark on Fabric shared capacity — what to expect", "Community blog", "community", "2026-09-03T17:00:00Z", "Queue behavior and SLA implications for weekly scoring jobs.", "https://medium.com/", ["data-science"]),
+        ("n43", "MLflow in Fabric without a second ML platform", "Microsoft Fabric blog", "official", "2026-08-16T15:30:00Z", "Product story on experiments and lightweight model deploy paths.", "https://blog.fabric.microsoft.com/", ["data-science"]),
+        ("n44", "Monitoring hub roadmap: one failure truth", "Microsoft Fabric blog", "official", "2026-09-04T11:00:00Z", "Admin platform commits to aligning monitoring hub with workspace pipeline failures.", "https://blog.fabric.microsoft.com/", ["security-governance", "pipelines"]),
+        ("n45", "F64 vs F128 sizing worksheet (preview)", "Microsoft Learn", "official", "2026-08-21T09:00:00Z", "Preview sizing worksheet tying CU math to pipelines and Power BI bursting.", "https://learn.microsoft.com/fabric/", ["other", "power-bi", "pipelines"]),
+        ("n46", "Eventhouse dual-query patterns on OneLake", "Microsoft Learn", "official", "2026-08-26T14:40:00Z", "Architecture sketch for KQL + lakehouse SQL on the same OneLake data.", "https://learn.microsoft.com/fabric/", ["realtime-analytics", "onelake"]),
+        ("n47", "Copy activity reliability improvements (August)", "Microsoft Fabric blog", "official", "2026-08-19T12:00:00Z", "Retry policy and timeout diagnostic improvements for long ADLS pulls.", "https://blog.fabric.microsoft.com/", ["pipelines"]),
+        ("n48", "Semantic model refresh on Direct Lake — author FAQ", "Guy in a Cube", "community", "2026-09-01T18:30:00Z", "Community video clarifying when refresh schedules are no-ops.", "https://guyinacube.com/", ["power-bi"]),
+        ("n49", "Private links for commercial Fabric workspaces GA notes", "Microsoft Learn", "official", "2026-08-15T10:00:00Z", "Networking GA notes and remaining shortcut edge cases.", "https://learn.microsoft.com/fabric/", ["security-governance", "onelake"]),
+        ("n50", "Child pipeline orchestration patterns", "Community blog", "community", "2026-09-03T09:45:00Z", "Failure bubbling, parameter passing, and parent status pitfalls.", "https://medium.com/", ["pipelines"]),
+        ("n51", "Near-real-time capacity metrics: what is shipping", "Microsoft Fabric blog", "official", "2026-09-13T09:00:00Z", "Product update on cutting metrics app lag toward a 5-minute SLO.", "https://blog.fabric.microsoft.com/", ["other", "pipelines", "data-warehouse"]),
+        ("n52", "Press: Microsoft Fabric one month of shipping cadence", "The New Stack", "press", "2026-09-12T14:00:00Z", "Press recap of August–September Fabric releases across pipelines, Copilot, and OneLake.", "https://thenewstack.io/", ["other", "pipelines", "copilot-ai", "onelake"]),
     ]
     return [
         {
@@ -1132,13 +1564,13 @@ def main():
     news = build_news()
 
     corpus = {
-        "generatedAt": "2026-09-12T21:00:00Z",
+        "generatedAt": "2026-09-13T16:00:00Z",
         "seed": SEED,
         "demoDisclaimer": "Demo data — not live X feed",
         "dateRange": {
-            "start": "2026-09-05",
-            "end": "2026-09-12",
-            "label": "Sep 5 – Sep 12, 2026",
+            "start": "2026-08-15",
+            "end": "2026-09-13",
+            "label": "Aug 15 – Sep 13, 2026",
         },
         "mentions": mentions,
         "themeDefinitions": THEME_DEFINITIONS,

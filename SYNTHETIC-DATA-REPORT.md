@@ -6,14 +6,14 @@ Fiction only — no real customer data, no live APIs.
 
 | Type | Count |
 | --- | ---: |
-| Mentions | 1200 |
-| Theme definitions | 24 |
-| Suggested actions | 32 |
-| News items | 32 |
+| Mentions | 2000 |
+| Theme definitions | 44 |
+| Suggested actions | 52 |
+| News items | 52 |
 | Semester plans | 2 |
-| Work items | 65 |
-| Dependency requests | 17 |
-| Theme ↔ ADO mappings | 30 |
+| Work items | 100 |
+| Dependency requests | 27 |
+| Theme ↔ ADO mappings | 52 |
 
 ## Mentions by cloudBoundary
 
@@ -21,35 +21,35 @@ Commercial-majority product talk (default story). Sovereign slices are a minorit
 
 | Slice | Count | Share |
 | --- | ---: | ---: |
-| Commercial-ish (commercial + omit + unknown) | 1009 | 84.1% |
-| Sovereign total (usgov + usnat + ussec) | 191 | 15.9% |
+| Commercial-ish (commercial + omit + unknown) | 1631 | 81.5% |
+| Sovereign total (usgov + usnat + ussec) | 369 | 18.4% |
 
 | Key | Count | Share |
 | --- | ---: | ---: |
-| `commercial` | 788 | 65.7% |
-| `(omit≈commercial)` | 149 | 12.4% |
-| `usgov` | 100 | 8.3% |
-| `unknown` | 72 | 6.0% |
-| `ussec` | 48 | 4.0% |
-| `usnat` | 43 | 3.6% |
+| `commercial` | 1248 | 62.4% |
+| `(omit≈commercial)` | 252 | 12.6% |
+| `usgov` | 197 | 9.8% |
+| `unknown` | 131 | 6.5% |
+| `usnat` | 90 | 4.5% |
+| `ussec` | 82 | 4.1% |
 
 ## Mentions by workload
 
-Pipelines bias target ~35–45% (actual **43.4%**).
+Pipelines bias target ~35–45% (actual **39.3%**).
 
 | Key | Count | Share |
 | --- | ---: | ---: |
-| `pipelines` | 521 | 43.4% |
-| `data-engineering` | 101 | 8.4% |
-| `data-integration` | 99 | 8.2% |
-| `copilot-ai` | 77 | 6.4% |
-| `realtime-analytics` | 70 | 5.8% |
-| `power-bi` | 69 | 5.8% |
-| `data-warehouse` | 68 | 5.7% |
-| `onelake` | 68 | 5.7% |
-| `other` | 54 | 4.5% |
-| `data-science` | 39 | 3.2% |
-| `security-governance` | 34 | 2.8% |
+| `pipelines` | 786 | 39.3% |
+| `data-engineering` | 177 | 8.8% |
+| `data-integration` | 157 | 7.8% |
+| `power-bi` | 149 | 7.5% |
+| `data-warehouse` | 138 | 6.9% |
+| `onelake` | 134 | 6.7% |
+| `copilot-ai` | 133 | 6.7% |
+| `realtime-analytics` | 108 | 5.4% |
+| `security-governance` | 89 | 4.5% |
+| `other` | 69 | 3.5% |
+| `data-science` | 60 | 3.0% |
 
 ## How to regenerate
 
@@ -58,7 +58,7 @@ npm run generate:demo
 ```
 
 - Script: `scripts/generate-demo-corpus.py`
-- Fixed seed: `20260912`
+- Fixed seed: `20260913`
 - Output: `src/data/generated/corpus.json`
 - Docs: `src/data/README.md`
 
@@ -85,4 +85,4 @@ After regenerating, run `npm run build` to confirm the JSON still type-checks wi
 
 - Export `pulseProvider` unchanged (still `MockPulseDataProvider`).
 - No live API calls; aggregates derived client-side via `viewFromMentions`.
-- Date range: Sep 5 – Sep 12, 2026.
+- Date range: Aug 15 – Sep 13, 2026.
