@@ -4,6 +4,10 @@ Demo social-listening and sentiment dashboard for **Microsoft Fabric** product t
 
 > **Demo data — not a live X feed.** Mentions, themes, suggested actions, and news are sample data served by a swappable `PulseDataProvider`. This prototype does not scrape X or call a live social API.
 
+## Product vision
+
+Per-workload wants vs don’t-likes, optional cloud slices (Commercial / USGov / USNat / USSec), and ADO covered-vs-gap mapping — see [`docs/PRODUCT-NORTH-STAR.md`](docs/PRODUCT-NORTH-STAR.md).
+
 ![Stack](https://img.shields.io/badge/Vite-React_19-00B7C3) ![Lang](https://img.shields.io/badge/TypeScript-Tailwind-0b1118) ![Viz](https://img.shields.io/badge/Nivo-Treemap-3ee0ea)
 
 ## Run
