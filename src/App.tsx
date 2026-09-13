@@ -17,6 +17,7 @@ import {
   InkWash,
   LakeRipple,
   PulseStamp,
+  Newspaper,
   QuietCredits,
   SignalLantern,
   StageLight,
@@ -105,6 +106,12 @@ const ATELIER_SHELL: Partial<
     ink: 'text-[#f5f0ff]',
     tone: 'dark',
     experience: 'credits',
+  },
+  newspaper: {
+    className: 'bg-[#f2ebe0] text-[#1a1a18]',
+    ink: 'text-[#1a1a18]',
+    tone: 'light',
+    experience: 'newspaper',
   },
 }
 
@@ -234,6 +241,7 @@ export default function App() {
     else if (layoutId === 'desk-globe') body = <DeskGlobe {...layoutProps} />
     else if (layoutId === 'signal-lantern') body = <SignalLantern {...layoutProps} />
     else if (layoutId === 'quiet-credits') body = <QuietCredits {...layoutProps} />
+    else if (layoutId === 'newspaper') body = <Newspaper {...layoutProps} />
 
     return (
       <AtelierFrame

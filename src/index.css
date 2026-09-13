@@ -385,7 +385,8 @@ body {
 }
 
 [data-experience="weather"],
-[data-experience="letter"] {
+[data-experience="letter"],
+[data-experience="newspaper"] {
   color-scheme: light;
 }
 
@@ -564,4 +565,54 @@ body {
   .atelier-ink-stroke {
     stroke-dashoffset: 0;
   }
+}
+
+/* ── Newspaper (The Fabric Chronicle) ────────────────────────── */
+.newspaper-stage {
+  background-color: #f2ebe0;
+  background-image:
+    linear-gradient(180deg, rgba(242, 235, 224, 0.92), rgba(236, 228, 214, 0.98)),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(80, 60, 30, 0.015) 2px,
+      rgba(80, 60, 30, 0.015) 3px
+    );
+}
+
+.newspaper-grain {
+  opacity: 0.35;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(0, 0, 0, 0.03) 0.5px, transparent 0.6px),
+    radial-gradient(circle at 80% 70%, rgba(0, 0, 0, 0.025) 0.6px, transparent 0.7px),
+    radial-gradient(circle at 40% 80%, rgba(90, 60, 20, 0.02) 0.4px, transparent 0.5px);
+  background-size: 3px 3px, 5px 5px, 4px 4px;
+  mix-blend-mode: multiply;
+}
+
+.newspaper-rule-dual {
+  height: 5px;
+  border-top: 2px solid #1a1a18;
+  border-bottom: 1px solid #1a1a18;
+}
+
+.newspaper-dropcap {
+  font-weight: 600;
+}
+
+.newspaper-body p + p {
+  text-indent: 1.1em;
+}
+
+.newspaper-pull {
+  quotes: "“" "”";
+}
+
+.newspaper-briefing {
+  box-shadow: inset 0 0 0 1px rgba(0, 188, 242, 0.08);
+}
+
+.newspaper-columns article + article {
+  margin-top: 1rem;
 }

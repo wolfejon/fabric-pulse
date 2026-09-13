@@ -11,6 +11,7 @@ export type LayoutId =
   | 'desk-globe'
   | 'signal-lantern'
   | 'quiet-credits'
+  | 'newspaper'
   | 'classic'
   | 'diagnosis-object'
   | 'spike-cinema'
@@ -100,6 +101,12 @@ export const LAYOUTS: LayoutMeta[] = [
     id: 'quiet-credits',
     name: 'Quiet Credits',
     subtitle: 'End credits typography',
+    group: 'primary',
+  },
+  {
+    id: 'newspaper',
+    name: 'Newspaper',
+    subtitle: 'Broadsheet of Fabric sentiment',
     group: 'primary',
   },
   {
