@@ -13,6 +13,7 @@ import { WeatherReport } from './components/layouts/WeatherReport'
 import {
   ConstellationName,
   Coverage,
+  Dossier,
   DeskGlobe,
   FabricHorizon,
   InkWash,
@@ -119,6 +120,12 @@ const ATELIER_SHELL: Partial<
     ink: 'text-[#1c1915]',
     tone: 'light',
     experience: 'coverage',
+  },
+  dossier: {
+    className: 'bg-[#3d2a1f] text-[#e8dcc8]',
+    ink: 'text-[#e8dcc8]',
+    tone: 'dark',
+    experience: 'dossier',
   },
 }
 
@@ -262,6 +269,7 @@ export default function App() {
     else if (layoutId === 'quiet-credits') body = <QuietCredits {...layoutProps} />
     else if (layoutId === 'newspaper') body = <Newspaper {...layoutProps} />
     else if (layoutId === 'coverage') body = <Coverage {...layoutProps} />
+    else if (layoutId === 'dossier') body = <Dossier {...layoutProps} />
 
     return (
       <AtelierFrame

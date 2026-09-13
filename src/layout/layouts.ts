@@ -13,6 +13,7 @@ export type LayoutId =
   | 'quiet-credits'
   | 'newspaper'
   | 'coverage'
+  | 'dossier'
   | 'classic'
   | 'diagnosis-object'
   | 'spike-cinema'
@@ -114,6 +115,12 @@ export const LAYOUTS: LayoutMeta[] = [
     id: 'coverage',
     name: 'Coverage',
     subtitle: 'Wants, don’t-likes, ADO covered vs gap',
+    group: 'primary',
+  },
+  {
+    id: 'dossier',
+    name: 'Dossier',
+    subtitle: 'Manilla folder of case files',
     group: 'primary',
   },
   {

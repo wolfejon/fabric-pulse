@@ -435,7 +435,8 @@ body {
 [data-experience='ripple'],
 [data-experience='stage'],
 [data-experience='lantern'],
-[data-experience='credits'] {
+[data-experience='credits'],
+[data-experience='dossier'] {
   color-scheme: dark;
 }
 
@@ -615,4 +616,24 @@ body {
 
 .newspaper-columns article + article {
   margin-top: 1rem;
+}
+
+
+/* ── Dossier (manilla case files) ───────────────────────────── */
+[data-experience='dossier'] {
+  color-scheme: dark;
+}
+
+.dossier-page {
+  color-scheme: light;
+}
+
+.dossier-polaroid {
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dossier-page {
+    transition: none !important;
+  }
 }
