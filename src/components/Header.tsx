@@ -7,7 +7,6 @@ import type { DailyPoint, DateRange, PulseKpis, WorkloadFilter } from '../types'
 import { WORKLOAD_CATALOG } from '../data/catalog'
 import { formatNet, sentimentWord } from '../lib/format'
 import { useThemeColors } from '../theme/colors'
-import { LayoutSwitcher } from './LayoutSwitcher'
 import { ThemeSwitcher } from './ThemeSwitcher'
 import { ToneBadge } from './ui'
 
@@ -26,6 +25,7 @@ function PulseMark({ accent, canvas }: { accent: string; canvas: string }) {
   )
 }
 
+/** Archive / old-dashboard header — KPIs stay here; Weather/Letter use MinimalChrome. */
 export function Header({
   kpis,
   daily,
@@ -63,7 +63,6 @@ export function Header({
       </div>
 
       <div className="flex flex-1 flex-wrap items-center justify-end gap-3 lg:gap-4">
-        <LayoutSwitcher />
         <ThemeSwitcher />
 
         {filtered ? (

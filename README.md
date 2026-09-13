@@ -29,27 +29,27 @@ npm run preview
 5. **Suggested product-team actions** with effort/impact, owner hint, and related themes. Filterable by workload, high impact, or low effort.
 6. **News & announcements** — official Microsoft plus community/press samples.
 7. **Switchable aesthetic themes** — clickable prototypes for design review (see below).
-8. **Switchable presentation layouts** — Classic, Diagnosis Object, Spike Cinema, Ask the Pulse, War Room (see below).
+8. **Primary experiences** — Weather Report and One Sentence + Receipts; Archive keeps old dense layouts.
 
-The dashboard is desktop-first and responsive: header, KPI row, volume/sentiment charts, click-to-filter workload breakdown, theme explorer with sample mentions, actions, news, and a mention stream.
+Opening the app feels like a Weather Report art piece. Archive mode still exposes the denser dashboard layouts for comparison.
 
-## Presentation layout modes
+## Experiences (UI reset)
 
-Use the **layout switcher** in the header (layout icon, next to the theme switcher) to change the product presentation. Choice persists in `localStorage` (`fabric-pulse-layout`). Color themes still apply across every layout. Demo data labeling stays visible.
+Default landing is **Weather** — a minimalist sky mood piece, not a BI dashboard. Switch with the minimal mode control: **Weather | Letter | Archive**.
 
-| Id | Switcher label | What you get |
+Choice persists in `localStorage` (`fabric-pulse-layout-v2`). Weather and Letter use their own art direction (theme switcher hidden). Quiet demo note instead of a loud banner.
+
+| Id | Mode | What you get |
 | --- | --- | --- |
-| `classic` | Classic | Original scroll dashboard (KPIs, charts, workloads, themes, actions, news, feed) |
-| `diagnosis-object` | Diagnosis Object | Near-fullscreen **Nivo** Volume×Pain organism (size=volume, color=net/pain); thin HUD (net / volume / focus); click filters; desktop evidence rail + **vaul** sheet on smaller screens; **Motion** selection transitions. Stacked bars demoted. |
-| `spike-cinema` | Spike Cinema | Full-width sentiment/volume timeline with spike markers + optional news diamonds; selecting a spike opens a why story panel (brief + themes + mentions). |
-| `ask-the-pulse` | Ask the Pulse | Prompt-first home with suggested asks; selecting an ask shows a **template** brief (no live LLM) + evidence cards + Open Classic / Explore. Absorbs Morning Brief. |
-| `war-room` | War Room | Dense triage: severity inbox left, evidence center, action assign right. Claim/snooze is local demo state. |
+| `weather` | Weather (default) | Soft sky gradient, one giant mood word, one loud line, thin cyan horizon, **Open forecast** → sparse evidence + one suggested move |
+| `letter` | Letter | Cream paper field, one editorial sentence (templated from top pos vs top neg theme), three expandable receipt chips |
+| Archive | Old dashboard | Deprecated escape hatch — Classic, Diagnosis Object, Spike Cinema, Ask the Pulse, War Room (kept, not deleted) |
 
-Legacy stored ids (`morning-brief`, `volume-pain`, `story-timeline`) migrate automatically.
+Legacy stored ids (`morning-brief`, `volume-pain`, `story-timeline`) still migrate inside Archive.
 
 ## Aesthetic themes
 
-Use the **theme switcher** in the header (palette control) to re-skin the whole dashboard. Choice persists in `localStorage` (`fabric-pulse-theme`). The demo banner stays visible in every theme.
+In **Archive** layouts, use the **theme switcher** in the header to re-skin the old dashboard. Choice persists in `localStorage` (`fabric-pulse-theme`). Weather and Letter ignore color themes and keep their own art direction.
 
 | Id | Name | Notes |
 | --- | --- | --- |
@@ -76,7 +76,8 @@ Tokens live as CSS variables on `[data-theme="…"]` in `src/index.css` (canvas/
 | `src/lib/aggregate.ts` | Theme clustering, daily series, KPIs, workload rollups |
 | `src/theme/` | Aesthetic theme registry, provider, and chart color helpers |
 | `src/layout/` | Presentation layout registry, provider, brief/spike helpers |
-| `src/components/layouts/` | Classic, Diagnosis Object, Spike Cinema, Ask the Pulse, War Room |
+| `src/components/layouts/` | Weather, Letter, plus Archive (Classic, Diagnosis Object, Spike Cinema, Ask the Pulse, War Room) |
+| `src/lib/narrative.ts` | Mood words, loud lines, letter templates, forecast picks |
 
 A future live provider should implement:
 

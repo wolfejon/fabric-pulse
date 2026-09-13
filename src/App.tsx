@@ -1,14 +1,20 @@
 import { useEffect, useMemo, useState } from 'react'
 import { DemoBanner } from './components/DemoBanner'
 import { Header } from './components/Header'
+import { MinimalChrome } from './components/MinimalChrome'
+import { ModeSwitcher } from './components/ModeSwitcher'
 import { AskThePulse } from './components/layouts/AskThePulse'
 import { ClassicDashboard } from './components/layouts/ClassicDashboard'
+import { LetterReceipts } from './components/layouts/LetterReceipts'
 import { StoryTimeline } from './components/layouts/StoryTimeline'
 import { VolumePainMap } from './components/layouts/VolumePainMap'
 import { WarRoom } from './components/layouts/WarRoom'
+import { WeatherReport } from './components/layouts/WeatherReport'
 import { pulseProvider } from './data/provider'
 import { useLayout } from './layout/LayoutProvider'
+import { isArtisticLayout } from './layout/layouts'
 import { filterMentions, viewFromMentions } from './lib/aggregate'
+import { buildWeatherNarrative } from './lib/narrative'
 import type { PulseSnapshot, WorkloadFilter } from './types'
 
 export default function App() {
@@ -53,6 +59,13 @@ export default function App() {
     setThemeId(null)
   }
 
+  const artistic = isArtisticLayout(layoutId)
+
+  const weather = useMemo(() => {
+    if (!view) return null
+    return buildWeatherNarrative(view.kpis, view.themes, view.workloads)
+  }, [view])
+
   if (error) {
     return (
       <div className="flex min-h-svh items-center justify-center bg-canvas px-6 text-neg">
@@ -79,9 +92,38 @@ export default function App() {
     onClearFilters,
   }
 
+  if (artistic && layoutId === 'weather' && weather) {
+    return (
+      <div
+        className={`min-h-svh bg-gradient-to-b ${weather.skyClass} ${weather.inkClass}`}
+        data-experience="weather"
+      >
+        <DemoBanner quiet />
+        <MinimalChrome inkClass={weather.inkClass} />
+        <WeatherReport {...layoutProps} nested />
+      </div>
+    )
+  }
+
+  if (artistic && layoutId === 'letter') {
+    return (
+      <div className="min-h-svh bg-[#f3eee6] text-[#1c1915]" data-experience="letter">
+        <DemoBanner quiet />
+        <MinimalChrome inkClass="text-[#1c1915]" />
+        <LetterReceipts {...layoutProps} nested />
+      </div>
+    )
+  }
+
   return (
     <div className="pulse-grid min-h-svh">
       <DemoBanner />
+      <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-2">
+        <p className="text-[11px] uppercase tracking-[0.14em] text-amber">
+          Old dashboard archive · deprecated
+        </p>
+        <ModeSwitcher variant="archive" />
+      </div>
       <Header
         kpis={view.kpis}
         daily={view.daily}
@@ -97,7 +139,7 @@ export default function App() {
         {layoutId === 'ask-the-pulse' ? <AskThePulse {...layoutProps} /> : null}
         {layoutId === 'war-room' ? <WarRoom {...layoutProps} /> : null}
         <footer className="pt-2 text-center text-[11px] text-faint">
-          Fabric Pulse prototype · {snapshot.demoDisclaimer} · {snapshot.dateRange.label} · layout:{' '}
+          Fabric Pulse prototype · {snapshot.demoDisclaimer} · {snapshot.dateRange.label} · archive:{' '}
           {layoutId}
         </footer>
       </main>

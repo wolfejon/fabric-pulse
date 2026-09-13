@@ -368,3 +368,47 @@ body {
   box-shadow: var(--theme-shadow-card) !important;
   color: var(--color-ink) !important;
 }
+
+
+/* ── Artistic experiences (Weather / Letter) ─────────────────── */
+@theme {
+  --font-display: "Fraunces", "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+[data-experience="weather"],
+[data-experience="letter"] {
+  color-scheme: light;
+}
+
+.weather-drift {
+  animation: weather-drift 28s ease-in-out infinite alternate;
+}
+
+.weather-drift-slow {
+  animation: weather-drift 42s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes weather-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(4%, 3%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .weather-drift,
+  .weather-drift-slow {
+    animation: none;
+  }
+}
