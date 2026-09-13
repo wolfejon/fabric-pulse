@@ -1,6 +1,16 @@
 export type LayoutId =
   | 'weather'
   | 'letter'
+  | 'fabric-horizon'
+  | 'weave-thread'
+  | 'constellation'
+  | 'pulse-stamp'
+  | 'lake-ripple'
+  | 'stage-light'
+  | 'ink-wash'
+  | 'desk-globe'
+  | 'signal-lantern'
+  | 'quiet-credits'
   | 'classic'
   | 'diagnosis-object'
   | 'spike-cinema'
@@ -15,8 +25,8 @@ export type LayoutMeta = {
   group: 'primary' | 'archive'
 }
 
-/** Bumped so the UI reset lands everyone on Weather, not a stale Classic id. */
-export const LAYOUT_STORAGE_KEY = 'fabric-pulse-layout-v2'
+/** Bumped so atelier modes land cleanly (v2 → v3). */
+export const LAYOUT_STORAGE_KEY = 'fabric-pulse-layout-v3'
 export const DEFAULT_LAYOUT_ID: LayoutId = 'weather'
 
 export const LAYOUTS: LayoutMeta[] = [
@@ -30,6 +40,66 @@ export const LAYOUTS: LayoutMeta[] = [
     id: 'letter',
     name: 'Letter',
     subtitle: 'One sentence + receipts',
+    group: 'primary',
+  },
+  {
+    id: 'fabric-horizon',
+    name: 'Horizon',
+    subtitle: 'Shore of OneLake',
+    group: 'primary',
+  },
+  {
+    id: 'weave-thread',
+    name: 'Weave Thread',
+    subtitle: 'One luminous thread',
+    group: 'primary',
+  },
+  {
+    id: 'constellation',
+    name: 'Constellation',
+    subtitle: 'Night sky of names',
+    group: 'primary',
+  },
+  {
+    id: 'pulse-stamp',
+    name: 'Pulse Stamp',
+    subtitle: 'Commemorative week stamp',
+    group: 'primary',
+  },
+  {
+    id: 'lake-ripple',
+    name: 'Lake Ripple',
+    subtitle: 'Mention waves on water',
+    group: 'primary',
+  },
+  {
+    id: 'stage-light',
+    name: 'Stage Light',
+    subtitle: 'One spotlight truth',
+    group: 'primary',
+  },
+  {
+    id: 'ink-wash',
+    name: 'Ink Wash',
+    subtitle: 'One brushstroke week',
+    group: 'primary',
+  },
+  {
+    id: 'desk-globe',
+    name: 'Desk Globe',
+    subtitle: 'Turn the estate',
+    group: 'primary',
+  },
+  {
+    id: 'signal-lantern',
+    name: 'Signal Lantern',
+    subtitle: 'Glow is the pulse',
+    group: 'primary',
+  },
+  {
+    id: 'quiet-credits',
+    name: 'Quiet Credits',
+    subtitle: 'End credits typography',
     group: 'primary',
   },
   {
@@ -89,7 +159,7 @@ export function getLayoutMeta(id: LayoutId): LayoutMeta {
 }
 
 export function isArtisticLayout(id: LayoutId): boolean {
-  return id === 'weather' || id === 'letter'
+  return getLayoutMeta(id).group === 'primary'
 }
 
 export function isArchiveLayout(id: LayoutId): boolean {

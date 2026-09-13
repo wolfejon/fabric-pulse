@@ -29,21 +29,33 @@ npm run preview
 5. **Suggested product-team actions** with effort/impact, owner hint, and related themes. Filterable by workload, high impact, or low effort.
 6. **News & announcements** — official Microsoft plus community/press samples.
 7. **Switchable aesthetic themes** — clickable prototypes for design review (see below).
-8. **Primary experiences** — Weather Report and One Sentence + Receipts; Archive keeps old dense layouts.
+8. **Atelier experiences** — Weather, Letter, and ten minimalist modes; Archive keeps old dense layouts.
 
-Opening the app feels like a Weather Report art piece. Archive mode still exposes the denser dashboard layouts for comparison.
+Opening the app feels like a Weather Report art piece. Flip through atelier modes or open Archive for denser dashboard layouts.
 
 ## Experiences (UI reset)
 
-Default landing is **Weather** — a minimalist sky mood piece, not a BI dashboard. Switch with the minimal mode control: **Weather | Letter | Archive**.
+Default landing is **Weather** — a minimalist sky mood piece, not a BI dashboard. The **atelier** mode menu lists Weather, Letter, and ten artistic modes. **Archive** keeps old dense layouts.
 
-Choice persists in `localStorage` (`fabric-pulse-layout-v2`). Weather and Letter use their own art direction (theme switcher hidden). Quiet demo note instead of a loud banner.
+Shared atelier shell: Fabric wordmark, sparse **workload switcher** (All · Pipelines · Data Eng · OneLake · Warehouse · RTA · Power BI · Copilot), beautiful mode menu, quiet demo honesty. Workload filters copy/aggregates only — no KPI wall.
+
+Choice persists in `localStorage` (`fabric-pulse-layout-v3`). Atelier modes use their own art direction (theme switcher hidden).
 
 | Id | Mode | What you get |
 | --- | --- | --- |
 | `weather` | Weather (default) | Soft sky gradient, one giant mood word, one loud line, thin cyan horizon, **Open forecast** → sparse evidence + one suggested move |
 | `letter` | Letter | Cream paper field, one editorial sentence (templated from top pos vs top neg theme), three expandable receipt chips |
-| Archive | Old dashboard | Deprecated escape hatch — Classic, Diagnosis Object, Spike Cinema, Ask the Pulse, War Room (kept, not deleted) |
+| `fabric-horizon` | Horizon | Cyan→purple dusk shore; horizon line as the only chart |
+| `weave-thread` | Weave Thread | Loom grid + one luminous teal thread / knot |
+| `constellation` | Constellation | Purple-night sky; product/theme names as stars |
+| `pulse-stamp` | Pulse Stamp | Oversized commemorative stamp on kraft |
+| `lake-ripple` | Lake Ripple | Top-down lake ripples = mention waves |
+| `stage-light` | Stage Light | Empty theater; one cyan spotlight on a sentence |
+| `ink-wash` | Ink Wash | Rice-paper ink stroke + Fabric seal |
+| `desk-globe` | Desk Globe | Single desk globe of the estate |
+| `signal-lantern` | Signal Lantern | Paper lantern glow = pulse |
+| `quiet-credits` | Quiet Credits | Cinematic end-credits scroll |
+| Archive | Old dashboard | Deprecated escape hatch — Classic, Diagnosis Object, Spike Cinema, Ask the Pulse, War Room |
 
 Legacy stored ids (`morning-brief`, `volume-pain`, `story-timeline`) still migrate inside Archive.
 
@@ -76,7 +88,7 @@ Tokens live as CSS variables on `[data-theme="…"]` in `src/index.css` (canvas/
 | `src/lib/aggregate.ts` | Theme clustering, daily series, KPIs, workload rollups |
 | `src/theme/` | Aesthetic theme registry, provider, and chart color helpers |
 | `src/layout/` | Presentation layout registry, provider, brief/spike helpers |
-| `src/components/layouts/` | Weather, Letter, plus Archive (Classic, Diagnosis Object, Spike Cinema, Ask the Pulse, War Room) |
+| `src/components/layouts/` | Weather, Letter, atelier modes, plus Archive (Classic, Diagnosis Object, Spike Cinema, Ask the Pulse, War Room) |
 | `src/lib/narrative.ts` | Mood words, loud lines, letter templates, forecast picks |
 
 A future live provider should implement:

@@ -412,3 +412,156 @@ body {
     animation: none;
   }
 }
+
+/* ── Atelier modes (shared motion) ───────────────────────────── */
+[data-experience='horizon'],
+[data-experience='weave'],
+[data-experience='constellation'],
+[data-experience='stamp'],
+[data-experience='ripple'],
+[data-experience='stage'],
+[data-experience='ink'],
+[data-experience='globe'],
+[data-experience='lantern'],
+[data-experience='credits'],
+[data-experience='weather'],
+[data-experience='letter'] {
+  color-scheme: light;
+}
+
+[data-experience='horizon'],
+[data-experience='constellation'],
+[data-experience='ripple'],
+[data-experience='stage'],
+[data-experience='lantern'],
+[data-experience='credits'] {
+  color-scheme: dark;
+}
+
+.atelier-thread {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: atelier-draw 2.8s ease forwards;
+}
+
+.atelier-knot {
+  animation: atelier-pulse 2.4s ease-in-out infinite;
+}
+
+.atelier-star {
+  animation: atelier-twinkle 3.5s ease-in-out infinite;
+}
+
+.atelier-ripple {
+  animation: atelier-ripple-out 4.5s ease-out infinite;
+}
+
+.atelier-ink-stroke {
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: atelier-draw 2.2s ease forwards;
+}
+
+.atelier-lantern {
+  animation: atelier-sway 5s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.atelier-credits {
+  animation: atelier-scroll-up 48s linear infinite;
+}
+
+.atelier-credits-paused {
+  animation-play-state: paused;
+}
+
+.atelier-horizon-choppy {
+  animation: atelier-chop 1.8s ease-in-out infinite;
+}
+
+@keyframes atelier-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes atelier-pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    r: 5;
+  }
+  50% {
+    opacity: 1;
+    r: 7;
+  }
+}
+
+@keyframes atelier-twinkle {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes atelier-ripple-out {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+
+@keyframes atelier-sway {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+
+@keyframes atelier-scroll-up {
+  0% {
+    transform: translateY(18%);
+  }
+  100% {
+    transform: translateY(-28%);
+  }
+}
+
+@keyframes atelier-chop {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atelier-thread,
+  .atelier-knot,
+  .atelier-star,
+  .atelier-ripple,
+  .atelier-ink-stroke,
+  .atelier-lantern,
+  .atelier-credits,
+  .atelier-horizon-choppy {
+    animation: none;
+  }
+  .atelier-thread,
+  .atelier-ink-stroke {
+    stroke-dashoffset: 0;
+  }
+}

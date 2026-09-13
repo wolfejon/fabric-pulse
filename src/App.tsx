@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { DemoBanner } from './components/DemoBanner'
 import { Header } from './components/Header'
 import { MinimalChrome } from './components/MinimalChrome'
@@ -10,12 +10,140 @@ import { StoryTimeline } from './components/layouts/StoryTimeline'
 import { VolumePainMap } from './components/layouts/VolumePainMap'
 import { WarRoom } from './components/layouts/WarRoom'
 import { WeatherReport } from './components/layouts/WeatherReport'
+import {
+  ConstellationName,
+  DeskGlobe,
+  FabricHorizon,
+  InkWash,
+  LakeRipple,
+  PulseStamp,
+  QuietCredits,
+  SignalLantern,
+  StageLight,
+  WeaveThread,
+} from './components/layouts/atelier'
 import { pulseProvider } from './data/provider'
 import { useLayout } from './layout/LayoutProvider'
-import { isArtisticLayout } from './layout/layouts'
+import { isArtisticLayout, type LayoutId } from './layout/layouts'
 import { filterMentions, viewFromMentions } from './lib/aggregate'
 import { buildWeatherNarrative } from './lib/narrative'
 import type { PulseSnapshot, WorkloadFilter } from './types'
+
+type ShellTone = 'light' | 'dark' | 'inherit'
+
+const ATELIER_SHELL: Partial<
+  Record<LayoutId, { className: string; ink: string; tone: ShellTone; experience: string }>
+> = {
+  weather: {
+    className: '',
+    ink: 'text-[#1a2a3a]',
+    tone: 'inherit',
+    experience: 'weather',
+  },
+  letter: {
+    className: 'bg-[#f3eee6] text-[#1c1915]',
+    ink: 'text-[#1c1915]',
+    tone: 'light',
+    experience: 'letter',
+  },
+  'fabric-horizon': {
+    className: 'bg-[#1a2a3a] text-white',
+    ink: 'text-white',
+    tone: 'dark',
+    experience: 'horizon',
+  },
+  'weave-thread': {
+    className: 'bg-[#f7f4ef] text-[#1a2a3a]',
+    ink: 'text-[#1a2a3a]',
+    tone: 'light',
+    experience: 'weave',
+  },
+  constellation: {
+    className: 'bg-[#12081f] text-[#f0eaf8]',
+    ink: 'text-[#f0eaf8]',
+    tone: 'dark',
+    experience: 'constellation',
+  },
+  'pulse-stamp': {
+    className: 'bg-[#d4c4a8] text-[#1c1915]',
+    ink: 'text-[#1c1915]',
+    tone: 'light',
+    experience: 'stamp',
+  },
+  'lake-ripple': {
+    className: 'bg-[#0c3d4a] text-white',
+    ink: 'text-white',
+    tone: 'dark',
+    experience: 'ripple',
+  },
+  'stage-light': {
+    className: 'bg-[#0a0812] text-[#f5f0ff]',
+    ink: 'text-[#f5f0ff]',
+    tone: 'dark',
+    experience: 'stage',
+  },
+  'ink-wash': {
+    className: 'bg-[#f6f1e8] text-[#1a1814]',
+    ink: 'text-[#1a1814]',
+    tone: 'light',
+    experience: 'ink',
+  },
+  'desk-globe': {
+    className: 'bg-[#ebe6dc] text-[#1a2a3a]',
+    ink: 'text-[#1a2a3a]',
+    tone: 'light',
+    experience: 'globe',
+  },
+  'signal-lantern': {
+    className: 'bg-[#121018] text-[#f0eaf8]',
+    ink: 'text-[#f0eaf8]',
+    tone: 'dark',
+    experience: 'lantern',
+  },
+  'quiet-credits': {
+    className: 'bg-[#0b0a10] text-[#f5f0ff]',
+    ink: 'text-[#f5f0ff]',
+    tone: 'dark',
+    experience: 'credits',
+  },
+}
+
+function AtelierFrame({
+  layoutId,
+  weatherSky,
+  weatherInk,
+  workload,
+  setWorkload,
+  children,
+}: {
+  layoutId: LayoutId
+  weatherSky?: string
+  weatherInk?: string
+  workload: WorkloadFilter
+  setWorkload: (next: WorkloadFilter) => void
+  children: ReactNode
+}) {
+  const shell = ATELIER_SHELL[layoutId]
+  if (!shell) return null
+
+  const className =
+    layoutId === 'weather' && weatherSky
+      ? `min-h-svh bg-gradient-to-b ${weatherSky} ${weatherInk ?? shell.ink}`
+      : `min-h-svh ${shell.className}`
+
+  return (
+    <div className={className} data-experience={shell.experience}>
+      <DemoBanner quiet />
+      <MinimalChrome
+        inkClass={layoutId === 'weather' && weatherInk ? weatherInk : shell.ink}
+        workload={workload}
+        setWorkload={setWorkload}
+        tone={shell.tone}
+      />
+      {children}
+    </div>
+  )
+}
 
 export default function App() {
   const { layoutId } = useLayout()
@@ -92,26 +220,31 @@ export default function App() {
     onClearFilters,
   }
 
-  if (artistic && layoutId === 'weather' && weather) {
-    return (
-      <div
-        className={`min-h-svh bg-gradient-to-b ${weather.skyClass} ${weather.inkClass}`}
-        data-experience="weather"
-      >
-        <DemoBanner quiet />
-        <MinimalChrome inkClass={weather.inkClass} />
-        <WeatherReport {...layoutProps} nested />
-      </div>
-    )
-  }
+  if (artistic) {
+    let body: ReactNode = null
+    if (layoutId === 'weather') body = <WeatherReport {...layoutProps} nested />
+    else if (layoutId === 'letter') body = <LetterReceipts {...layoutProps} nested />
+    else if (layoutId === 'fabric-horizon') body = <FabricHorizon {...layoutProps} />
+    else if (layoutId === 'weave-thread') body = <WeaveThread {...layoutProps} />
+    else if (layoutId === 'constellation') body = <ConstellationName {...layoutProps} />
+    else if (layoutId === 'pulse-stamp') body = <PulseStamp {...layoutProps} />
+    else if (layoutId === 'lake-ripple') body = <LakeRipple {...layoutProps} />
+    else if (layoutId === 'stage-light') body = <StageLight {...layoutProps} />
+    else if (layoutId === 'ink-wash') body = <InkWash {...layoutProps} />
+    else if (layoutId === 'desk-globe') body = <DeskGlobe {...layoutProps} />
+    else if (layoutId === 'signal-lantern') body = <SignalLantern {...layoutProps} />
+    else if (layoutId === 'quiet-credits') body = <QuietCredits {...layoutProps} />
 
-  if (artistic && layoutId === 'letter') {
     return (
-      <div className="min-h-svh bg-[#f3eee6] text-[#1c1915]" data-experience="letter">
-        <DemoBanner quiet />
-        <MinimalChrome inkClass="text-[#1c1915]" />
-        <LetterReceipts {...layoutProps} nested />
-      </div>
+      <AtelierFrame
+        layoutId={layoutId}
+        weatherSky={weather?.skyClass}
+        weatherInk={weather?.inkClass}
+        workload={workload}
+        setWorkload={setWorkload}
+      >
+        {body}
+      </AtelierFrame>
     )
   }
 

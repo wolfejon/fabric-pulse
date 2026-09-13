@@ -1,18 +1,28 @@
+import { FabricMark } from './atelier/FabricMark'
+import { WorkloadSwitcher } from './atelier/WorkloadSwitcher'
 import { ModeSwitcher } from './ModeSwitcher'
+import type { WorkloadFilter } from '../types'
 
-/** Wordmark + thin cyan line + mode switcher for Weather / Letter. */
-export function MinimalChrome({ inkClass = 'text-[#1a2a3a]' }: { inkClass?: string }) {
+/** Shared atelier shell: wordmark once, mode switcher, sparse workload pills. */
+export function MinimalChrome({
+  inkClass = 'text-[#1a2a3a]',
+  workload,
+  setWorkload,
+  tone = 'light',
+}: {
+  inkClass?: string
+  workload: WorkloadFilter
+  setWorkload: (next: WorkloadFilter) => void
+  tone?: 'light' | 'dark' | 'inherit'
+}) {
   return (
     <div className={`relative z-20 ${inkClass}`}>
-      <div className="flex items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <div>
-          <p className="text-sm font-medium tracking-tight">Fabric Pulse</p>
-          <div
-            className="mt-2 h-px w-16 bg-gradient-to-r from-[#00b7c3] to-transparent"
-            aria-hidden="true"
-          />
-        </div>
+      <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8">
+        <FabricMark />
         <ModeSwitcher variant="artistic" />
+      </div>
+      <div className="flex justify-center px-4 pb-2">
+        <WorkloadSwitcher value={workload} onChange={setWorkload} tone={tone} />
       </div>
     </div>
   )
