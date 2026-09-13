@@ -4,7 +4,7 @@ Demo social-listening and sentiment dashboard for **Microsoft Fabric** product t
 
 > **Demo data — not a live X feed.** Mentions, themes, suggested actions, and news are sample data served by a swappable `PulseDataProvider`. This prototype does not scrape X or call a live social API.
 
-![Stack](https://img.shields.io/badge/Vite-React_19-00B7C3) ![Lang](https://img.shields.io/badge/TypeScript-Tailwind-0b1118)
+![Stack](https://img.shields.io/badge/Vite-React_19-00B7C3) ![Lang](https://img.shields.io/badge/TypeScript-Tailwind-0b1118) ![Viz](https://img.shields.io/badge/Nivo-Treemap-3ee0ea)
 
 ## Run
 
@@ -40,7 +40,7 @@ Use the **layout switcher** in the header (layout icon, next to the theme switch
 | Id | Switcher label | What you get |
 | --- | --- | --- |
 | `classic` | Classic | Original scroll dashboard (KPIs, charts, workloads, themes, actions, news, feed) |
-| `diagnosis-object` | Diagnosis Object | Volume×Pain treemap (size=volume, color=net/pain); click filters; side rail with sample mentions + top action. Stacked bars demoted. |
+| `diagnosis-object` | Diagnosis Object | Near-fullscreen **Nivo** Volume×Pain organism (size=volume, color=net/pain); thin HUD (net / volume / focus); click filters; desktop evidence rail + **vaul** sheet on smaller screens; **Motion** selection transitions. Stacked bars demoted. |
 | `spike-cinema` | Spike Cinema | Full-width sentiment/volume timeline with spike markers + optional news diamonds; selecting a spike opens a why story panel (brief + themes + mentions). |
 | `ask-the-pulse` | Ask the Pulse | Prompt-first home with suggested asks; selecting an ask shows a **template** brief (no live LLM) + evidence cards + Open Classic / Explore. Absorbs Morning Brief. |
 | `war-room` | War Room | Dense triage: severity inbox left, evidence center, action assign right. Claim/snooze is local demo state. |
@@ -92,5 +92,5 @@ and be exported as `pulseProvider`. Keep classification and theme clustering on 
 
 - All handles, names, and post text are fictional samples.
 - News URLs point at public section homepages, not specific live articles.
-- Charts use Recharts. Icons use lucide-react.
+- Charts: Recharts (Classic / Spike Cinema) + **@nivo/treemap** (Diagnosis Object). Motion (`motion/react`) for layout transitions; **vaul** for the evidence sheet. Icons use lucide-react.
 - Aesthetic / IA notes: `wireframe-ia-and-aesthetics.md` (design brief). Layout modes above are clickable prototypes.
