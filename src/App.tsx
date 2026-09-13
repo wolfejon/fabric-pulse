@@ -12,6 +12,7 @@ import { WarRoom } from './components/layouts/WarRoom'
 import { WeatherReport } from './components/layouts/WeatherReport'
 import {
   ConstellationName,
+  Coverage,
   DeskGlobe,
   FabricHorizon,
   InkWash,
@@ -26,9 +27,9 @@ import {
 import { pulseProvider } from './data/provider'
 import { useLayout } from './layout/LayoutProvider'
 import { isArtisticLayout, type LayoutId } from './layout/layouts'
-import { filterMentions, viewFromMentions } from './lib/aggregate'
+import { filterMentions, matchesCloudFilter, viewFromMentions } from './lib/aggregate'
 import { buildWeatherNarrative } from './lib/narrative'
-import type { PulseSnapshot, WorkloadFilter } from './types'
+import type { CloudBoundaryFilter, PulseSnapshot, WorkloadFilter } from './types'
 
 type ShellTone = 'light' | 'dark' | 'inherit'
 
@@ -113,6 +114,12 @@ const ATELIER_SHELL: Partial<
     tone: 'light',
     experience: 'newspaper',
   },
+  coverage: {
+    className: 'bg-[#f3eee6] text-[#1c1915]',
+    ink: 'text-[#1c1915]',
+    tone: 'light',
+    experience: 'coverage',
+  },
 }
 
 function AtelierFrame({
@@ -121,6 +128,8 @@ function AtelierFrame({
   weatherInk,
   workload,
   setWorkload,
+  cloud,
+  setCloud,
   children,
 }: {
   layoutId: LayoutId
@@ -128,6 +137,8 @@ function AtelierFrame({
   weatherInk?: string
   workload: WorkloadFilter
   setWorkload: (next: WorkloadFilter) => void
+  cloud: CloudBoundaryFilter
+  setCloud: (next: CloudBoundaryFilter) => void
   children: ReactNode
 }) {
   const shell = ATELIER_SHELL[layoutId]
@@ -145,6 +156,8 @@ function AtelierFrame({
         inkClass={layoutId === 'weather' && weatherInk ? weatherInk : shell.ink}
         workload={workload}
         setWorkload={setWorkload}
+        cloud={cloud}
+        setCloud={setCloud}
         tone={shell.tone}
       />
       {children}
@@ -157,6 +170,7 @@ export default function App() {
   const [snapshot, setSnapshot] = useState<PulseSnapshot | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [workload, setWorkload] = useState<WorkloadFilter>('all')
+  const [cloud, setCloud] = useState<CloudBoundaryFilter>('all')
   const [themeId, setThemeId] = useState<string | null>(null)
 
   useEffect(() => {
@@ -176,21 +190,24 @@ export default function App() {
 
   const view = useMemo(() => {
     if (!snapshot) return null
-    const scopedMentions = snapshot.mentions.filter((mention) =>
-      workload === 'all' ? true : mention.workload === workload,
-    )
+    const scopedMentions = snapshot.mentions.filter((mention) => {
+      if (workload !== 'all' && mention.workload !== workload) return false
+      if (!matchesCloudFilter(mention.cloudBoundary, cloud)) return false
+      return true
+    })
     const derived = viewFromMentions(scopedMentions, snapshot.themeDefinitions)
     const selectedTheme = derived.themes.find((theme) => theme.id === themeId) ?? null
-    const mentions = filterMentions(snapshot.mentions, workload, selectedTheme)
+    const mentions = filterMentions(snapshot.mentions, workload, selectedTheme, cloud)
     return {
       ...derived,
       mentions,
       selectedTheme,
     }
-  }, [snapshot, themeId, workload])
+  }, [snapshot, themeId, workload, cloud])
 
   const onClearFilters = () => {
     setWorkload('all')
+    setCloud('all')
     setThemeId(null)
   }
 
@@ -221,8 +238,10 @@ export default function App() {
     snapshot,
     view,
     workload,
+    cloud,
     themeId,
     setWorkload,
+    setCloud,
     setThemeId,
     onClearFilters,
   }
@@ -242,6 +261,7 @@ export default function App() {
     else if (layoutId === 'signal-lantern') body = <SignalLantern {...layoutProps} />
     else if (layoutId === 'quiet-credits') body = <QuietCredits {...layoutProps} />
     else if (layoutId === 'newspaper') body = <Newspaper {...layoutProps} />
+    else if (layoutId === 'coverage') body = <Coverage {...layoutProps} />
 
     return (
       <AtelierFrame
@@ -250,6 +270,8 @@ export default function App() {
         weatherInk={weather?.inkClass}
         workload={workload}
         setWorkload={setWorkload}
+        cloud={cloud}
+        setCloud={setCloud}
       >
         {body}
       </AtelierFrame>

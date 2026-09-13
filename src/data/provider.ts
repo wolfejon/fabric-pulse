@@ -1,5 +1,11 @@
 import type { PulseDataProvider, PulseSnapshot } from '../types'
 import { viewFromMentions } from '../lib/aggregate'
+import {
+  SAMPLE_DEPENDENCY_REQUESTS,
+  SAMPLE_SEMESTER_PLANS,
+  SAMPLE_THEME_MAPPINGS,
+  SAMPLE_WORK_ITEMS,
+} from './ado'
 import { SAMPLE_ACTIONS } from './actions'
 import { SAMPLE_MENTIONS } from './mentions'
 import { SAMPLE_NEWS } from './news'
@@ -13,6 +19,11 @@ function delay(ms: number): Promise<void> {
   })
 }
 
+/**
+ * Public demo provider. Swap `pulseProvider` export for a live public API
+ * or an internal MS implementation — same PulseSnapshot contract.
+ * See docs/PROVIDERS.md.
+ */
 export class MockPulseDataProvider implements PulseDataProvider {
   async getSnapshot(): Promise<PulseSnapshot> {
     await delay(280)
@@ -35,12 +46,16 @@ export class MockPulseDataProvider implements PulseDataProvider {
       daily: derived.daily,
       workloads: derived.workloads,
       kpis: derived.kpis,
+      semesterPlans: SAMPLE_SEMESTER_PLANS,
+      workItems: SAMPLE_WORK_ITEMS,
+      dependencyRequests: SAMPLE_DEPENDENCY_REQUESTS,
+      themeMappings: SAMPLE_THEME_MAPPINGS,
     }
   }
 }
 
 /**
  * Swap this export for a live implementation of PulseDataProvider
- * (no scraping in this prototype — keep the contract, change the class).
+ * (public APIs or internal MS sources — no scraping in this prototype).
  */
 export const pulseProvider: PulseDataProvider = new MockPulseDataProvider()

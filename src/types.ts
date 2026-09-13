@@ -20,6 +20,15 @@ export type ImpactLevel = 'low' | 'medium' | 'high'
 export type NewsSourceType = 'official' | 'community' | 'press'
 export type WorkloadFilter = WorkloadId | 'all'
 
+/** Cloud boundary on signal / ADO records. Omit ≈ commercial / unspecified. */
+export type CloudBoundary = 'commercial' | 'usgov' | 'usnat' | 'ussec' | 'unknown'
+
+/** Sparse cloud pill filter (All + named slices). */
+export type CloudBoundaryFilter = 'all' | 'commercial' | 'usgov' | 'usnat' | 'ussec'
+
+export type ThemePolarity = 'want' | 'dont-like' | 'mixed'
+export type CoverageStatus = 'covered' | 'partial' | 'gap'
+
 export interface WorkloadMeta {
   id: WorkloadId
   label: string
@@ -40,6 +49,8 @@ export interface Mention {
   likes: number
   reposts: number
   replies: number
+  /** Optional; omit ≈ commercial / unspecified. */
+  cloudBoundary?: CloudBoundary
 }
 
 export interface ThemeDefinition {
@@ -47,6 +58,9 @@ export interface ThemeDefinition {
   name: string
   description: string
   keywords: string[]
+  /** Want vs friction taxonomy; cluster inherits when set. */
+  polarity?: ThemePolarity
+  cloudBoundary?: CloudBoundary
 }
 
 export interface ThemeInsight {
@@ -59,6 +73,8 @@ export interface ThemeInsight {
   sentimentScore: number
   trend: number
   workloads: WorkloadId[]
+  polarity: ThemePolarity
+  cloudBoundary?: CloudBoundary
 }
 
 export interface SuggestedAction {
@@ -124,6 +140,52 @@ export interface DateRange {
   label: string
 }
 
+/** ADO semester / planning period. */
+export interface SemesterPlan {
+  id: string
+  name: string
+  start: string
+  end: string
+}
+
+export type WorkItemType = 'feature' | 'bug' | 'task' | 'epic' | string
+
+export interface WorkItem {
+  id: string
+  adoId: string
+  title: string
+  type: WorkItemType
+  state: string
+  workload?: WorkloadId
+  semesterId?: string
+  cloudBoundary?: CloudBoundary
+  url?: string
+}
+
+export interface DependencyRequest {
+  id: string
+  title: string
+  fromTeam: string
+  toTeam: string
+  state: string
+  relatedWorkItemIds: string[]
+  semesterId?: string
+  cloudBoundary?: CloudBoundary
+}
+
+/** Bridge: theme signal ↔ ADO work (covered / partial / gap). */
+export interface ThemeSignalMapping {
+  id: string
+  themeId: string
+  workItemIds?: string[]
+  dependencyIds?: string[]
+  semesterId?: string
+  coverage: CoverageStatus
+  notes?: string
+  cloudBoundary?: CloudBoundary
+  workload?: WorkloadId
+}
+
 export interface PulseSnapshot {
   generatedAt: string
   isDemo: true
@@ -137,9 +199,16 @@ export interface PulseSnapshot {
   daily: DailyPoint[]
   workloads: WorkloadStat[]
   kpis: PulseKpis
+  semesterPlans: SemesterPlan[]
+  workItems: WorkItem[]
+  dependencyRequests: DependencyRequest[]
+  themeMappings: ThemeSignalMapping[]
 }
 
-/** Swappable data contract. A live provider would implement the same shape. */
+/**
+ * Swappable data contract. Mock → public live → internal MS sources
+ * should all normalize into PulseSnapshot. See docs/PROVIDERS.md.
+ */
 export interface PulseDataProvider {
   getSnapshot(): Promise<PulseSnapshot>
 }

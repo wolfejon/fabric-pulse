@@ -1,10 +1,15 @@
 import { WORKLOAD_CATALOG } from '../data/catalog'
 import type {
+  CloudBoundary,
+  CloudBoundaryFilter,
   DailyPoint,
   Mention,
   PulseKpis,
   ThemeDefinition,
   ThemeInsight,
+  ThemePolarity,
+  ThemeSignalMapping,
+  WorkItem,
   WorkloadFilter,
   WorkloadId,
   WorkloadStat,
@@ -30,16 +35,64 @@ function midpoint(mentions: Mention[]): string | null {
   return new Date(start + (end - start) / 2).toISOString()
 }
 
+/** Effective cloud for filtering: omit / unknown ≈ commercial for the commercial pill. */
+export function effectiveCloud(mention: Mention): CloudBoundary {
+  return mention.cloudBoundary ?? 'commercial'
+}
+
+export function matchesCloudFilter(
+  cloud: CloudBoundary | undefined,
+  filter: CloudBoundaryFilter,
+): boolean {
+  if (filter === 'all') return true
+  const effective = cloud ?? 'commercial'
+  if (filter === 'commercial') {
+    return effective === 'commercial' || effective === 'unknown'
+  }
+  return effective === filter
+}
+
 export function filterMentions(
   mentions: Mention[],
   workload: WorkloadFilter,
   theme: ThemeInsight | null,
+  cloud: CloudBoundaryFilter = 'all',
 ): Mention[] {
   return mentions.filter((mention) => {
     if (workload !== 'all' && mention.workload !== workload) return false
+    if (!matchesCloudFilter(mention.cloudBoundary, cloud)) return false
     if (theme && !theme.mentionIds.includes(mention.id)) return false
     return true
   })
+}
+
+function derivePolarity(
+  definition: ThemeDefinition,
+  matched: Mention[],
+): ThemePolarity {
+  if (definition.polarity) return definition.polarity
+  const score = mean(matched.map((m) => m.sentimentScore))
+  if (score >= 0.25) return 'want'
+  if (score <= -0.25) return 'dont-like'
+  return 'mixed'
+}
+
+function dominantCloud(matched: Mention[]): CloudBoundary | undefined {
+  if (matched.length === 0) return undefined
+  const counts = new Map<CloudBoundary, number>()
+  for (const mention of matched) {
+    const key = effectiveCloud(mention)
+    counts.set(key, (counts.get(key) ?? 0) + 1)
+  }
+  let best: CloudBoundary | undefined
+  let bestCount = 0
+  for (const [key, count] of counts) {
+    if (count > bestCount) {
+      best = key
+      bestCount = count
+    }
+  }
+  return best
 }
 
 export function clusterThemes(mentions: Mention[], definitions: ThemeDefinition[]): ThemeInsight[] {
@@ -72,6 +125,8 @@ export function clusterThemes(mentions: Mention[], definitions: ThemeDefinition[
         sentimentScore: mean(matched.map((mention) => mention.sentimentScore)),
         trend: trendPct(late.length, early.length),
         workloads,
+        polarity: derivePolarity(definition, matched),
+        cloudBoundary: definition.cloudBoundary ?? dominantCloud(matched),
       }
     })
     .filter((theme) => theme.mentionCount > 0)
@@ -173,4 +228,42 @@ export function viewFromMentions(
     workloads: buildWorkloadStats(mentions),
     kpis: buildKpis(mentions, themes),
   }
+}
+
+/** Resolve theme → mapping for a cloud/workload slice (Coverage mode). */
+export function resolveThemeMapping(
+  themeId: string,
+  mappings: ThemeSignalMapping[],
+  cloud: CloudBoundaryFilter,
+  workload: WorkloadFilter,
+): ThemeSignalMapping | null {
+  const candidates = mappings.filter((m) => m.themeId === themeId)
+  if (candidates.length === 0) return null
+
+  const cloudMatched = candidates.filter((m) => {
+    if (cloud === 'all') return true
+    if (!m.cloudBoundary) return cloud === 'commercial'
+    return matchesCloudFilter(m.cloudBoundary, cloud)
+  })
+
+  const pool = cloudMatched.length > 0 ? cloudMatched : candidates
+
+  const workloadMatched =
+    workload === 'all'
+      ? pool
+      : pool.filter((m) => !m.workload || m.workload === workload)
+
+  const finalPool = workloadMatched.length > 0 ? workloadMatched : pool
+  // Prefer exact cloud match, then gap/partial/covered order by specificity
+  const exact = finalPool.find((m) => m.cloudBoundary === cloud)
+  return exact ?? finalPool[0] ?? null
+}
+
+export function workItemsForMapping(
+  mapping: ThemeSignalMapping | null,
+  workItems: WorkItem[],
+): WorkItem[] {
+  if (!mapping?.workItemIds?.length) return []
+  const ids = new Set(mapping.workItemIds)
+  return workItems.filter((wi) => ids.has(wi.id))
 }

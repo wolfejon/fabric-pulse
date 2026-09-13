@@ -12,6 +12,7 @@ export type LayoutId =
   | 'signal-lantern'
   | 'quiet-credits'
   | 'newspaper'
+  | 'coverage'
   | 'classic'
   | 'diagnosis-object'
   | 'spike-cinema'
@@ -27,7 +28,7 @@ export type LayoutMeta = {
 }
 
 /** Bumped so atelier modes land cleanly (v2 → v3). */
-export const LAYOUT_STORAGE_KEY = 'fabric-pulse-layout-v3'
+export const LAYOUT_STORAGE_KEY = 'fabric-pulse-layout-v4'
 export const DEFAULT_LAYOUT_ID: LayoutId = 'weather'
 
 export const LAYOUTS: LayoutMeta[] = [
@@ -107,6 +108,12 @@ export const LAYOUTS: LayoutMeta[] = [
     id: 'newspaper',
     name: 'Newspaper',
     subtitle: 'Broadsheet of Fabric sentiment',
+    group: 'primary',
+  },
+  {
+    id: 'coverage',
+    name: 'Coverage',
+    subtitle: 'Wants, don’t-likes, ADO covered vs gap',
     group: 'primary',
   },
   {

@@ -2,7 +2,7 @@
 
 Demo social-listening and sentiment dashboard for **Microsoft Fabric** product teams.
 
-> **Demo data — not a live X feed.** Mentions, themes, suggested actions, and news are sample data served by a swappable `PulseDataProvider`. This prototype does not scrape X or call a live social API.
+> **Demo data — not a live X feed.** Mentions, themes, suggested actions, news, and fake ADO mappings are sample data served by a swappable `PulseDataProvider`. This prototype does not scrape X or call a live social API. Provider swap guide: [`docs/PROVIDERS.md`](docs/PROVIDERS.md).
 
 ## Product vision
 
@@ -26,14 +26,15 @@ npm run preview
 
 ## What this prototype includes
 
-1. **Sample X mentions** about Microsoft Fabric (48 hand-authored posts, Sep 5–12 2026).
+1. **Sample X mentions** about Microsoft Fabric (58 hand-authored posts, Sep 5–12 2026), including Commercial / USGov / USNat / USSec cloud slices.
 2. **Workload classification** — Pipelines, Data Engineering, Data Integration, OneLake, Data Warehouse, Real-Time Analytics / Eventstream, Data Science, Power BI / Fabric BI, Copilot / AI, Security & Governance, Other / General Fabric.
 3. **Sentiment** per mention, rolled up per workload and overall (net score, mix, 7-day trend).
-4. **Theme clustering** from configurable keyword definitions (`src/data/themes.ts`). Add or edit definitions to retarget the taxonomy without changing mention records.
-5. **Suggested product-team actions** with effort/impact, owner hint, and related themes. Filterable by workload, high impact, or low effort.
-6. **News & announcements** — official Microsoft plus community/press samples.
-7. **Switchable aesthetic themes** — clickable prototypes for design review (see below).
-8. **Atelier experiences** — Weather, Letter, and ten minimalist modes; Archive keeps old dense layouts.
+4. **Theme clustering** from configurable keyword definitions (`src/data/themes.ts`) with want / don’t-like polarity. Add or edit definitions to retarget the taxonomy without changing mention records.
+5. **ADO plan mirror** — semester plans, work items, dependency requests, and theme ↔ coverage mappings (`src/data/ado.ts`).
+6. **Suggested product-team actions** with effort/impact, owner hint, and related themes. Filterable by workload, high impact, or low effort.
+7. **News & announcements** — official Microsoft plus community/press samples.
+8. **Switchable aesthetic themes** — clickable prototypes for design review (see below).
+9. **Atelier experiences** — Weather, Letter, Coverage, Newspaper, and other minimalist modes; Archive keeps old dense layouts.
 
 Opening the app feels like a Weather Report art piece. Flip through atelier modes or open Archive for denser dashboard layouts.
 
@@ -41,9 +42,16 @@ Opening the app feels like a Weather Report art piece. Flip through atelier mode
 
 Default landing is **Weather** — a minimalist sky mood piece, not a BI dashboard. The **atelier** mode menu lists Weather, Letter, and ten artistic modes. **Archive** keeps old dense layouts.
 
-Shared atelier shell: Fabric wordmark, sparse **workload switcher** (All · Pipelines · Data Eng · OneLake · Warehouse · RTA · Power BI · Copilot), beautiful mode menu, quiet demo honesty. Workload filters copy/aggregates only — no KPI wall.
+Shared atelier shell: Fabric wordmark, sparse **workload switcher** (All · Pipelines · Data Eng · OneLake · Warehouse · RTA · Power BI · Copilot), sparse **cloud pills** (All clouds · USGov · USNat · USSec · Commercial), beautiful mode menu, quiet demo honesty. Workload + cloud filter copy/aggregates only — no KPI wall.
 
-Choice persists in `localStorage` (`fabric-pulse-layout-v3`). Atelier modes use their own art direction (theme switcher hidden).
+Choice persists in `localStorage` (`fabric-pulse-layout-v4`). Atelier modes use their own art direction (theme switcher hidden).
+
+### Try Coverage (Plan Mirror)
+
+1. Open the mode menu → **Coverage**.
+2. Pick **Pipelines** in the workload pills.
+3. Pick **USGov** in the cloud pills.
+4. See want / don’t-like themes with Covered / Partial / Gap cues; click a theme for linked fake ADO work items or “no plan yet.”
 
 | Id | Mode | What you get |
 | --- | --- | --- |
@@ -85,11 +93,13 @@ Tokens live as CSS variables on `[data-theme="…"]` in `src/index.css` (canvas/
 | Path | Role |
 | --- | --- |
 | `src/types.ts` | Shared typed models and the `PulseDataProvider` contract |
-| `src/data/provider.ts` | `MockPulseDataProvider` — swap this export for a live source later |
-| `src/data/mentions.ts` | Sample mention corpus |
-| `src/data/themes.ts` | Generalizable theme keyword definitions |
+| `src/data/provider.ts` | `MockPulseDataProvider` — swap this export for a live / internal source later |
+| `docs/PROVIDERS.md` | How to replace mock with public or internal MS data |
+| `src/data/mentions.ts` | Sample mention corpus (cloud-tagged) |
+| `src/data/themes.ts` | Theme keyword definitions + polarity |
+| `src/data/ado.ts` | Demo semester plans, work items, deps, theme mappings |
 | `src/data/actions.ts` / `news.ts` | Suggested actions and news items |
-| `src/lib/aggregate.ts` | Theme clustering, daily series, KPIs, workload rollups |
+| `src/lib/aggregate.ts` | Theme clustering, cloud/workload filters, KPIs, coverage helpers |
 | `src/theme/` | Aesthetic theme registry, provider, and chart color helpers |
 | `src/layout/` | Presentation layout registry, provider, brief/spike helpers |
 | `src/components/layouts/` | Weather, Letter, atelier modes, plus Archive (Classic, Diagnosis Object, Spike Cinema, Ask the Pulse, War Room) |

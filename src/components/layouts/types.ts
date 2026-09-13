@@ -1,4 +1,5 @@
 import type {
+  CloudBoundaryFilter,
   DailyPoint,
   Mention,
   NewsItem,
@@ -23,8 +24,10 @@ export type LayoutProps = {
   snapshot: PulseSnapshot
   view: LayoutView
   workload: WorkloadFilter
+  cloud: CloudBoundaryFilter
   themeId: string | null
   setWorkload: (next: WorkloadFilter) => void
+  setCloud: (next: CloudBoundaryFilter) => void
   setThemeId: (id: string | null) => void
   onClearFilters: () => void
 }
