@@ -6,7 +6,7 @@ Demo social-listening and sentiment dashboard for **Microsoft Fabric** product t
 
 ## Product vision
 
-Per-workload wants vs don’t-likes, optional cloud slices (Commercial / USGov / USNat / USSec), and ADO covered-vs-gap mapping — see [`docs/PRODUCT-NORTH-STAR.md`](docs/PRODUCT-NORTH-STAR.md).
+Per-workload wants vs don’t-likes, optional cloud slices (Commercial / USGov / IL7 / IL6), and ADO covered-vs-gap mapping — see [`docs/PRODUCT-NORTH-STAR.md`](docs/PRODUCT-NORTH-STAR.md).
 
 ![Stack](https://img.shields.io/badge/Vite-React_19-00B7C3) ![Lang](https://img.shields.io/badge/TypeScript-Tailwind-0b1118) ![Viz](https://img.shields.io/badge/Nivo-Treemap-3ee0ea)
 
@@ -26,7 +26,7 @@ npm run preview
 
 ## What this prototype includes
 
-1. **Sample X mentions** about Microsoft Fabric (58 hand-authored posts, Sep 5–12 2026), including Commercial / USGov / USNat / USSec cloud slices.
+1. **Sample X mentions** about Microsoft Fabric (58 hand-authored posts, Sep 5–12 2026), including Commercial / USGov / IL7 / IL6 cloud slices.
 2. **Workload classification** — Pipelines, Data Engineering, Data Integration, OneLake, Data Warehouse, Real-Time Analytics / Eventstream, Data Science, Power BI / Fabric BI, Copilot / AI, Security & Governance, Other / General Fabric.
 3. **Sentiment** per mention, rolled up per workload and overall (net score, mix, 7-day trend).
 4. **Theme clustering** from configurable keyword definitions (`src/data/themes.ts`) with want / don’t-like polarity. Add or edit definitions to retarget the taxonomy without changing mention records.
@@ -42,7 +42,7 @@ Opening the app feels like a Weather Report art piece. Flip through atelier mode
 
 Default landing is **Weather** — a minimalist sky mood piece, not a BI dashboard. The **atelier** mode menu lists Weather, Letter, and ten artistic modes. **Archive** keeps old dense layouts.
 
-Shared atelier shell: Fabric wordmark, sparse **workload switcher** (All · Pipelines · Data Eng · OneLake · Warehouse · RTA · Power BI · Copilot), sparse **cloud pills** (All clouds · USGov · USNat · USSec · Commercial), beautiful mode menu, quiet demo honesty. Workload + cloud filter copy/aggregates only — no KPI wall.
+Shared atelier shell: Fabric wordmark, sparse **workload switcher** (All · Pipelines · Data Eng · OneLake · Warehouse · RTA · Power BI · Copilot), sparse **cloud pills** (All clouds · USGov · IL7 · IL6 · Commercial), beautiful mode menu, quiet demo honesty. Workload + cloud filter copy/aggregates only — no KPI wall.
 
 Choice persists in `localStorage` (`fabric-pulse-layout-v4`). Atelier modes use their own art direction (theme switcher hidden).
 

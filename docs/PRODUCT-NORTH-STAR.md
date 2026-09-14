@@ -38,8 +38,8 @@ Signals and ADO coverage should be filterable by cloud boundary:
 | **All** | Cross-cloud / default |
 | **Commercial** | Public commercial Fabric |
 | **USGov** | Azure Government |
-| **USNat** | US National |
-| **USSec** | US Secret |
+| **IL7** | Impact Level 7 |
+| **IL6** | Impact Level 6 |
 
 UI: one sparse pill / edition control — not a cloud KPI matrix. Mentions and themes may carry an optional `cloudBoundary`; omit = commercial / unspecified.
 
@@ -89,7 +89,7 @@ Goal: close the loop from complaint/want → backlog reality without dumping a f
 Keep types thin; grow `PulseSnapshot` rather than parallel apps.
 
 ```ts
-type CloudBoundary = 'all' | 'commercial' | 'usgov' | 'usnat' | 'ussec'
+type CloudBoundary = 'all' | 'commercial' | 'usgov' | 'il7' | 'il6'
 
 // Signal side (extends today’s Mention / ThemeInsight)
 interface Mention {

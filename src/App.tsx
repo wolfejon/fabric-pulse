@@ -36,6 +36,7 @@ import {
   viewFromMentions,
 } from './lib/aggregate'
 import { buildWeatherNarrative } from './lib/narrative'
+import { normalizeCloudFilter } from './lib/format'
 import type { CloudBoundaryFilter, PulseSnapshot, WorkloadFilter } from './types'
 
 type ShellTone = 'light' | 'dark' | 'inherit'
@@ -192,7 +193,10 @@ export default function App() {
   const [snapshot, setSnapshot] = useState<PulseSnapshot | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [workload, setWorkload] = useState<WorkloadFilter>('all')
-  const [cloud, setCloud] = useState<CloudBoundaryFilter>('all')
+  const [cloud, setCloudRaw] = useState<CloudBoundaryFilter>('all')
+  const setCloud = (next: CloudBoundaryFilter) => {
+    setCloudRaw(normalizeCloudFilter(next))
+  }
   const [themeId, setThemeId] = useState<string | null>(null)
   const [enabledSourceIds, setEnabledSourceIds] = useState<Set<string>>(() =>
     loadEnabledSourceIds(DEMO_SOURCE_REGISTRY),

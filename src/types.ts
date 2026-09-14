@@ -21,10 +21,10 @@ export type NewsSourceType = 'official' | 'community' | 'press'
 export type WorkloadFilter = WorkloadId | 'all'
 
 /** Cloud boundary on signal / ADO records. Omit ≈ commercial / unspecified. */
-export type CloudBoundary = 'commercial' | 'usgov' | 'usnat' | 'ussec' | 'unknown'
+export type CloudBoundary = 'commercial' | 'usgov' | 'il7' | 'il6' | 'unknown'
 
 /** Sparse cloud pill filter (All + named slices). */
-export type CloudBoundaryFilter = 'all' | 'commercial' | 'usgov' | 'usnat' | 'ussec'
+export type CloudBoundaryFilter = 'all' | 'commercial' | 'usgov' | 'il7' | 'il6'
 
 export type ThemePolarity = 'want' | 'dont-like' | 'mixed'
 export type CoverageStatus = 'covered' | 'partial' | 'gap'

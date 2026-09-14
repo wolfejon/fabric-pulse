@@ -16,7 +16,7 @@
 From the north star and README:
 
 1. Help Fabric product teams answer, per **workload** and optional **cloud boundary**: what customers want, what they dislike, and whether ADO already covers it (covered / partial / gap).
-2. **Default = product-general (commercial / All).** USGov / USNat / USSec are narrow-downs, not the default story.
+2. **Default = product-general (commercial / All).** USGov / IL7 / IL6 are narrow-downs, not the default story.
 3. Presentation stays **atelier / sparse** (Weather, Letter, Newspaper, Coverage, Dossier…). Cloud + ADO = pills, not KPI walls.
 4. Data plane is a stable `PulseDataProvider` → `PulseSnapshot` contract. UI does not fork when sources change.
 
@@ -401,7 +401,7 @@ sequenceDiagram
 - Public prototype: **no corp auth, no scraping, no tenant IDs** (PROVIDERS.md). Keep `isDemo` + disclaimer until live public sources are on.
 - Internal fork: Entra ID; separate source registry `envs: ['internal']`; scrub or tokenize customer identifiers before any atelier view used in recordings.
 - Cloud pills: default **All / commercial-majority**. Gov slices filter silver rows with `cloudBoundary`; do not build separate UIs.
-- **Assumption:** USNat/USSec data, if ever real, requires isolated capacity/tenancy — out of MVP scope; keep fields only.
+- **Assumption:** IL7/IL6 data, if ever real, requires isolated capacity/tenancy — out of MVP scope; keep fields only.
 
 ---
 

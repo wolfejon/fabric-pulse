@@ -17,7 +17,7 @@ This runs `scripts/generate-demo-corpus.py` (fixed seed `20260913`) and writes `
 - **~2000 mentions** (default 2000)
 - **~40+ theme definitions** (currently 44; commercial/product-general majority)
 - **Commercial-majority** product talk (~70–85% commercial / unknown / omit)
-- **Sovereign minority** (~15–30% total across usgov / usnat / ussec) for cloud filter demos
+- **Sovereign minority** (~15–30% total across usgov / il7 / il6) for cloud filter demos
 - **Pipelines + ADF** heavy bias (~35–45% of mentions)
 - Dates: 2026-08-15 → 2026-09-13 (Aug 15 – Sep 13, 2026)
 

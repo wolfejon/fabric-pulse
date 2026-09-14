@@ -3,8 +3,8 @@ import type { CloudBoundaryFilter } from '../../types'
 const CLOUD_OPTIONS: { id: CloudBoundaryFilter; label: string }[] = [
   { id: 'all', label: 'All clouds' },
   { id: 'usgov', label: 'USGov' },
-  { id: 'usnat', label: 'USNat' },
-  { id: 'ussec', label: 'USSec' },
+  { id: 'il7', label: 'IL7' },
+  { id: 'il6', label: 'IL6' },
   { id: 'commercial', label: 'Commercial' },
 ]
 

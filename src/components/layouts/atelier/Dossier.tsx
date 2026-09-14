@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { ChevronLeft, ChevronRight, FolderOpen, Volume2, VolumeX, X } from 'lucide-react'
 import { WORKLOAD_CATALOG } from '../../../data/catalog'
 import { resolveThemeMapping } from '../../../lib/aggregate'
+import { formatCloudBoundary } from '../../../lib/format'
 import { playPageFlip, prefetchPageFlipSound } from '../../../lib/pageFlipSound'
 import type {
   CloudBoundary,
@@ -55,10 +56,7 @@ function polarityStamp(polarity: ThemePolarity, score: number): {
 
 function cloudTag(boundary?: CloudBoundary): string | null {
   if (!boundary || boundary === 'unknown') return null
-  if (boundary === 'usgov') return 'USGov'
-  if (boundary === 'usnat') return 'USNat'
-  if (boundary === 'ussec') return 'USSec'
-  return 'Commercial'
+  return formatCloudBoundary(boundary)
 }
 
 function filterLabel(workload: WorkloadFilter, cloud: CloudBoundaryFilter): string {
@@ -67,13 +65,7 @@ function filterLabel(workload: WorkloadFilter, cloud: CloudBoundaryFilter): stri
   const c =
     cloud === 'all'
       ? 'ALL CLOUDS'
-      : cloud === 'usgov'
-        ? 'USGOV'
-        : cloud === 'usnat'
-          ? 'USNAT'
-          : cloud === 'ussec'
-            ? 'USSEC'
-            : 'COMMERCIAL'
+      : formatCloudBoundary(cloud).toUpperCase()
   return `${w} · ${c}`
 }
 

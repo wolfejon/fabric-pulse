@@ -5,7 +5,7 @@ Usage: npm run generate:demo
 Output: src/data/generated/corpus.json
 
 Cloud mix is commercial-majority (~70-85% commercial/unknown);
-sovereign slices (usgov/usnat/ussec) are a minority for demo filters.
+sovereign slices (usgov/il7/il6) are a minority for demo filters.
 Pipelines + ADF bias ~35-45% of mentions.
 """
 from __future__ import annotations
@@ -87,8 +87,8 @@ CLOUD_WEIGHTS = [
     ("commercial", 74),
     ("unknown", 7),
     ("usgov", 10),
-    ("usnat", 4.5),
-    ("ussec", 4.5),
+    ("il7", 4.5),
+    ("il6", 4.5),
 ]
 
 # Strategy MVP source registry seed (toggleable in UI)
@@ -391,8 +391,8 @@ THEME_DEFINITIONS = [
     {
         "id": "theme-gov-private-link",
         "name": "Private link & sovereign networking",
-        "description": "Private endpoints, sovereign DNS, and cross-boundary shortcut networking for USNat / USSec estates.",
-        "keywords": ["private endpoint", "sovereign", "usnat", "ussec", "air-gapped"],
+        "description": "Private endpoints, sovereign DNS, and cross-boundary shortcut networking for IL7 / IL6 estates.",
+        "keywords": ["private endpoint", "sovereign", "il7", "il6", "air-gapped"],
         "polarity": "want",
     },
     {
@@ -454,7 +454,7 @@ THEME_DEFINITIONS = [
     {
         "id": "theme-sovereign-parity",
         "name": "Sovereign feature lag vs commercial",
-        "description": "USGov / USNat / USSec customers tracking commercial GA dates and asking for parity roadmaps.",
+        "description": "USGov / IL7 / IL6 customers tracking commercial GA dates and asking for parity roadmaps.",
         "keywords": ["parity roadmap", "feature lag", "sovereign cloud", "commercial ga"],
         "polarity": "want",
     },
@@ -648,8 +648,8 @@ PIPELINE_TEMPLATES = [
 PIPELINE_GOV = [
     {"text": lambda: 'USGov Fabric pipelines still lag commercial on managed VNet. Our IL4 estate cannot ship until gov cloud parity lands.', "score": (-0.4, 0.35), "cloud": "usgov"},
     {"text": lambda: 'FedRAMP path question: is pipeline CI/CD via Azure DevOps service connection supported in USGov yet? Government customers need a clear answer.', "score": (-0.15, 0.25), "cloud": "usgov"},
-    {"text": lambda: 'USNat private endpoint for pipeline data movement is still a gap vs commercial. Sovereign networking docs are sparse.', "score": (-0.45, 0.2), "cloud": "usnat"},
-    {"text": lambda: 'USSec air-gapped pipeline diagnostics are basically nonexistent. We need a parity roadmap for sovereign cloud orchestration.', "score": (-0.5, 0.15), "cloud": "ussec"},
+    {"text": lambda: 'IL7 private endpoint for pipeline data movement is still a gap vs commercial. Sovereign networking docs are sparse.', "score": (-0.45, 0.2), "cloud": "il7"},
+    {"text": lambda: 'IL6 air-gapped pipeline diagnostics are basically nonexistent. We need a parity roadmap for sovereign cloud orchestration.', "score": (-0.5, 0.15), "cloud": "il6"},
     {"text": lambda: 'IL5 shop here — Fabric pipeline feature lag vs commercial GA is killing our migration from ADF in government.', "score": (-0.55, -0.1), "cloud": "usgov"},
 ]
 
@@ -753,12 +753,12 @@ OTHER_TEMPLATES = [
 ]
 
 SOVEREIGN_FLAVOR = [
-    {"text": lambda: 'Sovereign cloud question: when does commercial GA for pipeline managed VNet hit USGov? Feature lag is the whole conversation with our CISO.', "score": (-0.3, 0.35), "clouds": ["usgov", "usnat", "ussec"]},
-    {"text": lambda: 'Need a parity roadmap for OneLake shortcuts in USNat — private endpoint + sovereign DNS still blocking our mesh design.', "score": (-0.2, 0.4), "clouds": ["usnat"]},
-    {"text": lambda: 'USSec air-gapped Spark session pool would change everything for our IL6 path. Until then we are on a painful dual-stack.', "score": (0.1, 0.5), "clouds": ["ussec"]},
+    {"text": lambda: 'Sovereign cloud question: when does commercial GA for pipeline managed VNet hit USGov? Feature lag is the whole conversation with our CISO.', "score": (-0.3, 0.35), "clouds": ["usgov", "il7", "il6"]},
+    {"text": lambda: 'Need a parity roadmap for OneLake shortcuts in IL7 — private endpoint + sovereign DNS still blocking our mesh design.', "score": (-0.2, 0.4), "clouds": ["il7"]},
+    {"text": lambda: 'IL6 air-gapped Spark session pool would change everything for our IL6 path. Until then we are on a painful dual-stack.', "score": (0.1, 0.5), "clouds": ["il6"]},
     {"text": lambda: 'Government Fabric tenants: Copilot grounding is even more critical — we cannot accept hallucinated activities in a FedRAMP boundary.', "score": (-0.25, 0.3), "clouds": ["usgov"]},
     {"text": lambda: 'USGov capacity metrics lag worse than commercial in our experience. Operating F SKUs without near-real-time CU is rough.', "score": (-0.55, -0.15), "clouds": ["usgov"]},
-    {"text": lambda: 'Private endpoint guidance for USSec OneLake still reads like a draft. Sovereign networking needs first-class Learn content.', "score": (-0.4, 0.1), "clouds": ["ussec"]},
+    {"text": lambda: 'Private endpoint guidance for IL6 OneLake still reads like a draft. Sovereign networking needs first-class Learn content.', "score": (-0.4, 0.1), "clouds": ["il6"]},
 ]
 
 TEMPLATES_BY_WORKLOAD = {
@@ -828,7 +828,7 @@ def build_mentions(n):
 
         if (
             workload == "pipelines"
-            and cloud in ("usgov", "usnat", "ussec")
+            and cloud in ("usgov", "il7", "il6")
             and rng.random() < 0.45
         ):
             gov = [t for t in PIPELINE_GOV if t["cloud"] == cloud] or PIPELINE_GOV
@@ -836,7 +836,7 @@ def build_mentions(n):
             push("pipelines", t["text"](), t["score"], cloud)
             continue
 
-        if cloud in ("usgov", "usnat", "ussec") and rng.random() < 0.35:
+        if cloud in ("usgov", "il7", "il6") and rng.random() < 0.35:
             flav = [t for t in SOVEREIGN_FLAVOR if cloud in t["clouds"]] or SOVEREIGN_FLAVOR
             t = rng.pick(flav)
             push(workload, t["text"](), t["score"], cloud)
@@ -887,7 +887,7 @@ WI_TITLES = [
     ("power-bi", "feature", "Premium → F64 sizing worksheet in-product"),
     ("power-bi", "bug", "Semantic model refresh confusion with Direct Lake"),
     ("onelake", "feature", "OneLake shortcut health probe after credential rotate"),
-    ("onelake", "feature", "USNat private endpoint DNS for OneLake shortcuts"),
+    ("onelake", "feature", "IL7 private endpoint DNS for OneLake shortcuts"),
     ("onelake", "feature", "Shortcut-level endorsement / certification"),
     ("onelake", "feature", "OneLake catalog lineage for shortcuts"),
     ("onelake", "feature", "S3 shortcut IAM guidance & diagnostics"),
@@ -897,7 +897,7 @@ WI_TITLES = [
     ("copilot-ai", "feature", "Copilot grounded activity catalog for pipelines"),
     ("copilot-ai", "feature", "DAX Copilot guardrails / verification tests"),
     ("copilot-ai", "feature", "Workspace-aware Copilot item discovery"),
-    ("data-engineering", "epic", "USSec: air-gapped Spark session pool (IL6 path)"),
+    ("data-engineering", "epic", "IL6: air-gapped Spark session pool (IL6 path)"),
     ("data-engineering", "feature", "Default Livy session reuse in Fabric notebooks"),
     ("data-engineering", "bug", "Notebook kernel crash diagnostics on 2xlarge"),
     ("data-engineering", "feature", "In-product Livy / Spark history deep links"),
@@ -925,7 +925,7 @@ WI_TITLES = [
     ("power-bi", "feature", "Visual calculations authoring tips in-product"),
     ("pipelines", "feature", "USGov richer pipeline timeout diagnostics"),
     ("pipelines", "feature", "Environment parameter promotion for deployment pipelines"),
-    ("onelake", "epic", "USSec air-gap networking for OneLake shortcuts"),
+    ("onelake", "epic", "IL6 air-gap networking for OneLake shortcuts"),
     ("data-engineering", "feature", "Session pool warm-up SLA for morning jobs"),
     ("other", "bug", "Metrics app 2-hour lag on CU spikes"),
     ("security-governance", "feature", "FedRAMP boundary Copilot admin switches"),
@@ -975,14 +975,14 @@ def build_work_items():
         lower = title.lower()
         if any(k in lower for k in ("usgov", "fedramp", "government")):
             cloud = "usgov"
-        elif "usnat" in lower:
-            cloud = "usnat"
-        elif any(k in lower for k in ("ussec", "air-gap", "il6")):
-            cloud = "ussec"
+        elif "il7" in lower:
+            cloud = "il7"
+        elif any(k in lower for k in ("il6", "air-gap")):
+            cloud = "il6"
         elif "sovereign" in lower:
-            cloud = rng.pick(["usgov", "usnat", "ussec"])
+            cloud = rng.pick(["usgov", "il7", "il6"])
         elif rng.random() < 0.08:
-            cloud = rng.pick(["usgov", "usnat", "ussec", "unknown"])
+            cloud = rng.pick(["usgov", "il7", "il6", "unknown"])
         else:
             cloud = "commercial"
         items.append({
@@ -1012,8 +1012,8 @@ def build_work_items():
             "cloudBoundary": rng.pick_weighted([
                 ("commercial", 85),
                 ("usgov", 7),
-                ("usnat", 3),
-                ("ussec", 3),
+                ("il7", 3),
+                ("il6", 3),
                 ("unknown", 2),
             ]),
             "url": f"https://dev.azure.com/demo/Fabric/_workitems/edit/{ado_id}",
@@ -1038,13 +1038,13 @@ def build_deps(work_items):
         },
         {
             "id": "dep-02",
-            "title": "Identity: USNat managed identity for OneLake shortcut refresh",
+            "title": "Identity: IL7 managed identity for OneLake shortcut refresh",
             "fromTeam": "OneLake",
             "toTeam": "Azure Identity",
             "state": "In review",
-            "relatedWorkItemIds": find_ids(lambda w: "USNat" in w["title"]),
+            "relatedWorkItemIds": find_ids(lambda w: "IL7" in w["title"]),
             "semesterId": "sem-fy27-h1",
-            "cloudBoundary": "usnat",
+            "cloudBoundary": "il7",
         },
         {
             "id": "dep-03",
@@ -1063,13 +1063,13 @@ def build_deps(work_items):
         ("Direct Lake banner needs report viewer chrome hook", "Power BI / Direct Lake", "Power BI platform", "commercial"),
         ("Livy default reuse needs capacity scheduler change", "Spark runtime", "Fabric Capacity", "commercial"),
         ("Dataflow commit signal for pipeline activity status", "Data Integration", "Fabric Pipelines", "commercial"),
-        ("USSec Spark pool depends on sovereign networking", "Spark runtime", "Azure Networking", "ussec"),
+        ("IL6 Spark pool depends on sovereign networking", "Spark runtime", "Azure Networking", "il6"),
         ("Monitoring hub pipeline failure ingest from workspace runtime", "Purview / Governance", "Fabric Pipelines", "commercial"),
         ("ADF migration Learn content needs Pipelines + DI sign-off", "Docs", "Fabric Pipelines", "commercial"),
         ("CU metrics ≤5 min depends on capacity platform telemetry bus", "Fabric Capacity", "Platform telemetry", "commercial"),
         ("Gov CI/CD service connection depends on Azure DevOps gov stamp", "Fabric Pipelines", "Azure DevOps", "usgov"),
         ("Shortcut endorsement model shared with Purview glossary", "OneLake", "Purview / Governance", "commercial"),
-        ("Private endpoint DNS for USNat OneLake", "OneLake", "Azure Networking", "usnat"),
+        ("Private endpoint DNS for IL7 OneLake", "OneLake", "Azure Networking", "il7"),
         ("Warehouse CU attribution shares metrics pipeline with capacity app", "Warehouse", "Fabric Capacity", "commercial"),
         ("Activator/Reflex rename needs Docs + product chrome lockstep", "Real-Time Intelligence", "Docs", "commercial"),
         ("Connector throughput telemetry shared with capacity metrics", "Data Integration", "Fabric Capacity", "commercial"),
@@ -1164,19 +1164,19 @@ def build_mappings(theme_defs, work_items, deps):
     )
     add(
         themeId="theme-gov-private-link",
-        workItemIds=wi(lambda w: w.get("cloudBoundary") == "usnat", 1),
+        workItemIds=wi(lambda w: w.get("cloudBoundary") == "il7", 1),
         dependencyIds=["dep-02"],
         coverage="partial",
-        notes="USNat DNS work started; USSec path not scheduled.",
-        cloudBoundary="usnat",
+        notes="IL7 DNS work started; IL6 path not scheduled.",
+        cloudBoundary="il7",
         workload="onelake",
     )
     add(
         themeId="theme-gov-private-link",
         workItemIds=[],
         coverage="gap",
-        notes="USSec air-gap networking — strong ask, no plan yet.",
-        cloudBoundary="ussec",
+        notes="IL6 air-gap networking — strong ask, no plan yet.",
+        cloudBoundary="il6",
         workload="onelake",
     )
     add(
@@ -1225,10 +1225,10 @@ def build_mappings(theme_defs, work_items, deps):
     )
     add(
         themeId="theme-spark-start",
-        workItemIds=wi(lambda w: w.get("cloudBoundary") == "ussec", 1),
+        workItemIds=wi(lambda w: w.get("cloudBoundary") == "il6", 1),
         coverage="partial",
-        notes="USSec pool proposed; commercial cold-start still noisy.",
-        cloudBoundary="ussec",
+        notes="IL6 pool proposed; commercial cold-start still noisy.",
+        cloudBoundary="il6",
         workload="data-engineering",
     )
     add(
@@ -1501,7 +1501,7 @@ def build_mappings(theme_defs, work_items, deps):
         workItemIds=[],
         coverage="gap",
         notes="Sovereign monitoring hub lag — no work item.",
-        cloudBoundary="ussec",
+        cloudBoundary="il6",
         workload="security-governance",
     )
 
@@ -1538,12 +1538,12 @@ def build_actions():
         {"id": "a16", "title": "Surface CU throttling reasons on pipeline runs", "rationale": "Authors see failures without knowing concurrency / capacity unit limits fired.", "workload": "pipelines", "effort": "medium", "impact": "high", "relatedThemeIds": ["theme-cu-throttling", "theme-capacity"], "ownerHint": "Pipelines + Capacity"},
         {"id": "a17", "title": "Improve deployment pipeline parameter promotion", "rationale": "CI/CD for pipelines stalls on environment-specific parameters.", "workload": "pipelines", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-cicd"], "ownerHint": "Pipelines + DevOps"},
         {"id": "a18", "title": "USGov pipeline managed VNet + CI/CD parity push", "rationale": "Government customers need commercial feature parity for orchestration before ADF exit.", "workload": "pipelines", "effort": "high", "impact": "high", "relatedThemeIds": ["theme-gov-pipelines", "theme-sovereign-parity"], "ownerHint": "Pipelines + Sovereign"},
-        {"id": "a19", "title": "Publish sovereign feature lag roadmap", "rationale": "USGov / USNat / USSec customers track commercial GA dates; a public parity roadmap reduces support load.", "workload": "other", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-sovereign-parity"], "ownerHint": "PMO + Sovereign"},
+        {"id": "a19", "title": "Publish sovereign feature lag roadmap", "rationale": "USGov / IL7 / IL6 customers track commercial GA dates; a public parity roadmap reduces support load.", "workload": "other", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-sovereign-parity"], "ownerHint": "PMO + Sovereign"},
         {"id": "a20", "title": "OneLake shortcut endorsement as first-class badge", "rationale": "Stewards want certified shortcuts, not only tables.", "workload": "onelake", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-shortcuts", "theme-governance"], "ownerHint": "OneLake + Purview"},
         {"id": "a21", "title": "In-product Livy / Spark history deep links", "rationale": "Kernel crashes force engineers out of Fabric UI to find logs.", "workload": "data-engineering", "effort": "low", "impact": "medium", "relatedThemeIds": ["theme-spark-start"], "ownerHint": "Spark runtime"},
         {"id": "a22", "title": "Warehouse result-set caching consistency fixes", "rationale": "Inconsistent cache hits break analyst SLAs.", "workload": "data-warehouse", "effort": "high", "impact": "medium", "relatedThemeIds": ["theme-warehouse"], "ownerHint": "Warehouse"},
         {"id": "a23", "title": "Monitoring hub = workspace truth for pipeline failures", "rationale": "Admins refuse two sources of failure truth.", "workload": "security-governance", "effort": "medium", "impact": "high", "relatedThemeIds": ["theme-governance"], "ownerHint": "Admin platform"},
-        {"id": "a24", "title": "USNat private endpoint DNS for OneLake shortcuts", "rationale": "Sovereign mesh designs block without private DNS.", "workload": "onelake", "effort": "high", "impact": "high", "relatedThemeIds": ["theme-gov-private-link"], "ownerHint": "OneLake + Networking"},
+        {"id": "a24", "title": "IL7 private endpoint DNS for OneLake shortcuts", "rationale": "Sovereign mesh designs block without private DNS.", "workload": "onelake", "effort": "high", "impact": "high", "relatedThemeIds": ["theme-gov-private-link"], "ownerHint": "OneLake + Networking"},
         {"id": "a25", "title": "Richer pipeline timeout / retry reason codes", "rationale": "Opaque failed states are the top pipelines want theme.", "workload": "pipelines", "effort": "medium", "impact": "high", "relatedThemeIds": ["theme-retry-diagnostics", "theme-pipelines"], "ownerHint": "Pipelines"},
         {"id": "a26", "title": "OneLake catalog lineage for shortcuts", "rationale": "Discoverability across shortcut hops is weak for mesh teams.", "workload": "onelake", "effort": "medium", "impact": "medium", "relatedThemeIds": ["theme-onelake-catalog"], "ownerHint": "OneLake"},
         {"id": "a27", "title": "Staging lakehouse UX simplification for Dataflow Gen2", "rationale": "First-time authors think staging means they misconfigured.", "workload": "data-integration", "effort": "low", "impact": "medium", "relatedThemeIds": ["theme-dataflow"], "ownerHint": "Data Integration"},
@@ -1697,7 +1697,7 @@ def main():
 
     by_cloud, by_wl = summarize(mentions)
     commercialish = by_cloud.get("commercial", 0) + by_cloud.get("(omit≈commercial)", 0) + by_cloud.get("unknown", 0)
-    sovereign = by_cloud.get("usgov", 0) + by_cloud.get("usnat", 0) + by_cloud.get("ussec", 0)
+    sovereign = by_cloud.get("usgov", 0) + by_cloud.get("il7", 0) + by_cloud.get("il6", 0)
     n = len(mentions)
     print("Wrote", OUT)
     print("Mentions:", n)

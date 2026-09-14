@@ -18,7 +18,7 @@ interface PulseDataProvider {
 | Aggregates | `daily`, `workloads`, `kpis`, `dateRange` |
 | ADO alignment | `semesterPlans`, `workItems`, `dependencyRequests`, `themeMappings` |
 
-Normalize every source into these shapes. Mentions and themes may carry optional `cloudBoundary` (`commercial` \| `usgov` \| `usnat` \| `ussec` \| `unknown`). Themes carry `polarity` (`want` \| `dont-like` \| `mixed`). Theme ↔ ADO links use `ThemeSignalMapping.coverage`: `covered` \| `partial` \| `gap`.
+Normalize every source into these shapes. Mentions and themes may carry optional `cloudBoundary` (`commercial` \| `usgov` \| `il7` \| `il6` \| `unknown`). Themes carry `polarity` (`want` \| `dont-like` \| `mixed`). Theme ↔ ADO links use `ThemeSignalMapping.coverage`: `covered` \| `partial` \| `gap`.
 
 ## Implementations
 
@@ -53,7 +53,7 @@ export const pulseProvider: PulseDataProvider = new MockPulseDataProvider()
 
 | File | Contents |
 | --- | --- |
-| `src/data/mentions.ts` | Sample mentions (incl. USGov / USNat / USSec / commercial) |
+| `src/data/mentions.ts` | Sample mentions (incl. USGov / IL7 / IL6 / commercial) |
 | `src/data/themes.ts` | Keyword theme definitions + polarity |
 | `src/data/ado.ts` | Semester plans, work items, dependency requests, theme mappings |
 | `src/data/actions.ts` / `news.ts` | Suggested actions and news |

@@ -7,6 +7,7 @@ import {
   resolveThemeMapping,
   workItemsForMapping,
 } from '../../../lib/aggregate'
+import { formatCloudBoundary } from '../../../lib/format'
 import type {
   CoverageStatus,
   DependencyRequest,
@@ -154,7 +155,7 @@ function DetailPanel({
               <p className="text-[10px] uppercase tracking-[0.14em] text-[#8a7f72]">
                 {wi.type} · {wi.state} · #{wi.adoId}
                 {wi.cloudBoundary && wi.cloudBoundary !== 'unknown'
-                  ? ` · ${wi.cloudBoundary}`
+                  ? ` · ${formatCloudBoundary(wi.cloudBoundary)}`
                   : ''}
               </p>
               <p className="mt-0.5 text-sm font-medium text-[#1c1915]">{wi.title}</p>
@@ -187,16 +188,7 @@ export function Coverage({ snapshot, view, workload, cloud }: LayoutProps) {
       ? 'All workloads'
       : WORKLOAD_CATALOG[workload]?.label ?? workload
 
-  const cloudLabel =
-    cloud === 'all'
-      ? 'All clouds'
-      : cloud === 'usgov'
-        ? 'USGov'
-        : cloud === 'usnat'
-          ? 'USNat'
-          : cloud === 'ussec'
-            ? 'USSec'
-            : 'Commercial'
+  const cloudLabel = formatCloudBoundary(cloud)
 
   const rows = useMemo(() => {
     return view.themes.map((theme) => {

@@ -16,6 +16,7 @@ import type {
 } from '../types'
 import { WORKLOAD_IDS } from '../types'
 import { classifyVolume, uniqueAuthorsFrom } from './evidence'
+import { normalizeCloudId } from './format'
 
 function mean(values: number[]): number {
   if (values.length === 0) return 0
@@ -46,11 +47,13 @@ export function matchesCloudFilter(
   filter: CloudBoundaryFilter,
 ): boolean {
   if (filter === 'all') return true
-  const effective = cloud ?? 'commercial'
-  if (filter === 'commercial') {
+  // Legacy persisted ids: usnat→il7, ussec→il6
+  const effective = normalizeCloudId(cloud ?? 'commercial') as CloudBoundary
+  const normalizedFilter = normalizeCloudId(filter) as CloudBoundaryFilter
+  if (normalizedFilter === 'commercial') {
     return effective === 'commercial' || effective === 'unknown'
   }
-  return effective === filter
+  return effective === normalizedFilter
 }
 
 export function filterMentions(

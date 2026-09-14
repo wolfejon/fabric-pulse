@@ -21,35 +21,35 @@ Commercial-majority product talk (default story). Sovereign slices are a minorit
 
 | Slice | Count | Share |
 | --- | ---: | ---: |
-| Commercial-ish (commercial + omit + unknown) | 1631 | 81.5% |
-| Sovereign total (usgov + usnat + ussec) | 369 | 18.4% |
+| Commercial-ish (commercial + omit + unknown) | 1615 | 80.8% |
+| Sovereign total (usgov + il7 + il6) | 385 | 19.2% |
 
 | Key | Count | Share |
 | --- | ---: | ---: |
-| `commercial` | 1248 | 62.4% |
-| `(omit≈commercial)` | 252 | 12.6% |
+| `commercial` | 1210 | 60.5% |
+| `(omit≈commercial)` | 259 | 12.9% |
 | `usgov` | 197 | 9.8% |
-| `unknown` | 131 | 6.5% |
-| `usnat` | 90 | 4.5% |
-| `ussec` | 82 | 4.1% |
+| `unknown` | 146 | 7.3% |
+| `il7` | 97 | 4.8% |
+| `il6` | 91 | 4.5% |
 
 ## Mentions by workload
 
-Pipelines bias target ~35–45% (actual **39.3%**).
+Pipelines bias target ~35–45% (actual **39.6%**).
 
 | Key | Count | Share |
 | --- | ---: | ---: |
-| `pipelines` | 786 | 39.3% |
-| `data-engineering` | 177 | 8.8% |
-| `data-integration` | 157 | 7.8% |
-| `power-bi` | 149 | 7.5% |
-| `data-warehouse` | 138 | 6.9% |
-| `onelake` | 134 | 6.7% |
-| `copilot-ai` | 133 | 6.7% |
-| `realtime-analytics` | 108 | 5.4% |
-| `security-governance` | 89 | 4.5% |
-| `other` | 69 | 3.5% |
-| `data-science` | 60 | 3.0% |
+| `pipelines` | 792 | 39.6% |
+| `data-engineering` | 200 | 10.0% |
+| `data-integration` | 164 | 8.2% |
+| `onelake` | 138 | 6.9% |
+| `realtime-analytics` | 130 | 6.5% |
+| `power-bi` | 129 | 6.4% |
+| `copilot-ai` | 126 | 6.3% |
+| `data-warehouse` | 118 | 5.9% |
+| `other` | 81 | 4.0% |
+| `security-governance` | 70 | 3.5% |
+| `data-science` | 52 | 2.6% |
 
 ## How to regenerate
 
