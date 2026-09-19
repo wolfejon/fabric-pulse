@@ -156,11 +156,15 @@ export const ATELIER_WORKLOAD_ORDER: WorkloadFilter[] = [
   'all',
   'pipelines',
   'data-engineering',
+  'data-integration',
   'onelake',
   'data-warehouse',
   'realtime-analytics',
+  'data-science',
   'power-bi',
   'copilot-ai',
+  'security-governance',
+  'other',
 ]
 
 export function atelierWorkloadShort(id: WorkloadFilter): string {

@@ -1,6 +1,7 @@
 import { ArrowLeft } from 'lucide-react'
 import { motion } from 'motion/react'
 import type { CompetitorFeature, CompetitorPage, FabricCompetitorStatus } from '../../../types'
+import { WORKLOAD_CATALOG } from '../../../data/catalog'
 
 function statusLabel(status: FabricCompetitorStatus): string {
   if (status === 'ships') return 'Ships'
@@ -103,7 +104,7 @@ export function CompetitorBackPage({
 
       <header className="mt-6 border-b-2 border-[#1a1a18] pb-5">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#7A3FF2]">
-          Chronicle · Back page · Pipelines
+          Chronicle · Back page · {WORKLOAD_CATALOG[page.workload]?.shortLabel ?? page.workload}
         </p>
         <h2 className="font-display mt-3 text-[clamp(1.75rem,4vw,2.6rem)] font-semibold leading-[1.15] tracking-tight text-[#141412]">
           {page.title}

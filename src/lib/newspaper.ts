@@ -1,5 +1,8 @@
 import { WORKLOAD_CATALOG } from '../data/catalog'
-import { competitorPageForTheme } from '../data/competitors'
+import {
+  competitorPageForTheme,
+  defaultCompetitorPageForWorkload,
+} from '../data/competitors'
 import type {
   Mention,
   NewsItem,
@@ -385,7 +388,9 @@ export function buildNewspaperEdition(
     const related = mentionsForTheme(theme, mentions)
     const quote = loudestMention(related.length ? related : mentions)
     const tone = sentimentTone(theme.sentimentScore)
-    const leadPage = competitorPageForTheme(theme.id)
+    const leadPage =
+      competitorPageForTheme(theme.id) ??
+      (workload !== 'all' ? defaultCompetitorPageForWorkload(workload) : undefined)
     const dateline = pickDateline(workload, 'lead')
     const pageMark = `A${page}`
     stories.push({
@@ -422,7 +427,9 @@ export function buildNewspaperEdition(
     const related = mentionsForTheme(theme, mentions)
     const quote = loudestMention(related.length ? related : [])
     const tone = sentimentTone(theme.sentimentScore)
-    const secPage = competitorPageForTheme(theme.id)
+    const secPage =
+      competitorPageForTheme(theme.id) ??
+      (workload !== 'all' ? defaultCompetitorPageForWorkload(workload) : undefined)
     const dateline = pickDateline(theme.workloads[0] ?? workload, 'secondary')
     const pageMark = `A${page}`
     stories.push({

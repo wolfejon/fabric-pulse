@@ -6,7 +6,7 @@ Fiction only — no real customer data, no live APIs.
 
 | Type | Count |
 | --- | ---: |
-| Mentions | 2000 |
+| Mentions | 4200 |
 | Theme definitions | 44 |
 | Suggested actions | 52 |
 | News items | 52 |
@@ -14,6 +14,8 @@ Fiction only — no real customer data, no live APIs.
 | Work items | 100 |
 | Dependency requests | 27 |
 | Theme ↔ ADO mappings | 52 |
+| Competitor features | 80 |
+| Competitor pages | 25 |
 
 ## Mentions by cloudBoundary
 
@@ -21,35 +23,78 @@ Commercial-majority product talk (default story). Sovereign slices are a minorit
 
 | Slice | Count | Share |
 | --- | ---: | ---: |
-| Commercial-ish (commercial + omit + unknown) | 1615 | 80.8% |
-| Sovereign total (usgov + il7 + il6) | 385 | 19.2% |
+| Commercial-ish (commercial + omit + unknown) | 3270 | 77.9% |
+| Sovereign total (usgov + il7 + il6) | 930 | 22.1% |
 
 | Key | Count | Share |
 | --- | ---: | ---: |
-| `commercial` | 1210 | 60.5% |
-| `(omit≈commercial)` | 259 | 12.9% |
-| `usgov` | 197 | 9.8% |
-| `unknown` | 146 | 7.3% |
-| `il7` | 97 | 4.8% |
-| `il6` | 91 | 4.5% |
+| `commercial` | 2487 | 59.2% |
+| `(omit≈commercial)` | 455 | 10.8% |
+| `unknown` | 328 | 7.8% |
+| `usgov` | 452 | 10.8% |
+| `il7` | 235 | 5.6% |
+| `il6` | 243 | 5.8% |
+
+## Mentions by workload × cloud
+
+Floors: ≥80/workload; ≥25 commercial(+omit), ≥25 usgov, ≥15 il7, ≥15 il6.
+
+| Workload | commercial | omit | unknown | usgov | il7 | il6 | **Total** |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `copilot-ai` | 170 | 30 | 20 | 38 | 18 | 20 | **296** |
+| `data-engineering` | 230 | 39 | 30 | 44 | 20 | 22 | **385** |
+| `data-integration` | 210 | 38 | 32 | 41 | 20 | 19 | **360** |
+| `data-science` | 122 | 30 | 16 | 30 | 21 | 18 | **237** |
+| `data-warehouse` | 192 | 30 | 17 | 34 | 21 | 21 | **315** |
+| `onelake` | 187 | 40 | 28 | 46 | 17 | 22 | **340** |
+| `other` | 104 | 29 | 16 | 30 | 23 | 17 | **219** |
+| `pipelines` | 741 | 134 | 120 | 80 | 41 | 44 | **1160** |
+| `power-bi` | 221 | 34 | 20 | 38 | 18 | 25 | **356** |
+| `realtime-analytics` | 170 | 32 | 22 | 36 | 19 | 17 | **296** |
+| `security-governance` | 140 | 19 | 7 | 35 | 17 | 18 | **236** |
 
 ## Mentions by workload
 
-Pipelines bias target ~35–45% (actual **39.6%**).
+Pipelines share **27.6%** (still the loudest beat; other workloads now stocked for filters).
 
 | Key | Count | Share |
 | --- | ---: | ---: |
-| `pipelines` | 792 | 39.6% |
-| `data-engineering` | 200 | 10.0% |
-| `data-integration` | 164 | 8.2% |
-| `onelake` | 138 | 6.9% |
-| `realtime-analytics` | 130 | 6.5% |
-| `power-bi` | 129 | 6.4% |
-| `copilot-ai` | 126 | 6.3% |
-| `data-warehouse` | 118 | 5.9% |
-| `other` | 81 | 4.0% |
-| `security-governance` | 70 | 3.5% |
-| `data-science` | 52 | 2.6% |
+| `pipelines` | 1160 | 27.6% |
+| `data-engineering` | 385 | 9.2% |
+| `data-integration` | 360 | 8.6% |
+| `power-bi` | 356 | 8.5% |
+| `onelake` | 340 | 8.1% |
+| `data-warehouse` | 315 | 7.5% |
+| `realtime-analytics` | 296 | 7.0% |
+| `copilot-ai` | 296 | 7.0% |
+| `data-science` | 237 | 5.6% |
+| `security-governance` | 236 | 5.6% |
+| `other` | 219 | 5.2% |
+
+## Competitors per workload
+
+Every workload has ≥3 rivals with feature rows (ships | planned | gap) and ≥1 chronicle back page.
+
+| Workload | Rivals | Back pages (theme ids) |
+| --- | --- | --- |
+| `copilot-ai` | `azure-openai`, `databricks-assistant`, `gemini-bigquery`, `snowflake-cortex` | cp-copilot→`theme-copilot`, cp-copilot-grounding→`theme-copilot-grounding` |
+| `data-engineering` | `aws-emr`, `databricks`, `synapse-spark` | cp-spark-start→`theme-spark-start`, cp-session-reuse→`theme-session-reuse` |
+| `data-integration` | `adf-classic`, `airbyte`, `fivetran`, `informatica` | cp-dataflow→`theme-dataflow`, cp-connectors→`theme-connectors` |
+| `data-science` | `azure-ml`, `databricks-ml`, `sagemaker` | cp-mlflow→`theme-mlflow`, cp-gpu-spark→`theme-gpu-spark` |
+| `data-warehouse` | `bigquery`, `databricks-sql`, `redshift`, `snowflake` | cp-warehouse→`theme-warehouse`, cp-sql-endpoint→`theme-sql-endpoint` |
+| `onelake` | `adls-gen2`, `aws-glue-catalog`, `aws-s3-lf`, `databricks-unity`, `gcs-biglake`, `purview` | cp-shortcuts→`theme-shortcuts`, cp-onelake-catalog→`theme-onelake-catalog` |
+| `other` | `aws-cost-explorer`, `databricks`, `snowflake`, `synapse` | cp-capacity→`theme-capacity`, cp-positioning→`theme-positioning` |
+| `pipelines` | `adf-classic`, `aws-glue`, `databricks-lakeflow`, `informatica` | cp-adf-migration→`theme-adf-migration`, cp-managed-vnet→`theme-managed-vnet`, cp-cicd→`theme-cicd`, cp-retry→`theme-retry-diagnostics`, cp-pipelines→`theme-pipelines` |
+| `power-bi` | `looker`, `pbi-premium`, `qlik`, `tableau` | cp-direct-lake→`theme-direct-lake`, cp-semantic-model→`theme-semantic-model` |
+| `realtime-analytics` | `confluent`, `eventhubs-adx`, `kinesis` | cp-eventstream→`theme-eventstream`, cp-dead-letter→`theme-dead-letter` |
+| `security-governance` | `alation`, `azure-monitor`, `collibra`, `datadog`, `purview`, `splunk` | cp-governance→`theme-governance`, cp-monitoring→`theme-monitoring` |
+
+## UI wiring
+
+- `CompetitorBackPage` shows workload short label from `WORKLOAD_CATALOG` (no longer hard-coded Pipelines).
+- `Newspaper` default back page prefers a page for the active workload filter.
+- `buildNewspaperEdition` attaches `competitorPageId` from theme match, else workload default.
+- `ATELIER_WORKLOAD_ORDER` includes all catalog workloads for Newspaper pills.
 
 ## How to regenerate
 
@@ -58,31 +103,9 @@ npm run generate:demo
 ```
 
 - Script: `scripts/generate-demo-corpus.py`
-- Fixed seed: `20260913`
+- Seed: `20260913` · Target: `4200` mentions with per-WL×cloud floors
 - Output: `src/data/generated/corpus.json`
-- Docs: `src/data/README.md`
+- Competitors: `src/data/competitors.ts`
 
-After regenerating, run `npm run build` to confirm the JSON still type-checks with the provider.
+After regenerating, run `npm run build`.
 
-## File paths changed
-
-| Path | Role |
-| --- | --- |
-| `scripts/generate-demo-corpus.py` | Deterministic generator |
-| `src/data/generated/corpus.json` | Served corpus |
-| `src/data/provider.ts` | `MockPulseDataProvider` loads corpus + `viewFromMentions` |
-| `src/data/themes.ts` | Re-exports theme definitions from corpus |
-| `src/data/mentions.ts` | Re-exports `SAMPLE_MENTIONS` from corpus |
-| `src/data/actions.ts` | Re-exports `SAMPLE_ACTIONS` from corpus |
-| `src/data/news.ts` | Re-exports `SAMPLE_NEWS` from corpus |
-| `src/data/ado.ts` | Re-exports ADO sample slices from corpus |
-| `src/data/README.md` | Regenerate instructions |
-| `package.json` | Adds `generate:demo` script |
-| `tsconfig.app.json` | `resolveJsonModule: true` |
-| `SYNTHETIC-DATA-REPORT.md` | This report |
-
-## Provider notes
-
-- Export `pulseProvider` unchanged (still `MockPulseDataProvider`).
-- No live API calls; aggregates derived client-side via `viewFromMentions`.
-- Date range: Aug 15 – Sep 13, 2026.

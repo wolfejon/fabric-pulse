@@ -15,9 +15,17 @@ import math
 from pathlib import Path
 
 SEED = 20260913
-TARGET_MENTIONS = 2000
+# Large enough for per-workload×cloud floors while staying commercial-majority.
+TARGET_MENTIONS = 4200
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "src" / "data" / "generated" / "corpus.json"
+
+# Per-workload cloud floors (unknown optional). Floors sum to ≥80 overall per WL.
+MIN_COMMERCIAL = 25
+MIN_USGOV = 25
+MIN_IL7 = 15
+MIN_IL6 = 15
+MIN_PER_WORKLOAD = 80
 
 
 class RNG:
@@ -69,26 +77,35 @@ WORKLOADS = [
 ]
 
 WORKLOAD_WEIGHTS = [
-    ("pipelines", 40),
+    ("pipelines", 32),
     ("data-engineering", 9),
     ("data-integration", 8),
-    ("onelake", 7),
-    ("data-warehouse", 6),
-    ("realtime-analytics", 6),
-    ("power-bi", 7),
-    ("copilot-ai", 6),
-    ("security-governance", 4),
-    ("data-science", 3),
+    ("onelake", 8),
+    ("data-warehouse", 7),
+    ("realtime-analytics", 7),
+    ("power-bi", 8),
+    ("copilot-ai", 7),
+    ("security-governance", 5),
+    ("data-science", 5),
     ("other", 4),
 ]
 
-# ~78% commercial, ~7% unknown, ~15% sovereign total
+# Fill-phase weights after floors (overall target ~70–85% commercial+unknown).
 CLOUD_WEIGHTS = [
-    ("commercial", 74),
-    ("unknown", 7),
-    ("usgov", 10),
-    ("il7", 4.5),
-    ("il6", 4.5),
+    ("commercial", 78),
+    ("unknown", 8),
+    ("usgov", 7),
+    ("il7", 3.5),
+    ("il6", 3.5),
+]
+
+# Heavier commercial once floors are met (sovereign stays usable but minority).
+CLOUD_FILL_WEIGHTS = [
+    ("commercial", 82),
+    ("unknown", 9),
+    ("usgov", 5),
+    ("il7", 2),
+    ("il6", 2),
 ]
 
 # Strategy MVP source registry seed (toggleable in UI)
@@ -492,7 +509,7 @@ THEME_DEFINITIONS = [
         "name": "Delta OPTIMIZE & V-Order",
         "description": "Praise for OPTIMIZE + V-Order wins on Direct Lake; ask for scheduling and auto-compaction guidance.",
         "keywords": ["delta optimize", "v-order", "optimize", "compaction"],
-        "polarity": "like",
+        "polarity": "mixed",
     },
     {
         "id": "theme-capacity-pause",
@@ -583,7 +600,7 @@ THEME_DEFINITIONS = [
         "name": "KQL & Eventhouse on OneLake",
         "description": "Strong KQL praise; Eventhouse-on-OneLake architecture still needs clearer dual-query guidance.",
         "keywords": ["kql", "eventhouse", "adx", "dual-query"],
-        "polarity": "like",
+        "polarity": "mixed",
     },
     {
         "id": "theme-workspace-identity",
@@ -777,6 +794,7 @@ TEMPLATES_BY_WORKLOAD = {
 
 
 def build_mentions(n):
+    """Seed per-workload×cloud floors, then fill to n with commercial-majority mix."""
     mentions = []
     mid = 1
 
@@ -807,9 +825,49 @@ def build_mentions(n):
             m["cloudBoundary"] = cloud
         mentions.append(m)
 
+    def pick_template(workload, cloud):
+        if (
+            workload == "pipelines"
+            and cloud in ("usgov", "il7", "il6")
+            and rng.random() < 0.55
+        ):
+            gov = [t for t in PIPELINE_GOV if t["cloud"] == cloud] or PIPELINE_GOV
+            t = rng.pick(gov)
+            return t["text"](), t["score"]
+        if cloud in ("usgov", "il7", "il6") and rng.random() < 0.45:
+            flav = [t for t in SOVEREIGN_FLAVOR if cloud in t["clouds"]] or SOVEREIGN_FLAVOR
+            t = rng.pick(flav)
+            return t["text"](), t["score"]
+        t = rng.pick(TEMPLATES_BY_WORKLOAD[workload])
+        text = t["text"]()
+        if rng.random() < 0.14:
+            suffixes = [
+                " Anyone else?",
+                " Thread welcome.",
+                " Happy to share our workaround.",
+                " CC: Fabric product folks.",
+                " Filing this as feedback.",
+                f" Seeing this on {rng.pick(['East US', 'West Europe', 'Central US', 'North Europe'])}.",
+            ]
+            text = text.rstrip(".") + "." + rng.pick(suffixes)
+        return text, t["score"]
+
+    # --- Phase 1: hard floors per workload × required clouds ---
+    floor_plan = [
+        ("commercial", MIN_COMMERCIAL),
+        ("usgov", MIN_USGOV),
+        ("il7", MIN_IL7),
+        ("il6", MIN_IL6),
+    ]
+    for workload in WORKLOADS:
+        for cloud, need in floor_plan:
+            for _ in range(need):
+                text, score = pick_template(workload, cloud)
+                push(workload, text, score, cloud)
+
+    # Seed a few explicit pipeline gov + sovereign flavor rows for keyword coverage
     for t in PIPELINE_GOV:
         push("pipelines", t["text"](), t["score"], t["cloud"])
-
     for t in SOVEREIGN_FLAVOR:
         cloud = rng.pick(t["clouds"])
         wl = rng.pick_weighted([
@@ -822,41 +880,13 @@ def build_mentions(n):
         ])
         push(wl, t["text"](), t["score"], cloud)
 
+    # --- Phase 2: fill remainder with commercial-majority weights ---
     while len(mentions) < n:
         workload = rng.pick_weighted(WORKLOAD_WEIGHTS)
-        cloud = rng.pick_weighted(CLOUD_WEIGHTS)
-
-        if (
-            workload == "pipelines"
-            and cloud in ("usgov", "il7", "il6")
-            and rng.random() < 0.45
-        ):
-            gov = [t for t in PIPELINE_GOV if t["cloud"] == cloud] or PIPELINE_GOV
-            t = rng.pick(gov)
-            push("pipelines", t["text"](), t["score"], cloud)
-            continue
-
-        if cloud in ("usgov", "il7", "il6") and rng.random() < 0.35:
-            flav = [t for t in SOVEREIGN_FLAVOR if cloud in t["clouds"]] or SOVEREIGN_FLAVOR
-            t = rng.pick(flav)
-            push(workload, t["text"](), t["score"], cloud)
-            continue
-
-        t = rng.pick(TEMPLATES_BY_WORKLOAD[workload])
-        text = t["text"]()
-        if rng.random() < 0.12:
-            suffixes = [
-                " Anyone else?",
-                " Thread welcome.",
-                " Happy to share our workaround.",
-                " CC: Fabric product folks.",
-                " Filing this as feedback.",
-                f" Seeing this on {rng.pick(['East US', 'West Europe', 'Central US', 'North Europe'])}.",
-            ]
-            text = text.rstrip(".") + "." + rng.pick(suffixes)
-
-        omit = cloud == "commercial" and rng.random() < 0.18
-        push(workload, text, t["score"], None if omit else cloud, omit_cloud=omit)
+        cloud = rng.pick_weighted(CLOUD_FILL_WEIGHTS)
+        text, score = pick_template(workload, cloud)
+        omit = cloud == "commercial" and rng.random() < 0.16
+        push(workload, text, score, None if omit else cloud, omit_cloud=omit)
 
     mentions.sort(key=lambda m: (m["createdAt"], m["id"]), reverse=True)
     return mentions
@@ -1653,6 +1683,44 @@ def summarize(mentions):
         by_cloud[c] = by_cloud.get(c, 0) + 1
         by_wl[m["workload"]] = by_wl.get(m["workload"], 0) + 1
     return by_cloud, by_wl
+
+
+def assert_mention_floors(mentions):
+    """Fail loud if any workload×cloud floor is missed (demo quality gate)."""
+    from collections import defaultdict
+
+    cross = defaultdict(lambda: defaultdict(int))
+    for m in mentions:
+        cloud = m.get("cloudBoundary") or "(omit)"
+        cross[m["workload"]][cloud] += 1
+
+    errors = []
+    for wl in WORKLOADS:
+        row = cross[wl]
+        commercialish = row.get("commercial", 0) + row.get("(omit)", 0)
+        total = sum(row.values())
+        checks = [
+            ("commercial+omit", commercialish, MIN_COMMERCIAL),
+            ("usgov", row.get("usgov", 0), MIN_USGOV),
+            ("il7", row.get("il7", 0), MIN_IL7),
+            ("il6", row.get("il6", 0), MIN_IL6),
+            ("total", total, MIN_PER_WORKLOAD),
+        ]
+        for label, got, need in checks:
+            if got < need:
+                errors.append(f"{wl} {label}: {got} < {need}")
+    if errors:
+        raise SystemExit("Mention floor failures:\n  " + "\n  ".join(errors))
+
+    # Print crosstab for the report
+    clouds = ["commercial", "(omit)", "unknown", "usgov", "il7", "il6"]
+    print("\nMention counts by workload × cloud:")
+    header = f"{'workload':22} " + " ".join(f"{c:>10}" for c in clouds) + f" {'TOTAL':>8}"
+    print(header)
+    for wl in WORKLOADS:
+        row = cross[wl]
+        vals = [row.get(c, 0) for c in clouds]
+        print(f"{wl:22} " + " ".join(f"{v:>10}" for v in vals) + f" {sum(vals):>8}")
 
 
 def main():

@@ -5,6 +5,7 @@ import { EvidenceSheet } from '../../atelier/EvidenceSheet'
 import {
   DEMO_COMPETITOR_FEATURES,
   DEMO_COMPETITOR_PAGES,
+  defaultCompetitorPageForWorkload,
 } from '../../../data/competitors'
 import { ATELIER_WORKLOAD_ORDER, atelierWorkloadShort } from '../../../lib/atelier'
 import {
@@ -938,7 +939,11 @@ export function Newspaper({ snapshot, view, workload, setWorkload }: LayoutProps
 
   const openDefaultBackPage = () => {
     const fromStories = edition.stories.find((s) => s.competitorPageId)?.competitorPageId
-    const id = fromStories ?? pages[0]?.id
+    const forWorkload =
+      workload !== 'all'
+        ? defaultCompetitorPageForWorkload(workload)?.id
+        : undefined
+    const id = fromStories ?? forWorkload ?? pages[0]?.id
     if (id) {
       setOpenId(null)
       setBackPageId(id)
