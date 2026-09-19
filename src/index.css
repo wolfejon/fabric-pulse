@@ -827,7 +827,15 @@ body {
 }
 
 
-/* BI Dashboard — light enterprise canvas */
+/* BI Dashboard — Fluent / Fabric analytics canvas */
 [data-experience='bi-dashboard'] {
   color-scheme: light;
+  --font-sans: "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+  font-family: var(--font-sans);
+  background: #f5f5f5;
+  color: #242424;
+}
+[data-experience='bi-dashboard'] .font-display,
+[data-experience='bi-dashboard'] .font-serif {
+  font-family: var(--font-sans) !important;
 }

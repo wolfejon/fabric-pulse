@@ -136,7 +136,7 @@ const ATELIER_SHELL: Partial<
     experience: 'dossier',
   },
   'bi-dashboard': {
-    className: 'bg-[#f3f4f6] text-[#242424]',
+    className: 'bg-[#f5f5f5] text-[#242424]',
     ink: 'text-[#242424]',
     tone: 'light',
     experience: 'bi-dashboard',

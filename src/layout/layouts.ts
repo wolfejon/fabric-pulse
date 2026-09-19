@@ -127,7 +127,7 @@ export const LAYOUTS: LayoutMeta[] = [
   {
     id: 'bi-dashboard',
     name: 'BI Dashboard',
-    subtitle: 'Executive KPIs, charts, themes, ADO coverage',
+    subtitle: 'KPIs, roadmap coverage, competitive matrix',
     group: 'primary',
   },
   {

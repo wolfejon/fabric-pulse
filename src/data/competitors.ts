@@ -1171,3 +1171,15 @@ export function featuresForPage(page: CompetitorPage): CompetitorFeature[] {
   const ids = new Set(page.featureIds)
   return DEMO_COMPETITOR_FEATURES.filter((f) => ids.has(f.id))
 }
+
+/** Features for a workload filter (or all). Optionally narrow by theme. */
+export function featuresForWorkload(
+  workload: WorkloadId | 'all',
+  themeId?: string | null,
+  features: CompetitorFeature[] = DEMO_COMPETITOR_FEATURES,
+): CompetitorFeature[] {
+  let list =
+    workload === 'all' ? features : features.filter((f) => f.workload === workload)
+  if (themeId) list = list.filter((f) => f.themeId === themeId)
+  return list
+}
