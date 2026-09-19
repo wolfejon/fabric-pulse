@@ -825,3 +825,9 @@ body {
     transition: none !important;
   }
 }
+
+
+/* BI Dashboard — light enterprise canvas */
+[data-experience='bi-dashboard'] {
+  color-scheme: light;
+}

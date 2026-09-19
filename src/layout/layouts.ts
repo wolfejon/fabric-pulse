@@ -14,6 +14,7 @@ export type LayoutId =
   | 'newspaper'
   | 'coverage'
   | 'dossier'
+  | 'bi-dashboard'
   | 'classic'
   | 'diagnosis-object'
   | 'spike-cinema'
@@ -121,6 +122,12 @@ export const LAYOUTS: LayoutMeta[] = [
     id: 'dossier',
     name: 'Dossier',
     subtitle: 'Manilla folder of case files',
+    group: 'primary',
+  },
+  {
+    id: 'bi-dashboard',
+    name: 'BI Dashboard',
+    subtitle: 'Executive KPIs, charts, themes, ADO coverage',
     group: 'primary',
   },
   {

@@ -4,6 +4,7 @@ import { Header } from './components/Header'
 import { MinimalChrome } from './components/MinimalChrome'
 import { ModeSwitcher } from './components/ModeSwitcher'
 import { AskThePulse } from './components/layouts/AskThePulse'
+import { BiDashboard } from './components/layouts/BiDashboard'
 import { ClassicDashboard } from './components/layouts/ClassicDashboard'
 import { LetterReceipts } from './components/layouts/LetterReceipts'
 import { StoryTimeline } from './components/layouts/StoryTimeline'
@@ -133,6 +134,12 @@ const ATELIER_SHELL: Partial<
     ink: 'text-[#e8dcc8]',
     tone: 'dark',
     experience: 'dossier',
+  },
+  'bi-dashboard': {
+    className: 'bg-[#f3f4f6] text-[#242424]',
+    ink: 'text-[#242424]',
+    tone: 'light',
+    experience: 'bi-dashboard',
   },
 }
 
@@ -307,6 +314,7 @@ export default function App() {
     else if (layoutId === 'newspaper') body = <Newspaper {...layoutProps} />
     else if (layoutId === 'coverage') body = <Coverage {...layoutProps} />
     else if (layoutId === 'dossier') body = <Dossier {...layoutProps} />
+    else if (layoutId === 'bi-dashboard') body = <BiDashboard {...layoutProps} />
 
     return (
       <AtelierFrame
