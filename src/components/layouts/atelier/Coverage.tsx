@@ -18,6 +18,7 @@ import type {
   WorkItem,
 } from '../../../types'
 import type { LayoutProps } from '../types'
+import { WhyItMattersChip } from '../../atelier/WhyItMattersChip'
 
 function coverageLabel(status: CoverageStatus): string {
   if (status === 'covered') return 'Covered'
@@ -260,6 +261,10 @@ export function Coverage({ snapshot, view, workload, cloud }: LayoutProps) {
           {snapshot.semesterPlans[1] ? ` · ${snapshot.semesterPlans[1].name}` : ''}
         </p>
       </header>
+
+      <div className="mt-4">
+        <WhyItMattersChip cloud={cloud} workload={workload} items={snapshot.intelligenceNews} />
+      </div>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_minmax(280px,340px)] lg:items-start">
         <div className="space-y-10">

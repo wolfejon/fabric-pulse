@@ -16,6 +16,8 @@ Fiction only — no real customer data, no live APIs.
 | Theme ↔ ADO mappings | 52 |
 | Competitor features | 80 |
 | Competitor pages | 25 |
+| Intelligence news (gov desk) | 12 |
+| Intelligence news (commercial desk) | 12 |
 
 ## Mentions by cloudBoundary
 
@@ -95,6 +97,21 @@ Every workload has ≥3 rivals with feature rows (ships | planned | gap) and ≥
 - `Newspaper` default back page prefers a page for the active workload filter.
 - `buildNewspaperEdition` attaches `competitorPageId` from theme match, else workload default.
 - `ATELIER_WORKLOAD_ORDER` includes all catalog workloads for Newspaper pills.
+
+
+
+## Cloud-contextual intelligence desks (#1 / #6 / #10)
+
+Synthetic **UNCLASSIFIED / DEMO** packs only — never mixed across desks.
+
+| Desk | Cloud pills | Count |
+| --- | --- | ---: |
+| Federal / Defense / Intel (`gov`) | `usgov`, `il7`, `il6` | 12 |
+| Commercial industry (`commercial`) | `commercial`, `all` (and unknown → commercial) | 12 |
+
+- Schema: `NewsIntelligenceItem` with `cloudDesk`, `workloadIds[]`, `source`, `title`, `summary`, `publishedAt`, `trustTier`, optional `whyItMatters` + `relatedCompetitorPageId`.
+- UI: `NewsDeskRail` under cloud pills; Chronicle **Intelligence** B2 back page; workload filter prioritizes linked stories.
+- Honesty banner on gov desk: UNCLASSIFIED / DEMO — not operational intel.
 
 ## How to regenerate
 

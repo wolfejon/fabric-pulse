@@ -154,6 +154,7 @@ function AtelierFrame({
   sourceRegistry,
   enabledSourceIds,
   setEnabledSourceIds,
+  intelligenceNews,
   children,
 }: {
   layoutId: LayoutId
@@ -166,6 +167,7 @@ function AtelierFrame({
   sourceRegistry: PulseSnapshot['sourceRegistry']
   enabledSourceIds: Set<string>
   setEnabledSourceIds: (next: Set<string>) => void
+  intelligenceNews?: import('./types').NewsIntelligenceItem[]
   children: ReactNode
 }) {
   const shell = ATELIER_SHELL[layoutId]
@@ -189,6 +191,8 @@ function AtelierFrame({
         sourceRegistry={sourceRegistry ?? DEMO_SOURCE_REGISTRY}
         enabledSourceIds={enabledSourceIds}
         setEnabledSourceIds={setEnabledSourceIds}
+        intelligenceNews={intelligenceNews}
+        showNewsDesk={layoutId !== 'newspaper'}
       />
       {children}
     </div>
@@ -328,6 +332,7 @@ export default function App() {
         sourceRegistry={snapshot.sourceRegistry ?? DEMO_SOURCE_REGISTRY}
         enabledSourceIds={enabledSourceIds}
         setEnabledSourceIds={setEnabledSourceIds}
+        intelligenceNews={snapshot.intelligenceNews}
       >
         {body}
       </AtelierFrame>

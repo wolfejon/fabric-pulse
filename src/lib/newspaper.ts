@@ -527,13 +527,20 @@ export function buildNewspaperEdition(
         storyId: s.id,
       })),
     { page: 'B1', label: 'Competitors' },
+    { page: 'B2', label: 'Intelligence' },
   ]
 
-  const refers: NewspaperRefer[] = trimmed.slice(1, 5).map((s) => ({
-    text: s.headline.length > 52 ? `${s.headline.slice(0, 49).trim()}…` : s.headline,
-    page: s.pageMark,
-    storyId: s.id,
-  }))
+  const refers: NewspaperRefer[] = [
+    {
+      text: 'Intelligence desk — market & mission digest',
+      page: 'B2',
+    },
+    ...trimmed.slice(1, 4).map((s) => ({
+      text: s.headline.length > 52 ? `${s.headline.slice(0, 49).trim()}…` : s.headline,
+      page: s.pageMark,
+      storyId: s.id,
+    })),
+  ]
 
   const leadQuote = trimmed.find((s) => s.pullQuote)?.pullQuote
   const leadAttr = trimmed.find((s) => s.pullQuote)?.byline ?? 'Staff'

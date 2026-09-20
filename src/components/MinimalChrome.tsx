@@ -3,7 +3,13 @@ import { FabricMark } from './atelier/FabricMark'
 import { SourcesControl } from './atelier/SourcesPanel'
 import { WorkloadSwitcher } from './atelier/WorkloadSwitcher'
 import { ModeSwitcher } from './ModeSwitcher'
-import type { CloudBoundaryFilter, SourceRegistryEntry, WorkloadFilter } from '../types'
+import { NewsDeskRail } from './atelier/NewsDeskRail'
+import type {
+  CloudBoundaryFilter,
+  NewsIntelligenceItem,
+  SourceRegistryEntry,
+  WorkloadFilter,
+} from '../types'
 
 /** Shared atelier shell: wordmark once, mode switcher, sparse workload + cloud pills + Sources. */
 export function MinimalChrome({
@@ -16,6 +22,8 @@ export function MinimalChrome({
   sourceRegistry,
   enabledSourceIds,
   setEnabledSourceIds,
+  intelligenceNews,
+  showNewsDesk = true,
 }: {
   inkClass?: string
   workload: WorkloadFilter
@@ -26,6 +34,8 @@ export function MinimalChrome({
   sourceRegistry?: SourceRegistryEntry[]
   enabledSourceIds?: Set<string>
   setEnabledSourceIds?: (next: Set<string>) => void
+  intelligenceNews?: NewsIntelligenceItem[]
+  showNewsDesk?: boolean
 }) {
   return (
     <div className={`relative z-20 ${inkClass}`}>
@@ -47,6 +57,15 @@ export function MinimalChrome({
         <WorkloadSwitcher value={workload} onChange={setWorkload} tone={tone} />
         <CloudBoundarySwitcher value={cloud} onChange={setCloud} tone={tone} />
       </div>
+      {showNewsDesk ? (
+        <NewsDeskRail
+          cloud={cloud}
+          workload={workload}
+          items={intelligenceNews}
+          tone={tone}
+          compact
+        />
+      ) : null}
     </div>
   )
 }

@@ -44,6 +44,7 @@ import type {
   WorkloadId,
 } from '../../types'
 import type { LayoutProps } from './types'
+import { WhyItMattersChip } from '../atelier/WhyItMattersChip'
 
 /** Fluent / Fabric BI tokens — exec analytics, not atelier. */
 const BI = {
@@ -1421,6 +1422,9 @@ export function BiDashboard({
                 <p className="mt-1 text-[10px]" style={{ color: BI.faint }}>
                   Use cloud switcher in the shell to change.
                 </p>
+                <div className="mt-3">
+                  <WhyItMattersChip cloud={cloud} workload={workload} items={snapshot.intelligenceNews} />
+                </div>
               </div>
 
               <div>

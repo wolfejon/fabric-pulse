@@ -17,6 +17,11 @@ import {
 import type { Mention, WorkloadFilter } from '../../../types'
 import type { LayoutProps } from '../types'
 import { CompetitorBackPage } from './CompetitorBackPage'
+import { IntelligenceBackPage } from './IntelligenceBackPage'
+import {
+  deskForCloud,
+  selectIntelligenceNews,
+} from '../../../lib/intelligence'
 
 /* ── Shared print furniture ───────────────────────────────────── */
 
@@ -179,10 +184,12 @@ function SectionFlagStrip({
   workload,
   setWorkload,
   onBackPage,
+  onIntelligence,
 }: {
   workload: WorkloadFilter
   setWorkload: (next: WorkloadFilter) => void
   onBackPage: () => void
+  onIntelligence: () => void
 }) {
   const flags: { id: string; label: string; onClick: () => void; active: boolean }[] = [
     {
@@ -212,8 +219,14 @@ function SectionFlagStrip({
       active: false,
     },
     {
+      id: 'intelligence',
+      label: 'Intelligence',
+      onClick: onIntelligence,
+      active: false,
+    },
+    {
       id: 'back',
-      label: 'Back Page',
+      label: 'Competitors',
       onClick: onBackPage,
       active: false,
     },
@@ -276,9 +289,11 @@ function MarketsTicker({ markets }: { markets: NewspaperEdition['markets'] }) {
 function ReferBar({
   refers,
   onOpen,
+  onIntelligence,
 }: {
   refers: NewspaperEdition['refers']
   onOpen: (id: string) => void
+  onIntelligence?: () => void
 }) {
   if (refers.length === 0) return null
   return (
@@ -291,7 +306,10 @@ function ReferBar({
           <li key={`${r.page}-${r.text}`} className="min-w-0">
             <button
               type="button"
-              onClick={() => r.storyId && onOpen(r.storyId)}
+              onClick={() => {
+                if (r.page === 'B2' && onIntelligence) onIntelligence()
+                else if (r.storyId) onOpen(r.storyId)
+              }}
               className="group flex max-w-full items-baseline gap-2 text-left"
             >
               <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#00A4A6]">
@@ -315,11 +333,13 @@ function NewsIndex({
   dispatchLine,
   onOpen,
   onBackPage,
+  onIntelligence,
 }: {
   items: NewspaperEdition['newsIndex']
   dispatchLine: string
   onOpen: (id: string) => void
   onBackPage: () => void
+  onIntelligence: () => void
 }) {
   return (
     <aside className="newspaper-index border border-[#1a1a18]/80 bg-[#f3efe6]/85 p-3 sm:p-4">
@@ -333,6 +353,7 @@ function NewsIndex({
               type="button"
               onClick={() => {
                 if (item.label === 'Competitors') onBackPage()
+                else if (item.label === 'Intelligence') onIntelligence()
                 else if (item.storyId) onOpen(item.storyId)
               }}
               className="group flex w-full items-baseline justify-between gap-2 text-left"
@@ -750,6 +771,7 @@ function FrontPage({
   onOpen,
   onEvidence,
   onBackPage,
+  onIntelligence,
 }: {
   edition: NewspaperEdition
   workload: WorkloadFilter
@@ -757,6 +779,7 @@ function FrontPage({
   onOpen: (id: string) => void
   onEvidence: (story: NewspaperStory) => void
   onBackPage: () => void
+  onIntelligence: () => void
 }) {
   const lead = edition.stories.find((s) => s.kind === 'lead') ?? edition.stories[0] ?? null
   const secondaries = edition.stories.filter((s) => s.id !== lead?.id)
@@ -773,11 +796,11 @@ function FrontPage({
       className="newspaper-front"
     >
       <Masthead edition={edition} />
-      <SectionFlagStrip workload={workload} setWorkload={setWorkload} onBackPage={onBackPage} />
+      <SectionFlagStrip workload={workload} setWorkload={setWorkload} onBackPage={onBackPage} onIntelligence={onIntelligence} />
       <div className="mt-2">
         <MarketsTicker markets={edition.markets} />
       </div>
-      <ReferBar refers={edition.refers} onOpen={onOpen} />
+      <ReferBar refers={edition.refers} onOpen={onOpen} onIntelligence={onIntelligence} />
 
       {lead ? (
         <>
@@ -801,6 +824,7 @@ function FrontPage({
                 dispatchLine={edition.dispatchLine}
                 onOpen={onOpen}
                 onBackPage={onBackPage}
+                onIntelligence={onIntelligence}
               />
               <div className="newspaper-rail space-y-0">
                 {rail.map((story, i) => (
@@ -873,9 +897,10 @@ function FrontPage({
 
 /* ── Root ─────────────────────────────────────────────────────── */
 
-export function Newspaper({ snapshot, view, workload, setWorkload }: LayoutProps) {
+export function Newspaper({ snapshot, view, workload, setWorkload, cloud }: LayoutProps) {
   const [openId, setOpenId] = useState<string | null>(null)
   const [backPageId, setBackPageId] = useState<string | null>(null)
+  const [intelligenceOpen, setIntelligenceOpen] = useState(false)
   const [evidenceStory, setEvidenceStory] = useState<NewspaperStory | null>(null)
 
   const edition = useMemo(
@@ -908,8 +933,14 @@ export function Newspaper({ snapshot, view, workload, setWorkload }: LayoutProps
   useEffect(() => {
     setOpenId(null)
     setBackPageId(null)
+    setIntelligenceOpen(false)
     setEvidenceStory(null)
   }, [editionKey])
+
+  // Reset intelligence when cloud / workload pills change
+  useEffect(() => {
+    setIntelligenceOpen(false)
+  }, [cloud, workload])
 
   const evidenceMentions: Mention[] = useMemo(() => {
     if (!evidenceStory?.themeId) return []
@@ -932,10 +963,23 @@ export function Newspaper({ snapshot, view, workload, setWorkload }: LayoutProps
 
   const open = (id: string) => {
     setBackPageId(null)
+    setIntelligenceOpen(false)
     setOpenId(id)
   }
 
   const openEvidence = (story: NewspaperStory) => setEvidenceStory(story)
+
+  const intelStories = useMemo(
+    () => selectIntelligenceNews(snapshot.intelligenceNews, cloud, workload, 10),
+    [snapshot.intelligenceNews, cloud, workload],
+  )
+  const intelDesk = deskForCloud(cloud)
+
+  const openIntelligence = () => {
+    setOpenId(null)
+    setBackPageId(null)
+    setIntelligenceOpen(true)
+  }
 
   const openDefaultBackPage = () => {
     const fromStories = edition.stories.find((s) => s.competitorPageId)?.competitorPageId
@@ -957,7 +1001,21 @@ export function Newspaper({ snapshot, view, workload, setWorkload }: LayoutProps
 
       <div className="relative z-10 mx-auto w-full max-w-6xl flex-1 px-3 pb-16 pt-2 sm:px-6 lg:px-8">
         <AnimatePresence mode="wait">
-          {activePage ? (
+          {intelligenceOpen ? (
+            <IntelligenceBackPage
+              key={`intel-${intelDesk}-${workload}`}
+              desk={intelDesk}
+              stories={intelStories}
+              workload={workload}
+              folioDate={edition.folioDate}
+              paperName={edition.paperName}
+              onBack={() => setIntelligenceOpen(false)}
+              onOpenCompetitor={(pageId) => {
+                setIntelligenceOpen(false)
+                setBackPageId(pageId)
+              }}
+            />
+          ) : activePage ? (
             <CompetitorBackPage
               key={`back-${activePage.id}`}
               page={activePage}
@@ -983,13 +1041,14 @@ export function Newspaper({ snapshot, view, workload, setWorkload }: LayoutProps
               onOpen={open}
               onEvidence={openEvidence}
               onBackPage={openDefaultBackPage}
+              onIntelligence={openIntelligence}
             />
           )}
         </AnimatePresence>
       </div>
 
       {/* Persistent folio while on front */}
-      {!openStory && !activePage ? (
+      {!openStory && !activePage && !intelligenceOpen ? (
         <div className="newspaper-folio-sticky pointer-events-none absolute inset-x-0 bottom-0 z-20 px-3 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl bg-gradient-to-t from-[#efe6d8]/95 to-transparent pb-2 pt-6">
             <FolioBar paperName={edition.paperName} date={edition.folioDate} page="A1" />

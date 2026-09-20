@@ -114,6 +114,34 @@ export interface SuggestedAction {
   ownerHint: string
 }
 
+
+/** Cloud desk for market / mission intelligence (never mix gov ↔ commercial). */
+export type CloudDesk = 'gov' | 'commercial'
+
+/** Provenance honesty for synthetic / demo intelligence packs. */
+export type TrustTier = 'official' | 'trade-press' | 'community' | 'synthetic'
+
+/**
+ * Cloud-contextual intelligence item (feature #1 / #10).
+ * Demo/synthetic only — UNCLASSIFIED. Not operational intel.
+ */
+export interface NewsIntelligenceItem {
+  id: string
+  cloudDesk: CloudDesk
+  workloadIds: WorkloadId[]
+  source: string
+  title: string
+  summary: string
+  publishedAt: string
+  trustTier: TrustTier
+  /** Optional deep-link; demo URLs may be illustrative. */
+  url?: string
+  /** Short “why this matters for {workload}” copy (#10). */
+  whyItMatters?: Partial<Record<WorkloadId, string>>
+  /** Optional jump to competitor back page when relevant (#6). */
+  relatedCompetitorPageId?: string
+}
+
 export interface NewsItem {
   id: string
   title: string
@@ -290,6 +318,8 @@ export interface PulseSnapshot {
   competitorFeatures?: CompetitorFeature[]
   competitorPages?: CompetitorPage[]
   sourceRegistry?: SourceRegistryEntry[]
+  /** Cloud-contextual intelligence packs (gov vs commercial desks). */
+  intelligenceNews?: NewsIntelligenceItem[]
 }
 
 /**

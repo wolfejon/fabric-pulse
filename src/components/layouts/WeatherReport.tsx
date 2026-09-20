@@ -9,8 +9,9 @@ import {
 import { formatDateTime, initials } from '../../lib/format'
 import { WORKLOAD_CATALOG } from '../../data/catalog'
 import type { LayoutProps } from './types'
+import { WhyItMattersChip } from '../atelier/WhyItMattersChip'
 
-export function WeatherReport({ snapshot, view, nested = false }: LayoutProps & { nested?: boolean }) {
+export function WeatherReport({ snapshot, view, cloud, workload, nested = false }: LayoutProps & { nested?: boolean }) {
   const [forecastOpen, setForecastOpen] = useState(false)
 
   const byId = useMemo(
@@ -76,6 +77,10 @@ export function WeatherReport({ snapshot, view, nested = false }: LayoutProps & 
             >
               {weather.loudLine}
             </p>
+
+            <div className="mt-4">
+              <WhyItMattersChip cloud={cloud} workload={workload} items={snapshot.intelligenceNews} />
+            </div>
 
             {/* Sparse data beats — max ~5 including mood + loud line */}
             <div
