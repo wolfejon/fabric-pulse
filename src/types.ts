@@ -119,11 +119,12 @@ export interface SuggestedAction {
 export type CloudDesk = 'gov' | 'commercial'
 
 /** Provenance honesty for synthetic / demo intelligence packs. */
-export type TrustTier = 'official' | 'trade-press' | 'community' | 'synthetic'
+export type TrustTier = 'official' | 'trade-press' | 'community' | 'synthetic' | 'live-public'
 
 /**
  * Cloud-contextual intelligence item (feature #1 / #10).
- * Demo/synthetic only — UNCLASSIFIED. Not operational intel.
+ * Live-public pack from RSS/Atom/public APIs + synthetic demo pack.
+ * Gov desk is UNCLASSIFIED public news only — not operational intel.
  */
 export interface NewsIntelligenceItem {
   id: string
@@ -134,12 +135,16 @@ export interface NewsIntelligenceItem {
   summary: string
   publishedAt: string
   trustTier: TrustTier
-  /** Optional deep-link; demo URLs may be illustrative. */
+  /** Canonical article URL (required for live-public; optional for demo). */
   url?: string
   /** Short “why this matters for {workload}” copy (#10). */
   whyItMatters?: Partial<Record<WorkloadId, string>>
   /** Optional jump to competitor back page when relevant (#6). */
   relatedCompetitorPageId?: string
+  /** Pack provenance for UI badges. */
+  provenance?: 'live-public' | 'demo'
+  /** Feed id when sourced from live RSS/API refresh. */
+  feedId?: string
 }
 
 export interface NewsItem {

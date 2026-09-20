@@ -375,7 +375,17 @@ const COMMERCIAL_PACK: NewsIntelligenceItem[] = [
   },
 ]
 
-export const DEMO_INTELLIGENCE_NEWS: NewsIntelligenceItem[] = [...GOV_PACK, ...COMMERCIAL_PACK]
+function withDemoProvenance(items: NewsIntelligenceItem[]): NewsIntelligenceItem[] {
+  return items.map((item) => ({
+    ...item,
+    provenance: item.provenance ?? 'demo',
+  }))
+}
+
+export const DEMO_INTELLIGENCE_NEWS: NewsIntelligenceItem[] = withDemoProvenance([
+  ...GOV_PACK,
+  ...COMMERCIAL_PACK,
+])
 
 export const INTEL_COUNTS = {
   gov: GOV_PACK.length,

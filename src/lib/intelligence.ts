@@ -1,5 +1,6 @@
 import { WORKLOAD_CATALOG } from '../data/catalog'
 import { DEMO_INTELLIGENCE_NEWS } from '../data/intelligence'
+import { MERGED_INTELLIGENCE_NEWS } from '../data/intelligenceLive'
 import type {
   CloudBoundaryFilter,
   CloudDesk,
@@ -24,19 +25,28 @@ export function deskLabel(desk: CloudDesk): string {
 
 export function deskBanner(desk: CloudDesk): string | null {
   if (desk === 'gov') {
-    return 'UNCLASSIFIED / DEMO — synthetic mission-cloud digest. Not operational intel.'
+    return 'UNCLASSIFIED — public news & advisories only. Not operational or classified intel. Live public feed ≠ mission traffic.'
   }
   return null
+}
+
+export function isLivePublic(item: NewsIntelligenceItem): boolean {
+  return item.trustTier === 'live-public' || item.provenance === 'live-public'
 }
 
 export function intelligenceCorpus(
   items?: NewsIntelligenceItem[] | null,
 ): NewsIntelligenceItem[] {
-  return items?.length ? items : DEMO_INTELLIGENCE_NEWS
+  if (items?.length) return items
+  return MERGED_INTELLIGENCE_NEWS.length ? MERGED_INTELLIGENCE_NEWS : DEMO_INTELLIGENCE_NEWS
+}
+
+function liveRank(item: NewsIntelligenceItem): number {
+  return isLivePublic(item) ? 1 : 0
 }
 
 /**
- * Filter by cloud desk (strict), then prioritize workload-linked items (#10).
+ * Filter by cloud desk (strict), prefer live-public, then prioritize workload-linked items (#10).
  * Never returns the opposite desk.
  */
 export function selectIntelligenceNews(
@@ -49,6 +59,8 @@ export function selectIntelligenceNews(
   const corpus = intelligenceCorpus(items).filter((item) => item.cloudDesk === desk)
 
   const ranked = [...corpus].sort((a, b) => {
+    const liveDiff = liveRank(b) - liveRank(a)
+    if (liveDiff !== 0) return liveDiff
     const aLinked = workload !== 'all' && a.workloadIds.includes(workload)
     const bLinked = workload !== 'all' && b.workloadIds.includes(workload)
     if (aLinked !== bLinked) return aLinked ? -1 : 1
@@ -56,6 +68,14 @@ export function selectIntelligenceNews(
   })
 
   return ranked.slice(0, limit)
+}
+
+export function corpusProvenanceLabel(items: NewsIntelligenceItem[]): string {
+  const live = items.filter(isLivePublic).length
+  const demo = items.length - live
+  if (live > 0 && demo > 0) return `Live public feed · ${live} · demo ${demo}`
+  if (live > 0) return `Live public feed · ${live}`
+  return 'Demo corpus only'
 }
 
 export function whyStoryMatters(
@@ -84,7 +104,13 @@ export function trustLabel(tier: NewsIntelligenceItem['trustTier']): string {
       return 'Trade press'
     case 'community':
       return 'Community'
+    case 'live-public':
+      return 'Live public'
     default:
       return 'Synthetic'
   }
+}
+
+export function provenanceLabel(item: NewsIntelligenceItem): string {
+  return isLivePublic(item) ? 'Live public feed' : 'Demo'
 }

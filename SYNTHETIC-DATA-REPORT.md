@@ -102,26 +102,27 @@ Every workload has ≥3 rivals with feature rows (ships | planned | gap) and ≥
 
 ## Cloud-contextual intelligence desks (#1 / #6 / #10)
 
-Synthetic **UNCLASSIFIED / DEMO** packs only — never mixed across desks.
+**Live-public** pack (RSS/Atom/public APIs) + synthetic **UNCLASSIFIED / DEMO** pack. Desks never mixed.
 
-| Desk | Cloud pills | Count |
-| --- | --- | ---: |
-| Federal / Defense / Intel (`gov`) | `usgov`, `il7`, `il6` | 12 |
-| Commercial industry (`commercial`) | `commercial`, `all` (and unknown → commercial) | 12 |
+| Desk | Cloud pills | Demo | Live (committed pack) |
+| --- | --- | ---: | ---: |
+| Federal / Defense / Intel (`gov`) | `usgov`, `il7`, `il6` | 12 | see `intelligence-live.json` |
+| Commercial industry (`commercial`) | `commercial`, `all` | 12 | see `intelligence-live.json` |
 
-- Schema: `NewsIntelligenceItem` with `cloudDesk`, `workloadIds[]`, `source`, `title`, `summary`, `publishedAt`, `trustTier`, optional `whyItMatters` + `relatedCompetitorPageId`.
-- UI: `NewsDeskRail` under cloud pills; Chronicle **Intelligence** B2 back page; workload filter prioritizes linked stories.
-- Honesty banner on gov desk: UNCLASSIFIED / DEMO — not operational intel.
+- Schema: `NewsIntelligenceItem` with `cloudDesk`, `workloadIds[]`, `source`, `title`, `summary`, `publishedAt`, `trustTier` (`live-public` for RSS), `url`, optional `whyItMatters` + `relatedCompetitorPageId`, `provenance`.
+- UI: `NewsDeskRail` under cloud pills; Chronicle **Intelligence** B2; live headlines link out; badges **Live public feed** vs **Demo**.
+- Honesty banner on gov desk: UNCLASSIFIED public news/advisories only — not operational intel.
+- Full feed list + regenerate: [`docs/INTELLIGENCE-FEEDS.md`](docs/INTELLIGENCE-FEEDS.md).
 
 ## How to regenerate
 
 ```bash
 npm run generate:demo
+npm run fetch:intelligence
 ```
 
-- Script: `scripts/generate-demo-corpus.py`
-- Seed: `20260913` · Target: `4200` mentions with per-WL×cloud floors
-- Output: `src/data/generated/corpus.json`
+- Demo script: `scripts/generate-demo-corpus.py` → `src/data/generated/corpus.json` (seed `20260913`)
+- Live intel: `scripts/fetch-intelligence-rss.py` → `src/data/generated/intelligence-live.json`
 - Competitors: `src/data/competitors.ts`
 
 After regenerating, run `npm run build`.

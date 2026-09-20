@@ -13,7 +13,7 @@ import type {
 import { viewFromMentions } from '../lib/aggregate'
 import { buildEvidenceClusters } from '../lib/evidence'
 import { DEMO_COMPETITOR_FEATURES, DEMO_COMPETITOR_PAGES } from './competitors'
-import { DEMO_INTELLIGENCE_NEWS } from './intelligence'
+import { MERGED_INTELLIGENCE_NEWS } from './intelligenceLive'
 import corpus from './generated/corpus.json'
 import { enrichMentionsWithProvenance, enrichNewsWithProvenance } from './provenance'
 import { DEMO_SOURCE_REGISTRY } from './sources'
@@ -72,7 +72,7 @@ export class MockPulseDataProvider implements PulseDataProvider {
       competitorFeatures: DEMO_COMPETITOR_FEATURES,
       competitorPages: DEMO_COMPETITOR_PAGES,
       sourceRegistry: DEMO_SOURCE_REGISTRY,
-      intelligenceNews: DEMO_INTELLIGENCE_NEWS,
+      intelligenceNews: MERGED_INTELLIGENCE_NEWS,
     }
   }
 }

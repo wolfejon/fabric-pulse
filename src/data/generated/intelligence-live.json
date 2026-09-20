@@ -1,0 +1,2386 @@
+{
+  "fetchedAt": "2026-09-20T14:50:58Z",
+  "trustTier": "live-public",
+  "disclaimer": "Public RSS/Atom/API headlines only. Not operational or classified intel. Gov desk items are UNCLASSIFIED public news/advisories.",
+  "counts": {
+    "commercial": 60,
+    "gov": 60,
+    "total": 120
+  },
+  "feeds": [
+    {
+      "id": "fabric-blog",
+      "source": "Microsoft Fabric Blog",
+      "desk": "commercial",
+      "url": "https://blog.fabric.microsoft.com/en-us/blog/feed/",
+      "ok": true,
+      "parsed": 20,
+      "kept": 20
+    },
+    {
+      "id": "ms-learn-fabric",
+      "source": "Microsoft Learn",
+      "desk": "commercial",
+      "url": "https://learn.microsoft.com/api/search/rss?search=Microsoft%20Fabric&locale=en-us",
+      "ok": true,
+      "parsed": 100,
+      "kept": 12
+    },
+    {
+      "id": "azure-blog",
+      "source": "Azure Blog",
+      "desk": "commercial",
+      "url": "https://azure.microsoft.com/en-us/blog/feed/",
+      "ok": true,
+      "parsed": 10,
+      "kept": 10
+    },
+    {
+      "id": "azure-sql-devblog",
+      "source": "Azure SQL DevBlog",
+      "desk": "commercial",
+      "url": "https://devblogs.microsoft.com/azure-sql/feed/",
+      "ok": true,
+      "parsed": 10,
+      "kept": 8
+    },
+    {
+      "id": "thenewstack",
+      "source": "The New Stack",
+      "desk": "commercial",
+      "url": "https://thenewstack.io/feed/",
+      "ok": true,
+      "parsed": 26,
+      "kept": 11
+    },
+    {
+      "id": "infoq",
+      "source": "InfoQ",
+      "desk": "commercial",
+      "url": "https://www.infoq.com/feed/articles/",
+      "ok": true,
+      "parsed": 4,
+      "kept": 1
+    },
+    {
+      "id": "siliconangle",
+      "source": "SiliconANGLE",
+      "desk": "commercial",
+      "url": "https://siliconangle.com/feed/",
+      "ok": true,
+      "parsed": 30,
+      "kept": 12
+    },
+    {
+      "id": "databricks",
+      "source": "Databricks Blog",
+      "desk": "commercial",
+      "url": "https://www.databricks.com/feed",
+      "ok": true,
+      "parsed": 10,
+      "kept": 10
+    },
+    {
+      "id": "snowflake",
+      "source": "Snowflake Blog",
+      "desk": "commercial",
+      "url": "https://www.snowflake.com/feed/",
+      "ok": true,
+      "parsed": 20,
+      "kept": 10
+    },
+    {
+      "id": "aws-big-data",
+      "source": "AWS Big Data Blog",
+      "desk": "commercial",
+      "url": "https://aws.amazon.com/blogs/big-data/feed/",
+      "ok": true,
+      "parsed": 20,
+      "kept": 12
+    },
+    {
+      "id": "gnews-fabric",
+      "source": "Google News",
+      "desk": "commercial",
+      "url": "https://news.google.com/rss/search?q=Microsoft+Fabric+OR+OneLake+OR+%22Fabric+Pipelines%22+OR+%22Power+BI+Direct+Lake%22&hl=en-US&gl=US&ceid=US%3Aen",
+      "ok": true,
+      "parsed": 100,
+      "kept": 15
+    },
+    {
+      "id": "fedscoop",
+      "source": "FedScoop",
+      "desk": "gov",
+      "url": "https://fedscoop.com/feed/",
+      "ok": true,
+      "parsed": 10,
+      "kept": 10
+    },
+    {
+      "id": "nextgov",
+      "source": "Nextgov",
+      "desk": "gov",
+      "url": "https://www.nextgov.com/rss/all/",
+      "ok": true,
+      "parsed": 25,
+      "kept": 15
+    },
+    {
+      "id": "defensescoop",
+      "source": "DefenseScoop",
+      "desk": "gov",
+      "url": "https://defensescoop.com/feed/",
+      "ok": true,
+      "parsed": 10,
+      "kept": 4
+    },
+    {
+      "id": "breaking-defense",
+      "source": "Breaking Defense",
+      "desk": "gov",
+      "url": "https://breakingdefense.com/feed/",
+      "ok": true,
+      "parsed": 15,
+      "kept": 7
+    },
+    {
+      "id": "cisa-advisories",
+      "source": "CISA Advisories",
+      "desk": "gov",
+      "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+      "ok": true,
+      "parsed": 30,
+      "kept": 12
+    },
+    {
+      "id": "cisa-news",
+      "source": "CISA News",
+      "desk": "gov",
+      "url": "https://www.cisa.gov/news.xml",
+      "ok": true,
+      "parsed": 10,
+      "kept": 8
+    },
+    {
+      "id": "gnews-fed-cloud",
+      "source": "Google News",
+      "desk": "gov",
+      "url": "https://news.google.com/rss/search?q=FedRAMP+OR+%22Azure+Government%22+OR+%22DoD+IL%22+OR+%22Impact+Level%22+cloud+OR+%22federal+cloud%22&hl=en-US&gl=US&ceid=US%3Aen",
+      "ok": true,
+      "parsed": 100,
+      "kept": 15
+    },
+    {
+      "id": "hn-algolia",
+      "source": "Hacker News (Algolia)",
+      "desk": "commercial",
+      "url": "api",
+      "ok": true,
+      "parsed": 0,
+      "kept": 0
+    },
+    {
+      "id": "gdelt-fed-cloud",
+      "source": "GDELT",
+      "desk": "gov",
+      "url": "api",
+      "ok": false,
+      "parsed": 0,
+      "kept": 0,
+      "error": "HTTP 429"
+    }
+  ],
+  "items": [
+    {
+      "id": "live-commercial-01a0e5b78dcd",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "The New Stack",
+      "title": "Your AI agent failed. The model might not be the problem.",
+      "summary": "As AI agents move into production, the path between a request and its result is becoming less predictable. An agent The post Your AI agent failed. The model might not be the problem. appeared first on The New Stack .",
+      "publishedAt": "2026-09-20T14:04:00Z",
+      "trustTier": "live-public",
+      "url": "https://thenewstack.io/nvidia-agent-debugging-safe/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "thenewstack"
+    },
+    {
+      "id": "live-commercial-d5ddb15b4b9e",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "SiliconANGLE",
+      "title": "AI governance moves from observability to provable control",
+      "summary": "As artificial intelligence agents move from experimental tools into production systems, enterprise governance is being forced to answer a harder question. It is no longer enough to know what an agent did. Organizations increasingly need to prove what the agent was authorized to do, why it was allowed to take a specific action and whether […] The post AI governance moves from observability to provable control appeared first on SiliconANGLE .",
+      "publishedAt": "2026-09-19T20:50:17Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/19/ai-governance-provable-control-agentic-ai-thecube-appdevangle/",
+      "whyItMatters": {
+        "security-governance": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-commercial-e58700ab7054",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "SiliconANGLE",
+      "title": "What to expect during Oracle’s ‘AI Cyberattacks Are Escalating: How to Secure Your Data Now’ event: Join theCUBE on Sept. 22",
+      "summary": "At a time when AI is introducing new risks to global systems, Oracle Corp. is shifting enterprise security toward the data layer. This approach, based on a three-pronged strategy to secure at source, secure at speed and secure through resilience, relies on robust security controls applied where the data resides. As AI agents continue to […] The post What to expect during Oracle’s ‘AI Cyberattacks Are Escalating: How to Secure Your Data Now’ event: Join theCUBE on Sept. 22 app",
+      "publishedAt": "2026-09-19T19:20:44Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/19/enterprise-security-oracle-ai-cybersecurity-thecube-oracleaicybersecurity/",
+      "whyItMatters": {
+        "security-governance": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-commercial-6b8d15775269",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "copilot-ai"
+      ],
+      "source": "SiliconANGLE",
+      "title": "At AGNTCon Europe, ensuring AI agents don’t kill us all",
+      "summary": "At this past week’s AGNTCon + MCPCon Europe 2026 conference in Amsterdam, the buzz around agentic artificial intelligence was palpable – but nobody was particularly worried that AI was going to kill us all. The frontier model vendors – none of which appeared on the show floor – may have spent the week frantically positioning […] The post At AGNTCon Europe, ensuring AI agents don’t kill us all appeared first on SiliconANGLE .",
+      "publishedAt": "2026-09-19T18:41:24Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/19/at-agntcon-europe-ensuring-ai-agents-dont-kill-us-all/",
+      "whyItMatters": {
+        "copilot-ai": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-commercial-1a28764fb609",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Databricks Blog",
+      "title": "RADAR: Catch gray failures with anomaly detection",
+      "summary": "Some of the most damaging outages are the ones your monitoring never flags: a slice...",
+      "publishedAt": "2026-09-19T00:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.databricks.com/blog/radar-catch-gray-failures-anomaly-detection",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "databricks"
+    },
+    {
+      "id": "live-gov-06d2327762b4",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "Tech bills of the week: Monitoring AI’s use under Section 702; Preventing abuse of Flock plate readers; and more",
+      "summary": "Lawmakers introduced several measures this week looking to rein in some of the potential abuses and dangers of using AI, as well as a proposal that looks to leverage AI for pediatric cancer research and treatment.",
+      "publishedAt": "2026-09-18T22:43:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/artificial-intelligence/2026/09/tech-bills-week-monitoring-ais-use-under-section-702-preventing-abuse-automatic-license-plate-readers-and-more/416095/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-gov-faee9d3f327d",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "pipelines",
+        "onelake"
+      ],
+      "source": "Breaking Defense",
+      "title": "Space Force to prototype new software to fuse commercial, military space tracking data",
+      "summary": "Our number one priority right now is: How do we improve support to space control operations?” Col. Barry Crocker, head of Space Force Mission Delta 2 responsible for keeping tabs on on-orbit threats, told Breaking Defense",
+      "publishedAt": "2026-09-18T21:41:13Z",
+      "trustTier": "live-public",
+      "url": "https://breakingdefense.com/2026/09/space-force-to-prototype-new-software-to-fuse-commercial-military-space-tracking-data/",
+      "whyItMatters": {
+        "pipelines": "Live public gov desk item tagged to this workload via headline keywords.",
+        "onelake": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "breaking-defense"
+    },
+    {
+      "id": "live-gov-276d48a5d39a",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Breaking Defense",
+      "title": "Myriad ways that drones, satellites, and common controls reshape ISR",
+      "summary": "Connecting platforms and data across domains is key to keeping ISR effective under attack.",
+      "publishedAt": "2026-09-18T21:37:51Z",
+      "trustTier": "live-public",
+      "url": "https://breakingdefense.com/2026/09/myriad-ways-that-drones-satellites-and-common-controls-reshape-isr/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "breaking-defense"
+    },
+    {
+      "id": "live-gov-89a206e5fb9e",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "NASA employees: EEOC committed ‘flagrant distortions’ to decertify class complaint",
+      "summary": "EEOC officials touted a long-running discrimination case against NASA as an example why federal sector cases were in need of reform. The employees who brought the case said commissioners railroaded them.",
+      "publishedAt": "2026-09-18T21:35:36Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/people/2026/09/nasa-employees-eeoc-committed-flagrant-distortions-decertify-class-complaint/416093/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-commercial-a4009a02d2ac",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "data-engineering"
+      ],
+      "source": "Microsoft Learn",
+      "title": "Study Guide for Exam DP-700: Implementing Data Engineering Solutions Using Microsoft Fabric",
+      "summary": "Study Guide for Exam DP-700: Implementing Data Engineering Solutions Using Microsoft Fabric Summarize this article for me In this article Purpose of this document This study guide should help you understand what to expect on the exam and includes a summary of the topics the exam might cover and links to additional resources. Ask a question.",
+      "publishedAt": "2026-09-18T21:09:00Z",
+      "trustTier": "live-public",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-700",
+      "whyItMatters": {
+        "data-engineering": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "ms-learn-fabric"
+    },
+    {
+      "id": "live-gov-ad0e70ba25b1",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "FedScoop",
+      "title": "Interior to use facial recognition AI for missing and murdered persons, human trafficking cases",
+      "summary": "The agency’s Missing and Murdered Unit will use Clearview AI tools to “rapidly identify and locate missing persons, crime victims, and suspects nationwide,” contracting documents said. The post Interior to use facial recognition AI for missing and murdered persons, human trafficking cases appeared first on FedScoop .",
+      "publishedAt": "2026-09-18T19:15:22Z",
+      "trustTier": "live-public",
+      "url": "https://fedscoop.com/interior-clearview-ai-contract-missing-persons/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fedscoop"
+    },
+    {
+      "id": "live-gov-ce85592022e6",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "FedScoop",
+      "title": "Despite upgrades, IRS cyber program still ‘not effective,’ watchdog says",
+      "summary": "TIGTA credited the IRS with improvements in some cybersecurity areas, but said falling short on others could leave taxpayer data vulnerable. The post Despite upgrades, IRS cyber program still ‘not effective,’ watchdog says appeared first on FedScoop .",
+      "publishedAt": "2026-09-18T19:06:12Z",
+      "trustTier": "live-public",
+      "url": "https://fedscoop.com/irs-cybersecurity-fisma-tigta-report/",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fedscoop"
+    },
+    {
+      "id": "live-commercial-325e2d4a621a",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "copilot-ai",
+        "security-governance"
+      ],
+      "source": "The New Stack",
+      "title": "Claude couldn’t hack OpenAI. Then Anthropic shipped Opus 5.",
+      "summary": "Three security researchers at Hacktron AI found a memory-corruption bug in a widely used image library. Finding it was the The post Claude couldn’t hack OpenAI. Then Anthropic shipped Opus 5. appeared first on The New Stack .",
+      "publishedAt": "2026-09-18T18:57:14Z",
+      "trustTier": "live-public",
+      "url": "https://thenewstack.io/claude-exploits-openai-forum/",
+      "whyItMatters": {
+        "copilot-ai": "Live public commercial desk item tagged to this workload via headline keywords.",
+        "security-governance": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "thenewstack"
+    },
+    {
+      "id": "live-commercial-c68460f207b8",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Databricks Blog",
+      "title": "Enabling secure, productive work on personal devices",
+      "summary": "At Databricks IT, our vision is to empower people to work from anywhere without putting...",
+      "publishedAt": "2026-09-18T17:45:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.databricks.com/blog/enabling-secure-productive-work-personal-devices",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "databricks"
+    },
+    {
+      "id": "live-commercial-649b7e79500a",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "SiliconANGLE",
+      "title": "What to expect during CoreWeave’s ‘Fully Connected’ event: Join theCUBE Sept. 30-Oct. 1",
+      "summary": "In the growing AI ecosystem, specialized cloud platform provider CoreWeave Inc. is defining its role as a cost-efficient resource for companies seeking to deploy AI with less investment and effort. Two announcements over the past five months stand out as key indicators in this regard. The first was CoreWeave’s launch in May of a new offering […] The post What to expect during CoreWeave’s ‘Fully Connected’ event: Join theCUBE Sept. 30-Oct. 1 appeared first on SiliconANGLE .",
+      "publishedAt": "2026-09-18T17:27:23Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/18/cloud-platform-coreweave-ai-thecube-fullyconnected/",
+      "whyItMatters": {
+        "security-governance": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-gov-2195e4a7f3f6",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Breaking Defense",
+      "title": "First German F-35 rolls off the line",
+      "summary": "German defense minister Boris Pistorius called the F-35 “a promise that Germany will step up to defend itself and defend its allies.”",
+      "publishedAt": "2026-09-18T17:10:33Z",
+      "trustTier": "live-public",
+      "url": "https://breakingdefense.com/2026/09/first-german-f-35-rolls-off-the-line/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "breaking-defense"
+    },
+    {
+      "id": "live-gov-236bf47be2ca",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Breaking Defense",
+      "title": "Why the ‘right to repair’ matters to the Pentagon",
+      "summary": "The US military wants authorization to repair its systems without contractor support, which at the moment is easier said than done.",
+      "publishedAt": "2026-09-18T16:58:59Z",
+      "trustTier": "live-public",
+      "url": "https://breakingdefense.com/2026/09/why-the-right-to-repair-matters-to-the-pentagon/",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "breaking-defense"
+    },
+    {
+      "id": "live-commercial-fd3c8b5d9911",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "SiliconANGLE",
+      "title": "PrismML launches Bonsai 2 27B, a high-intelligence AI model so small it fits on consumer hardware",
+      "summary": "Prism ML Inc. announced Thursday the launch of Bonsai 2 27B, the second generation of its ultra-compact multimodal generative artificial intelligence small enough to fit on PCs and some high-end mobile devices. The company said it used ternary, which uses three parts, to scale down its Qwen3.8 27B-based model. Qwen3.8 weighs in at about 56 […] The post PrismML launches Bonsai 2 27B, a high-intelligence AI model so small it fits on consumer hardware appeared first on SiliconAN",
+      "publishedAt": "2026-09-18T16:10:08Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/18/prismml-launches-bonsai-2-27b-a-high-intelligence-ai-model-so-small-it-fits-on-consumer-hardware/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-commercial-260707873f7a",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "The New Stack",
+      "title": "Kubernetes can run AI inference. But can it count the real cost?",
+      "summary": "Welcome to another edition of Road to KubeCon, where we’re tracking the Kubernetes and cloud-native ecosystem on the way into The post Kubernetes can run AI inference. But can it count the real cost? appeared first on The New Stack .",
+      "publishedAt": "2026-09-18T15:53:21Z",
+      "trustTier": "live-public",
+      "url": "https://thenewstack.io/kubernetes-ai-inference-costs/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "thenewstack"
+    },
+    {
+      "id": "live-commercial-fb39e7f3336e",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Google News",
+      "title": "Nokia and Microsoft automate telecom networks with AI agents - Telecoms Tech News",
+      "summary": "Nokia and Microsoft automate telecom networks with AI agents Telecoms Tech News",
+      "publishedAt": "2026-09-18T15:29:35Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOdm8xMTB3Qk5QeTZ6cXZlZ3RPZExQMzBjcmtDbWVGeWxKamFuN3ZqZ05jV1ktajgzSVprSHI2OUVGb29ZTi1SemZUYnA2RjVkMTB2dmVYRzN2b2JtMW02MU1YQ1ZzXzVQczg5RU5ZNWJ1Sy0xbHdWQkI5b0RCc1E4OEp2bV9WempmXzlFR00xU3BPR2RmeWlFRzNR?oc=5",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fabric"
+    },
+    {
+      "id": "live-gov-e495f4a8c02f",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Breaking Defense",
+      "title": "France’s 2035 national security plan warns of increased conflict in sea, outer space",
+      "summary": "“An increasing share of power — and also vulnerabilities — will be concentrated in these spaces, which are largely invisible to citizens.” the document says.",
+      "publishedAt": "2026-09-18T15:26:20Z",
+      "trustTier": "live-public",
+      "url": "https://breakingdefense.com/2026/09/frances-2035-national-security-plan-warns-of-increased-conflict-in-sea-outer-space/",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "breaking-defense"
+    },
+    {
+      "id": "live-gov-e80017239b69",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Breaking Defense",
+      "title": "‘Totally new’: Nammo pursues rocket motor engine for latest IRIS-T air defense",
+      "summary": "The push comes as German defense firm Diehl targets a first Safety Integrity Level (SIL) firing test of the surface-launched IRIS-T SLX in 2027.",
+      "publishedAt": "2026-09-18T14:45:10Z",
+      "trustTier": "live-public",
+      "url": "https://breakingdefense.com/2026/09/totally-new-nammo-pursues-rocket-motor-engine-for-latest-iris-t-air-defense/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "breaking-defense"
+    },
+    {
+      "id": "live-commercial-46a3f919288f",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "SiliconANGLE",
+      "title": "For AI agents, it’s the best of times, it’s the worst of times",
+      "summary": "And in a desperate attempt to turn a cliche into a sharper analogy to today’s AI era, let’s complete Charles Dickens’ first line in “A Tale of Two Cities,” which honestly does kind of fit: “… it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it […] The post For AI agents, it’s the best of times, it’s the worst of times appeared first on SiliconANGLE .",
+      "publishedAt": "2026-09-18T14:00:35Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/18/for-ai-agents-its-the-best-of-times-its-the-worst-of-times/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-commercial-e5d376882397",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "copilot-ai"
+      ],
+      "source": "SiliconANGLE",
+      "title": "What to expect from theCUBE’s analysis of Dreamforce: Tune in Sept. 25",
+      "summary": "Enterprises are moving beyond standalone AI tools as they look for ways to weave agents into the work employees and customers already do. The shift toward connected AI workflows raises broader questions about how agents access data, interact with people and operate across established business processes. Salesforce Inc. is positioning the agentic enterprise as the […] The post What to expect from theCUBE’s analysis of Dreamforce: Tune in Sept. 25 appeared first on SiliconANGLE",
+      "publishedAt": "2026-09-18T13:57:37Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/18/connected-ai-workflows-shape-dreamforce-dreamforce/",
+      "whyItMatters": {
+        "copilot-ai": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-commercial-7be88a42ab22",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "The New Stack",
+      "title": "Open-weight models now handle a majority of tokens on Vercel’s AI Gateway. But Anthropic still takes 64% of the spend.",
+      "summary": "The trend is clear: open-weight models are taking an increasingly large bite out of production AI usage. On Monday, The The post Open-weight models now handle a majority of tokens on Vercel’s AI Gateway. But Anthropic still takes 64% of the spend. appeared first on The New Stack .",
+      "publishedAt": "2026-09-18T12:42:58Z",
+      "trustTier": "live-public",
+      "url": "https://thenewstack.io/open-weight-anthropic-spend/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "thenewstack"
+    },
+    {
+      "id": "live-gov-8140ea8859a4",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA Advisories",
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "summary": "CISA has added two new vulnerabilities to its Known Exploited Vulnerabilities (KEV) Catalog , based on evidence of active exploitation. CVE-2025-39964 Linux Kernel Race Condition Vulnerability CVE-2026-53266 Linux Kernel Out-of-Bounds Write Vulnerability These types of vulnerabilities are a frequent attack vector for malicious cyber actors and pose significant risks to the federal enterprise. Binding Operational Directive (BOD) 26-04: Prioritizing Security Updates Based on Ri",
+      "publishedAt": "2026-09-18T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/alerts/2026/09/18/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-gov-e93e7c1d17b0",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA Advisories",
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "summary": "CISA has added one new vulnerability to its Known Exploited Vulnerabilities (KEV) Catalog , based on evidence of active exploitation. CVE-2025-39682 Linux Kernel Improper Check for Unusual or Exceptional Conditions Vulnerability This type of vulnerability is a frequent attack vector for malicious cyber actors and poses significant risks to the federal enterprise. Binding Operational Directive (BOD) 26-04: Prioritizing Security Updates Based on Risk establishes vulnerability m",
+      "publishedAt": "2026-09-18T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/alerts/2026/09/18/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-gov-ee1740d1a0b3",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA News",
+      "title": "CISA Hosts Cyber Storm X, Nationwide Cybersecurity Exercise to Strengthen Resilience",
+      "summary": "Public headline from CISA News (live RSS).",
+      "publishedAt": "2026-09-18T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/news/cisa-hosts-cyber-storm-x-nationwide-cybersecurity-exercise-strengthen-resilience",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-news"
+    },
+    {
+      "id": "live-commercial-f2a7c7a15ea3",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Google News",
+      "title": "The Pattern Widens: Microsoft Fabric’s Authentication Bypass and the Expanding Identity Attack Surface - forkast.news",
+      "summary": "The Pattern Widens: Microsoft Fabric’s Authentication Bypass and the Expanding Identity Attack Surface forkast.news",
+      "publishedAt": "2026-09-18T11:41:53Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNR0tabU1NQXYtWkV3cVhEQklwMnJNSkEySmRwRFE0LXF4ZkZGU3h0S0VmWXdWNlJsVWYtaDNJWlpkSGZOVjNCSTlvd3BBNW5hM04yV3RJYUhVS2ZyWDlmSjlLZ0xYVjZZQUdCeHNTQ1d4WVZXZDc5azFhcklrbW1CREVQTlB1cE5VWnR2dGJsLXdCZGVZRlpqV0taeHltY2k4a0x0cTFqbGJmNzhNS0R1TFFlU0hwUnJDRlE1bHRmRQ?oc=5",
+      "whyItMatters": {
+        "security-governance": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fabric"
+    },
+    {
+      "id": "live-commercial-2ff0c702b0c5",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "SiliconANGLE",
+      "title": "Full speed ahead: Despite calls to slow AI down, its support structure is on the fast track",
+      "summary": "While tech titans at Salesforce Inc.’s Dreamforce event in San Francisco this week engaged in a spirited debate over whether the pace of deployment for artificial intelligence should be slowed, a group of high-powered tech experts were meeting at the same time about an hour’s drive south to describe how they were building AI’s infrastructure […] The post Full speed ahead: Despite calls to slow AI down, its support structure is on the fast track appeared first on SiliconANGLE ",
+      "publishedAt": "2026-09-18T03:38:59Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/17/full-speed-ahead-despite-calls-to-slow-ai-down-its-support-structure-is-on-the-fast-track/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-commercial-c3efe7e6df17",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "SiliconANGLE",
+      "title": "AI data center builder Crusoe valued at $30.9B in $3.9B round",
+      "summary": "Crusoe Inc. today announced that it has closed a $3.9 billion late-stage funding round at a $30.9 billion valuation. The Series F deal was led by Atreides Management, Mubadala Capital and Valor Equity Partners. They were joined by more than two dozen other investors. The group included Nvidia Corp., Salesforce Ventures and Robinhood Ventures Fund. […] The post AI data center builder Crusoe valued at $30.9B in $3.9B round appeared first on SiliconANGLE .",
+      "publishedAt": "2026-09-18T00:45:02Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/17/ai-data-center-builder-crusoe-valued-at-30-9b-in-3-9b-round/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-commercial-09cada66a940",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "SiliconANGLE",
+      "title": "Anthropic details practical metrics to help monitor the speed of AI development",
+      "summary": "Days after Anthropic PBC Chief Executive Dario Amodei rocked the artificial intelligence world by calling on leading model makers to coordinate on the slowdown on the pace of development, the company has shared three new metrics that should be measured to enable this. In a blog post today, Anthropic said it is already measuring AI-led […] The post Anthropic details practical metrics to help monitor the speed of AI development appeared first on SiliconANGLE .",
+      "publishedAt": "2026-09-17T23:44:57Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/17/anthropic-details-practical-metrics-to-help-monitor-the-speed-of-ai-development/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-commercial-6721660993fb",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "SiliconANGLE",
+      "title": "Treble nabs $18M to generate audio simulations for robots",
+      "summary": "Icelandic audio startup Treble Technologies ehf today announced that it has raised $18 million in funding. Paladin Capital Group led the Series-A2 round. It was joined by returning backers KOMPAS VC, Frumtak Ventures and the European Innovation Council Fund. Many industrial robots rely on onboard artificial intelligence models to perform their work. Those AI models […] The post Treble nabs $18M to generate audio simulations for robots appeared first on SiliconANGLE .",
+      "publishedAt": "2026-09-17T22:53:36Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/17/treble-nabs-18m-to-generate-audio-simulations-for-robots/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-commercial-c8bfc4153fc5",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "SiliconANGLE",
+      "title": "Google expands CC into a shared AI agent for up to six family members",
+      "summary": "Google LLC today opened its experimental artificial intelligence agent CC to families, with as many as six people in a household able to share one. Each member picks what the agent is allowed to see, and CC sorts through that material into a shared daily brief, calendar entries and a running task list. The brief goes […] The post Google expands CC into a shared AI agent for up to six family members appeared first on SiliconANGLE .",
+      "publishedAt": "2026-09-17T22:42:08Z",
+      "trustTier": "live-public",
+      "url": "https://siliconangle.com/2026/09/17/google-expands-cc-into-a-shared-ai-agent-for-up-to-six-family-members/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "siliconangle"
+    },
+    {
+      "id": "live-gov-0bd6f9e445dd",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "DefenseScoop",
+      "title": "Africom’s new Defense Economics Office set up to drive outsized security returns",
+      "summary": "U.S. Africa Command increasingly views the economic domain as a core security vector. The post Africom’s new Defense Economics Office set up to drive outsized security returns appeared first on DefenseScoop .",
+      "publishedAt": "2026-09-17T22:03:33Z",
+      "trustTier": "live-public",
+      "url": "https://defensescoop.com/2026/09/17/africom-defense-economics-office/",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "defensescoop"
+    },
+    {
+      "id": "live-commercial-b9024fc40c27",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "copilot-ai"
+      ],
+      "source": "Google News",
+      "title": "Nokia Accelerates Network Automation Through Agentic, Unified Data Foundation with Microsoft - hpcwire.com",
+      "summary": "Nokia Accelerates Network Automation Through Agentic, Unified Data Foundation with Microsoft hpcwire.com",
+      "publishedAt": "2026-09-17T21:33:36Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNZWxvRVNKQXZ1REJkQTdzNzhVa1FLREE1UTVFNWFwaXNfeFYtU3BXVXdqMDJyRDZUcjZGUHBJWElFUkVQN0piT00zMHVhUTktaW82QVNKX3l4cXl6S0MxUFJnSG81dUdBbndEcUpybkp6UWpVYmNUTWE0M0hwclpuNGh4eDdOLWV6TGFuODlockZIR1o5RGwxb3RqOWt1UDFaOWpUUUI5RjdPX2NKWEo0OEZsNnQ1WV9lNFNzQVdUd2RKOFdLOTQyZ0xTVlF1ejQ?oc=5",
+      "whyItMatters": {
+        "copilot-ai": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fabric"
+    },
+    {
+      "id": "live-gov-b1043b5c465c",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "Cyber recovery deters what no kill switch can stop",
+      "summary": "COMMENTARY | A kill switch is a last resort, not a control system or option to use daily.",
+      "publishedAt": "2026-09-17T21:29:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/ideas/2026/09/cyber-recovery-deters-what-no-kill-switch-can-stop/416064/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-commercial-f47374fe4fcd",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "pipelines"
+      ],
+      "source": "Microsoft Fabric Blog",
+      "title": "Upcoming changes to legacy Teams and Outlook activities in Fabric Data Factory pipelines",
+      "summary": "Beginning October 30, 2026, users will no longer be able to add new legacy Teams or legacy Outlook activities to pipelines. These legacy activities will no longer appear as options when users add new activities to a pipeline. Existing legacy activity instances can still be edited and used in existing pipelines. New notification scenarios should instead use the modern Microsoft Teams and Outlook 365 Email activities.",
+      "publishedAt": "2026-09-17T21:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Upcoming-changes-to-legacy-Teams-and-Outlook-activities-in/ba-p/5314499",
+      "whyItMatters": {
+        "pipelines": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fabric-blog"
+    },
+    {
+      "id": "live-gov-171af11a795e",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "Inside Commerce efforts to break data siloes and improve integrity",
+      "summary": "An agency official also encouraged public comment on a proposed overhaul of the census that would eliminate race questions and change who is counted as living in the U.S.",
+      "publishedAt": "2026-09-17T20:28:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/digital-government/2026/09/inside-commerce-efforts-break-data-siloes-and-improve-integrity/416057/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-gov-8bcd23bdd631",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Nextgov",
+      "title": "DHS sets fast-track schedule for network, cloud and cyber consolidation vehicle",
+      "summary": "The Homeland Security Department is working against a compressed timeline to make awards for this contract to centralize IT operations at headquarters and across components.",
+      "publishedAt": "2026-09-17T20:11:57Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/acquisition/2026/09/dhs-sets-fast-track-schedule-network-cloud-and-cyber-consolidation-vehicle/416059/",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-commercial-e871938db27d",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "data-warehouse",
+        "security-governance"
+      ],
+      "source": "Snowflake Blog",
+      "title": "Snowflake Integrates with STACKIT for EU Data Sovereignty",
+      "summary": "The integration of Snowflake with STACKIT brings sovereign data and AI to Germany's regulated industries.",
+      "publishedAt": "2026-09-17T19:58:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.snowflake.com/content/snowflake-site/global/en/blog/snowflake-integration-stackit-data-sovereignty",
+      "whyItMatters": {
+        "data-warehouse": "Live public commercial desk item tagged to this workload via headline keywords.",
+        "security-governance": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "snowflake"
+    },
+    {
+      "id": "live-gov-9e1a3efb2f68",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Breaking Defense",
+      "title": "‘They overreached’: Amid industry worry, new Feinberg memo tweaks accounting regime",
+      "summary": "A Sept. 15 memo from Deputy Secretary of Defense Stephen Feinberg walks back some changes from a previous memo, while moving reforms forward, analysts tell Breaking Defense.",
+      "publishedAt": "2026-09-17T18:08:51Z",
+      "trustTier": "live-public",
+      "url": "https://breakingdefense.com/2026/09/they-overreached-amid-industry-worry-new-feinberg-memo-tweaks-accounting-regime/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "breaking-defense"
+    },
+    {
+      "id": "live-commercial-0fe820207e3a",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Databricks Blog",
+      "title": "Database for AI Agents: 5 Evaluation Criteria",
+      "summary": "The five criteria for evaluating a database for AI agents are branch isolation, serverless...",
+      "publishedAt": "2026-09-17T17:27:40Z",
+      "trustTier": "live-public",
+      "url": "https://www.databricks.com/blog/database-for-ai-agents",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "databricks"
+    },
+    {
+      "id": "live-commercial-0ffaeac6de35",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Microsoft Fabric Blog",
+      "title": "Soft delete for On-premises data gateways in Microsoft Fabric (Preview)",
+      "summary": "Deleting a gateway is currently permanent, so administrators must recreate it if it is removed accidentally. With soft delete, supported gateways are retained for 30 days after deletion, giving authorized administrators time to restore them before permanent deletion. Soft delete feature currently is only available for standard mode of on-premises data gateways in Microsoft Fabric (Preview). Personal mode gateways and virtual network data gateways are not currently supported. ",
+      "publishedAt": "2026-09-17T17:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Soft-delete-for-On-premises-data-gateways-in-Microsoft-Fabric/ba-p/5365712",
+      "whyItMatters": {
+        "security-governance": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fabric-blog"
+    },
+    {
+      "id": "live-commercial-4164097db497",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Databricks Blog",
+      "title": "The Web Search Your Agent Inherited Isn't Good Enough",
+      "summary": "An agent that needs the outside worldAn engineer at a software company is building...",
+      "publishedAt": "2026-09-17T17:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.databricks.com/blog/web-search-your-agent-inherited-isnt-good-enough",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "databricks"
+    },
+    {
+      "id": "live-commercial-44a0d208ca07",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "data-science"
+      ],
+      "source": "Databricks Blog",
+      "title": "What is AIOps?",
+      "summary": "Artificial Intelligence for IT Operations (AIOps) applies AI and machine learning to IT operations to detect anomalies...",
+      "publishedAt": "2026-09-17T16:49:43Z",
+      "trustTier": "live-public",
+      "url": "https://www.databricks.com/blog/what-is-aiops",
+      "whyItMatters": {
+        "data-science": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "databricks"
+    },
+    {
+      "id": "live-gov-44e55b8bea20",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "FedScoop",
+      "title": "Anthropic extends its GSA OneGov deal for Claude by one month",
+      "summary": "The $1 per user deal will now be available until Oct. 31, according to a website update. The post Anthropic extends its GSA OneGov deal for Claude by one month appeared first on FedScoop .",
+      "publishedAt": "2026-09-17T16:45:48Z",
+      "trustTier": "live-public",
+      "url": "https://fedscoop.com/anthropic-extends-gsa-onegov-deal-for-claude-by-one-month/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fedscoop"
+    },
+    {
+      "id": "live-commercial-54d842b73316",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "pipelines",
+        "data-warehouse"
+      ],
+      "source": "Microsoft Fabric Blog",
+      "title": "Mirroring for Google BigQuery in Microsoft Fabric (Generally Available)",
+      "summary": "Mirroring for Google BigQuery in Microsoft Fabric is now generally available. For organizations running critical workloads on BigQuery, this means a simpler, faster, and lower-cost path to bringing your data into the rest of your analytics estate — with production support, an enterprise SLA, and no pipelines to build or maintain.",
+      "publishedAt": "2026-09-17T16:24:38Z",
+      "trustTier": "live-public",
+      "url": "https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Mirroring-for-Google-BigQuery-in-Microsoft-Fabric-Generally/ba-p/5364851",
+      "whyItMatters": {
+        "pipelines": "Live public commercial desk item tagged to this workload via headline keywords.",
+        "data-warehouse": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fabric-blog"
+    },
+    {
+      "id": "live-commercial-af337486f4f1",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "The New Stack",
+      "title": "Study: Developers are addicted to AI, and managers are making it worse",
+      "summary": "AI is addictive, and managers are rewarding those who use it the most (even though they are shipping stuff they The post Study: Developers are addicted to AI, and managers are making it worse appeared first on The New Stack .",
+      "publishedAt": "2026-09-17T15:12:36Z",
+      "trustTier": "live-public",
+      "url": "https://thenewstack.io/study-developers-are-addicted/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "thenewstack"
+    },
+    {
+      "id": "live-commercial-726174bb4231",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Google News",
+      "title": "Nokia, Microsoft target AI automation boost for operators - Mobile World Live",
+      "summary": "Nokia, Microsoft target AI automation boost for operators Mobile World Live",
+      "publishedAt": "2026-09-17T14:41:06Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPSHhVamVESXlUYk80YzlLRWRqMUpCMFFQRjdnZDd0b3l1RFVxZHl5ZmUwOVphTXlBZVoxYnhSRC1NUnVhWVlhUDJHZURwOFloaVdGaGpKWHY1NUJMWnJaek1sYmYxejZwbkFwMjdnZV9NcmJtbTBCVzdINEYwUDR2SUJfcjJjTHM2U1lvTmFvYXFETWFXVlFvaE5iMVlkd28?oc=5",
+      "whyItMatters": {
+        "security-governance": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fabric"
+    },
+    {
+      "id": "live-commercial-ac6d40355f57",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Databricks Blog",
+      "title": "Modernizing the Trade Lifecycle With Governed Data and AI",
+      "summary": "Capital-markets firms are modernizing the trade lifecycle under pressure from every direction: growing data volumes...",
+      "publishedAt": "2026-09-17T14:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.databricks.com/blog/modernizing-trade-lifecycle-governed-data-and-ai",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "databricks"
+    },
+    {
+      "id": "live-gov-3c76843f5c35",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "FedScoop",
+      "title": "Energy competition aims to ‘maximize’ US chances in quantum race",
+      "summary": "The agency announced a $215 million initiative to demonstrate first-generation scientifically relevant quantum computers, plus a verification and validation testbed. The post Energy competition aims to ‘maximize’ US chances in quantum race appeared first on FedScoop .",
+      "publishedAt": "2026-09-17T14:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://fedscoop.com/quantum-genesis-q-competition-energy-department/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fedscoop"
+    },
+    {
+      "id": "live-commercial-45a130c77f8a",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "pipelines"
+      ],
+      "source": "The New Stack",
+      "title": "Why human oversight is shifting from writing code to defining requirements",
+      "summary": "This walks through the pipeline our agents operate inside—from a recorded scoping meeting through unit specs, spec review, generated code, The post Why human oversight is shifting from writing code to defining requirements appeared first on The New Stack .",
+      "publishedAt": "2026-09-17T13:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://thenewstack.io/human-oversight-defining-requirements/",
+      "whyItMatters": {
+        "pipelines": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "thenewstack"
+    },
+    {
+      "id": "live-commercial-9e490e7bfa63",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Google News",
+      "title": "From Flip Phones to AI, Nokia’s Microsoft Deal Boosts Its Optical Networking Prowess - Barron's",
+      "summary": "From Flip Phones to AI, Nokia’s Microsoft Deal Boosts Its Optical Networking Prowess Barron's",
+      "publishedAt": "2026-09-17T12:41:25Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBNSkM0a3RZaW9wZDJZaE0tdVI2cVRFT3NBVDlmVDU1QjIycDNNWEltNmJuNDN6aE8wR0Q0Vl9RUXJnX2RwN0lxaW96R21Hc3lYTXJpQ0tuZ0d1dUZKUDVfX1hWeXgtNWdKME56SEN1bEMtUG1p?oc=5",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fabric"
+    },
+    {
+      "id": "live-gov-d5d7907afac1",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "power-bi",
+        "security-governance"
+      ],
+      "source": "CISA Advisories",
+      "title": "ABB Ability Edgenius",
+      "summary": "View CSAF Summary ABB is aware of public reports of a vulnerability CVE‑2026‑31431 (Copy Fail) in the product versions listed as affected in the advisory. An update is available that resolves a publicly reported vulnerability. CVE‑2026‑31431 (Copy Fail) is a Linux kernel vulnerability that may allow a locally authenticated user or compromised container workload to gain elevated (root) privileges on affected systems. Once root access is obtained, the attacker can effectively g",
+      "publishedAt": "2026-09-17T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-260-06",
+      "whyItMatters": {
+        "power-bi": "Live public gov desk item tagged to this workload via headline keywords.",
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-gov-2f69e55c9c25",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA Advisories",
+      "title": "Mitsubishi Electric CC-Link IE TSN Communication Protocol (Update A)",
+      "summary": "View CSAF Summary Successful exploitation of this vulnerability could allow an attacker with access to the same network segment to tamper with communication data in the affected product by sending specially crafted packets under specific timing conditions. This could allow the attacker to cause a denial-of-service (DoS) condition in the affected product by interfering with its control function or causing it to operate incorrectly. The following versions of Mitsubishi Electric",
+      "publishedAt": "2026-09-17T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-211-07",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-gov-e359a40d4b17",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "CISA Advisories",
+      "title": "Schneider Electric PowerChute Serial Shutdown",
+      "summary": "View CSAF Summary Schneider Electric is aware of vulnerabilities in its PowerChute Serial Shutdown product. The PowerChute Serial Shutdown product is a UPS management software enabling graceful system shutdown and energy management capabilities for desktops, servers and workstations. Failure to apply the remediation provided below may risk improper authentication validation which could result in disruption of operations and access to system data. The following versions of Sch",
+      "publishedAt": "2026-09-17T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-260-07",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-gov-78b1fa2c1b4d",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA Advisories",
+      "title": "Mitsubishi Electric GX Works3 and Motion Control Settings",
+      "summary": "View CSAF Summary Successful exploitation of this vulnerability could allow a local attacker to successfully authenticate even with an invalid block password by executing the affected product and modify part of the executable module in memory, and thereby allows the attacker to view, tamper with, destroy, or delete control programs. The following versions of Mitsubishi Electric GX Works3 and Motion Control Settings are affected: Mitsubishi Electric GX Works3 vers:all/* (CVE-2",
+      "publishedAt": "2026-09-17T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-260-02",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-gov-58918fd4ed4d",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "CISA Advisories",
+      "title": "Hitachi Energy FACTS Control Platform (FCP)",
+      "summary": "View CSAF Summary Hitachi Energy is aware of vulnerabilities that affect the FACTS Control systems with GWS component listed in this document. An attacker exploiting these vulnerabilities can cause impact on confidentiality, integrity and availability of the product. Following FACTS Control systems with GWS component deployed from year 2020 onwards are likely affected by the above vulnerabilities. Product deployments without GWS component are not affected. • SVC Light (STATCO",
+      "publishedAt": "2026-09-17T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-260-03",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-gov-f3dff50a5132",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA Advisories",
+      "title": "Schneider Electric NetBotz 5 750/755",
+      "summary": "View CSAF Summary Schneider Electric is aware of multiple vulnerabilities in its NetBotz 5 – 750/755 products.The NetBotz 5 – 750/755 products are security and environmental monitors providing temperature, humidity, leak, smoke, vibration, door contact, and video monitoring capabilities. Failure to apply the remediation provided below may risk arbitrary or remote code execution over the local network, which could result in device manipulation and unauthorized data access. The",
+      "publishedAt": "2026-09-17T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-260-05",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-gov-4c64d388955c",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA Advisories",
+      "title": "Schneider Electric Modicon M340 Controller and Communication Modules",
+      "summary": "View CSAF Summary Schneider Electric is aware of a vulnerability in its Modicon M340 https://www.se.com/ww/en/product-range/1468-modicon-m340-pac/ , BMXNOR0200H https://www.se.com/us/en/product/BMXNOR0200H/communication-module-modicon-m340-iec-608705101-104-dnp3-for-severe-environments/ : Modicon M340 X80 Ethernet Communication Modules, BMXNGD0100 https://www.se.com/us/en/product/BMXNGD0100/communication-module-modicon-m580-global-data-service/ : M580 Global Data module, BMXN",
+      "publishedAt": "2026-09-17T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-260-04",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-gov-bcf15cc6fc72",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "CISA Advisories",
+      "title": "Bransys ELD",
+      "summary": "View CSAF Summary Successful exploitation of these vulnerabilities could allow unauthorized access to telemetry data and firmware. The following versions of Bransys ELD are affected: Android iOS CVSS Vendor Equipment Vulnerabilities v3 7.5 Bransys Bransys ELD Use of Hard-coded Credentials, Cleartext Transmission of Sensitive Information Background Critical Infrastructure Sectors: Transportation Systems Countries/Areas Deployed: United States Company Headquarters Location: Uni",
+      "publishedAt": "2026-09-17T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-260-01",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-commercial-fb9b9520f5c2",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Google News",
+      "title": "Nokia stock jumps as Microsoft AI data partnership expands - qz.com",
+      "summary": "Nokia stock jumps as Microsoft AI data partnership expands qz.com",
+      "publishedAt": "2026-09-17T11:59:53Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE8zcjRsV2RQRjJzdzVaY0xqTk1XRDV0cVlYWmZWdEIzZ2ZZa1pDX1psZE1ZMU5rUWJiSnIycGhicG9WSG5HY2YyMmtQM2poRjdUZWViUFFVaWJFVkp0aExlY2VrU195YUlKbnpwR0xTYUpSMkU?oc=5",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fabric"
+    },
+    {
+      "id": "live-commercial-9c88fff943c4",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "copilot-ai"
+      ],
+      "source": "Google News",
+      "title": "Nokia accelerates network automation through agentic, unified data foundation with Microsoft - nokia.com",
+      "summary": "Nokia accelerates network automation through agentic, unified data foundation with Microsoft nokia.com",
+      "publishedAt": "2026-09-17T07:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPbklQWUIyay1NdWNxYVhjMEVjVmhPVEFuQWdvemJacjUyeko1SnU3bEJOMUxOU1JyZlJ4b0ZZQXFDZHpzVjBoM19iX1B4aUF0Q1dCTjZ5cEtwQ3JqTVZheHc5Um44RmFRU0pLYlZNWHptNlgxQXJ0aVNOeDZra0hldXQtM3g1VHJsZUxmZE85eGRLaDhTWXQtNzgyQWc3VG1JYmtRVFlyTjJhRkNmTDdjZzRTRGRTUWkxc0lteUF5cVI?oc=5",
+      "whyItMatters": {
+        "copilot-ai": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fabric"
+    },
+    {
+      "id": "live-gov-af506e9ac1fd",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "FedScoop",
+      "title": "Bipartisan coalition calls on House leaders to advance AI guardrails",
+      "summary": "“Congress has a singular opportunity to respond swiftly and effectively to these warning shots before true catastrophes occur,” the representatives said in a letter. The post Bipartisan coalition calls on House leaders to advance AI guardrails appeared first on FedScoop .",
+      "publishedAt": "2026-09-16T22:38:45Z",
+      "trustTier": "live-public",
+      "url": "https://fedscoop.com/bipartisan-coalition-calls-on-house-leaders-to-advance-ai-guardrails/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fedscoop"
+    },
+    {
+      "id": "live-commercial-a349c3d0ff53",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "The New Stack",
+      "title": "Perplexity’s AI agents helped build a database. They weren’t allowed to run it.",
+      "summary": "Perplexity decided it was paying too much for DynamoDB and wasn’t getting the control it wanted over read performance. So The post Perplexity’s AI agents helped build a database. They weren’t allowed to run it. appeared first on The New Stack .",
+      "publishedAt": "2026-09-16T21:51:15Z",
+      "trustTier": "live-public",
+      "url": "https://thenewstack.io/perplexity-cobbledb-ai-database/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "thenewstack"
+    },
+    {
+      "id": "live-gov-264e5487050a",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "GSA’s web design system head replaced with Treasury AI engineer",
+      "summary": "The U.S. Web Design System is intended to help the federal government build accessible and mobile-friendly websites.",
+      "publishedAt": "2026-09-16T21:38:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/people/2026/09/gsas-web-design-system-head-replaced-treasury-ai-engineer/416035/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-gov-b14dc6edff04",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "AI ‘is changing the game’ in fraud threats and prevention efforts, SSA OIG official says",
+      "summary": "Chief Strategy Officer for the SSA Office of the Inspector General Chad Bungard said “the government is looking towards AI to fight fraud, and the criminals are looking towards AI to commit fraud.”",
+      "publishedAt": "2026-09-16T20:32:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/artificial-intelligence/2026/09/ai-changing-game-fraud-threats-and-prevention-efforts-ssa-oig-official-says/416033/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-gov-d5eb2ed504b2",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "copilot-ai"
+      ],
+      "source": "Nextgov",
+      "title": "Salesforce expands Missionforce with new AI capabilities, OpenAI partnership",
+      "summary": "The company recently announced it will also bring NVIDIA Nemotron-based models and accelerated computing into Missionforce, an agentic platform for agencies.",
+      "publishedAt": "2026-09-16T20:29:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/acquisition/2026/09/salesforce-expands-missionforce-new-ai-capabilities-openai-partnership/416031/",
+      "whyItMatters": {
+        "copilot-ai": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-commercial-3ca793c4d804",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "data-warehouse",
+        "realtime-analytics"
+      ],
+      "source": "Snowflake Blog",
+      "title": "Snowpipe Streaming Elastic Channels Is Now GA | Snowflake",
+      "summary": "Snowpipe Streaming Elastic Channels and durable acknowledgments are now generally available — stream data directly from any producer into Snowflake.",
+      "publishedAt": "2026-09-16T19:58:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.snowflake.com/content/snowflake-site/global/en/blog/snowpipe-streaming-elastic-channels-ga",
+      "whyItMatters": {
+        "data-warehouse": "Live public commercial desk item tagged to this workload via headline keywords.",
+        "realtime-analytics": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "snowflake"
+    },
+    {
+      "id": "live-commercial-3b31f410a66f",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "pipelines",
+        "onelake"
+      ],
+      "source": "The New Stack",
+      "title": "“Everyone’s in a race to replace GitHub”: Zed launches Delta because agents made pull requests obsolete",
+      "summary": "Something of a consensus has emerged from the developer fraternity in 2026 — GitHub, a platform built substantively for human The post “Everyone’s in a race to replace GitHub”: Zed launches Delta because agents made pull requests obsolete appeared first on The New Stack .",
+      "publishedAt": "2026-09-16T19:45:30Z",
+      "trustTier": "live-public",
+      "url": "https://thenewstack.io/zed-delta-github-alternative/",
+      "whyItMatters": {
+        "pipelines": "Live public commercial desk item tagged to this workload via headline keywords.",
+        "onelake": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "thenewstack"
+    },
+    {
+      "id": "live-gov-0fac0cca4cec",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "copilot-ai",
+        "security-governance"
+      ],
+      "source": "Nextgov",
+      "title": "AI agents are getting better at cybersecurity. That cuts both ways.",
+      "summary": "NIST is testing agentic AI to help enrich the National Vulnerability Database, even as increasingly capable models demonstrate why cyber autonomy needs careful containment.",
+      "publishedAt": "2026-09-16T18:41:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/cybersecurity/2026/09/ai-agents-are-getting-better-cybersecurity-cuts-both-ways/416025/",
+      "whyItMatters": {
+        "copilot-ai": "Live public gov desk item tagged to this workload via headline keywords.",
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-gov-1e9894262f92",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "DefenseScoop",
+      "title": "Air Force establishing ‘Megatron’ IDIQ to fast-track DAF Battle Network acquisitions",
+      "summary": "“We want industry to understand the mission problem, bring their best ideas, and be prepared to deliver interoperable and adaptive capability,\" Brig. Gen. Joshua Williams said. The post Air Force establishing ‘Megatron’ IDIQ to fast-track DAF Battle Network acquisitions appeared first on DefenseScoop .",
+      "publishedAt": "2026-09-16T18:29:03Z",
+      "trustTier": "live-public",
+      "url": "https://defensescoop.com/2026/09/16/air-force-megatron-idiq-fast-track-daf-battle-network-acquisitions/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "defensescoop"
+    },
+    {
+      "id": "live-gov-89a920257f0b",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "FedScoop",
+      "title": "USDA launches new interactive data insights tool",
+      "summary": "The Agriculture Department has launched a public data tool for the office that publishes official U.S. data on crop production and prices, it announced Wednesday. The post USDA launches new interactive data insights tool appeared first on FedScoop .",
+      "publishedAt": "2026-09-16T18:12:04Z",
+      "trustTier": "live-public",
+      "url": "https://fedscoop.com/usda-launches-new-interactive-data-insights-tool/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fedscoop"
+    },
+    {
+      "id": "live-gov-f9d8e934bae3",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "AI for air traffic control won’t be like concerning advanced models, Transportation head says",
+      "summary": "Transportation Secretary Sean Duffy drew a distinction between the advanced AI models that have raised alarms from some tech executives and the new capabilities being deployed to overhaul management of the nation’s airspace.",
+      "publishedAt": "2026-09-16T17:20:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/artificial-intelligence/2026/09/ai-air-traffic-control-wont-be-concerning-advanced-models-transportation-head-says/416023/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-commercial-d6370a133832",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Databricks Blog",
+      "title": "\"Regex for Rows\": Simplifying Pattern Detection in SQL with MATCH_RECOGNIZE",
+      "summary": "Imagine you work in cybersecurity and you have a table that tracks login attempts...",
+      "publishedAt": "2026-09-16T17:14:05Z",
+      "trustTier": "live-public",
+      "url": "https://www.databricks.com/blog/regex-rows-simplifying-pattern-detection-sql-matchrecognize",
+      "whyItMatters": {
+        "security-governance": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "databricks"
+    },
+    {
+      "id": "live-gov-14384c7d7e22",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "House Democrats call to cancel upcoming recess for time to legislate on AI",
+      "summary": "Four lawmakers stressed the need for more working days and bipartisan teamwork to respond to the national calls for strong artificial intelligence protections.",
+      "publishedAt": "2026-09-16T16:30:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/artificial-intelligence/2026/09/house-democrats-call-cancel-upcoming-recess-time-legislate-ai/416020/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-commercial-ec89d41e593d",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Azure Blog",
+      "title": "Microsoft recognized as a Leader in the 2026 Gartner® Magic Quadrant™ for Distributed Hybrid Infrastructure",
+      "summary": "Gartner highlighted Microsoft’s unified single-product architecture, flexibility across hyperconverged and disaggregated architectures, and more. The post Microsoft recognized as a Leader in the 2026 Gartner® Magic Quadrant™ for Distributed Hybrid Infrastructure appeared first on Microsoft Azure Blog .",
+      "publishedAt": "2026-09-16T16:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://azure.microsoft.com/en-us/blog/microsoft-recognized-as-a-leader-in-the-2026-gartner-magic-quadrant-for-distributed-hybrid-infrastructure/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "azure-blog"
+    },
+    {
+      "id": "live-commercial-32c4b308e864",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "The New Stack",
+      "title": "AI evaluator: The most important AI job in history? How developers might fill the proposed new job",
+      "summary": "The pace of frontier AI model development spurred Anthropic CEO Dario Amodei to publish an essay last weekend, calling for The post AI evaluator: The most important AI job in history? How developers might fill the proposed new job appeared first on The New Stack .",
+      "publishedAt": "2026-09-16T15:58:41Z",
+      "trustTier": "live-public",
+      "url": "https://thenewstack.io/ai-embedded-evaluator-jobs/",
+      "whyItMatters": {
+        "security-governance": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "thenewstack"
+    },
+    {
+      "id": "live-gov-bab49cd24185",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "FedScoop",
+      "title": "House passes bill to give financial agencies a technology boost",
+      "summary": "The FUTURES Act aims to close “talent gaps, procurement barriers, or technological blind spots” at the federal financial regulators, the bill’s Republican co-sponsor says. The post House passes bill to give financial agencies a technology boost appeared first on FedScoop .",
+      "publishedAt": "2026-09-16T15:57:42Z",
+      "trustTier": "live-public",
+      "url": "https://fedscoop.com/house-passes-futures-act-modernize-financial-agencies/",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fedscoop"
+    },
+    {
+      "id": "live-commercial-00e001816876",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "data-warehouse",
+        "data-science"
+      ],
+      "source": "AWS Big Data Blog",
+      "title": "Discover and govern Snowflake data using SageMaker Unified Studio",
+      "summary": "Connect Snowflake to Amazon SageMaker Unified Studio to build a unified data catalog. Query federated Snowflake tables without moving data, publish enriched assets to SageMaker Catalog, and validate data quality with AWS Glue Data Quality, all while keeping data in Snowflake.",
+      "publishedAt": "2026-09-16T15:19:51Z",
+      "trustTier": "live-public",
+      "url": "https://aws.amazon.com/blogs/big-data/discover-and-govern-snowflake-data-using-sagemaker-unified-studio/",
+      "whyItMatters": {
+        "data-warehouse": "Live public commercial desk item tagged to this workload via headline keywords.",
+        "data-science": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "aws-big-data"
+    },
+    {
+      "id": "live-gov-64fd436ac9ff",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA Advisories",
+      "title": "Using Cyber Decoys to Strengthen Detection and Response",
+      "summary": "CISA developed this guidance to help defensive teams at varying levels of cybersecurity maturity plan and implement cyber decoy strategies that strengthen their detection and response capabilities. Many organizations struggle to detect adversaries who use legitimate credentials, native tools, and living off the land (LOTL) techniques to conduct discovery, move laterally, and access data. Cyber decoys are assets that appear to be legitimate systems, accounts, or data, but are ",
+      "publishedAt": "2026-09-16T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/resources-tools/resources/using-cyber-decoys-strengthen-detection-and-response",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-gov-94ab3d474c7a",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA Advisories",
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "summary": "CISA has added two new vulnerabilities to its Known Exploited Vulnerabilities (KEV) Catalog , based on evidence of active exploitation. CVE-2026-76460 Cisco Identity Services Engine Incorrect Use of Privileged APIs Vulnerability CVE-2026-87886 Acronis Backup Incorrect Default Permissions Vulnerability These types of vulnerabilities are a frequent attack vector for malicious cyber actors and pose significant risks to the federal enterprise. Binding Operational Directive (BOD) ",
+      "publishedAt": "2026-09-16T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/alerts/2026/09/16/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-advisories"
+    },
+    {
+      "id": "live-gov-6edfbdae5b82",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA News",
+      "title": "New CISA Guidance Helps Critical Infrastructure Detect, Observe and Impede Malicious Cyber Activity",
+      "summary": "Public headline from CISA News (live RSS).",
+      "publishedAt": "2026-09-16T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/news/new-cisa-guidance-helps-critical-infrastructure-detect-observe-and-impede-malicious-cyber-activity",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-news"
+    },
+    {
+      "id": "live-gov-c1bfb3ebfd4e",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "DefenseScoop",
+      "title": "Pentagon taps USNDA to head its ‘Top Drone’ competitions",
+      "summary": "Defense officials have touted competitions as a way to test new systems, share tactics across the force, identify talent and grow an institutional focus toward small drones as the U.S. military races to adopt the technology. The post Pentagon taps USNDA to head its ‘Top Drone’ competitions appeared first on DefenseScoop .",
+      "publishedAt": "2026-09-16T10:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://defensescoop.com/2026/09/16/pentagon-taps-usnda-to-head-its-top-drone-competitions/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "defensescoop"
+    },
+    {
+      "id": "live-commercial-e0e042bb7756",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Google News",
+      "title": "Axalta cuts data reloads 87% and streamlines analytics with Microsoft Fabric - Microsoft",
+      "summary": "Axalta cuts data reloads 87% and streamlines analytics with Microsoft Fabric Microsoft",
+      "publishedAt": "2026-09-16T04:05:57Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPcXNaTmJCQndidDVjNFJOc1BfbTVfQzV5Z21tX3I0ZDdMVHhOTTZSXzBEY2t1Znp2OE9lSEwweDRKVm94dXhRZE54MzNybVkwck1vazI3T05nalhpdjhmQmVqVkN6Q1lWbGJKSm8xbmZmTFNFM0JqY2M2S3ZzTTFNMkVHall6VThUT29Zanp2SE90cm8w?oc=5",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fabric"
+    },
+    {
+      "id": "live-commercial-c1c9990ee694",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "copilot-ai"
+      ],
+      "source": "The New Stack",
+      "title": "OpenAI president: “The computer should be there to empower you.” So stop retooling software for AI agents",
+      "summary": "This week on the a16z show, Greg Brockman, president and co-founder of OpenAI, made the point that developers have been The post OpenAI president: “The computer should be there to empower you.” So stop retooling software for AI agents appeared first on The New Stack .",
+      "publishedAt": "2026-09-15T23:41:22Z",
+      "trustTier": "live-public",
+      "url": "https://thenewstack.io/computer-use-agent-connectors/",
+      "whyItMatters": {
+        "copilot-ai": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "thenewstack"
+    },
+    {
+      "id": "live-gov-b9d6a33c2057",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "FBI needs access to latest models to police AI-driven cybercrime, director says",
+      "summary": "Federal Bureau of Investigation Director Kash Patel spoke about how he thinks the bureau can best police new AI-related criminal activity, beginning with model access.",
+      "publishedAt": "2026-09-15T22:26:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/artificial-intelligence/2026/09/fbi-needs-access-latest-models-police-ai-driven-cybercrime-director-says/416011/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-gov-03d94d8edbc1",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "NGA official assumes top AI role at Cyber Command",
+      "summary": "Ronzelle Green steps into the chief artificial intelligence officer role previously held by Reid Novotny, who worked to expand the combatant command’s embrace of new AI capabilities regardless of their origins.",
+      "publishedAt": "2026-09-15T21:50:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/people/2026/09/nga-official-assumes-top-ai-role-cyber-command/416008/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-gov-deb3a2ad77fd",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "TSA uses AI agent to respond to 100,000 traveler conversations per month",
+      "summary": "The technology has resolved 96% of traveler inquiries without human escalation, according to Salesforce.",
+      "publishedAt": "2026-09-15T21:45:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/artificial-intelligence/2026/09/tsa-uses-ai-agent-respond-100000-traveler-conversations-month/416007/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-gov-d1dc9a71e74f",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "FedScoop",
+      "title": "NRC to reformulate its AI strategy amid OCIO reorg, other changes",
+      "summary": "The regulator’s refreshed strategy will debut in the coming months, and its modernized website is set to soft launch this week. The post NRC to reformulate its AI strategy amid OCIO reorg, other changes appeared first on FedScoop .",
+      "publishedAt": "2026-09-15T21:32:45Z",
+      "trustTier": "live-public",
+      "url": "https://fedscoop.com/nrc-ai-strategy-ocio-reorg-website-redesign/",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fedscoop"
+    },
+    {
+      "id": "live-gov-5e0019eeae56",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Nextgov",
+      "title": "Supreme Court keeps USPS from carrying out mail-in voting changes in midterm elections",
+      "summary": "Postmaster General David Steiner previously told Government Executive that USPS would comply if the courts decided to block these changes.",
+      "publishedAt": "2026-09-15T21:31:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.nextgov.com/modernization/2026/09/supreme-court-keeps-usps-carrying-out-mail-voting-changes-midterm-elections/416006/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "nextgov"
+    },
+    {
+      "id": "live-commercial-e1e7a4c4d2f0",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "The New Stack",
+      "title": "AWS agents will suggest your new flights. Code decides what gets booked.",
+      "summary": "AWS published a new Step Functions pattern this week that gives AI agents a role in airline rebooking while keeping The post AWS agents will suggest your new flights. Code decides what gets booked. appeared first on The New Stack .",
+      "publishedAt": "2026-09-15T21:27:21Z",
+      "trustTier": "live-public",
+      "url": "https://thenewstack.io/aws-agents-deterministic-validation/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "thenewstack"
+    },
+    {
+      "id": "live-gov-aa0dfd103cc8",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "DefenseScoop",
+      "title": "SDA hopes to keep certain decision-making authorities as Congress weighs its future",
+      "summary": "Drafts of the fiscal 2027 NDAA include provisions to repeal existing laws that established the Space Development Agency. The post SDA hopes to keep certain decision-making authorities as Congress weighs its future appeared first on DefenseScoop .",
+      "publishedAt": "2026-09-15T21:24:30Z",
+      "trustTier": "live-public",
+      "url": "https://defensescoop.com/2026/09/15/sda-hopes-to-keep-certain-authorities-as-congress-weighs-its-future/",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "defensescoop"
+    },
+    {
+      "id": "live-commercial-66d9ecfea8cf",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "data-science",
+        "power-bi",
+        "security-governance"
+      ],
+      "source": "AWS Big Data Blog",
+      "title": "Connect Amazon SageMaker Unified Studio to Microsoft Power BI – Part 1: IAM Identity Center (IDC)-based domains",
+      "summary": "Connect Microsoft Power BI directly to governed data in Amazon SageMaker Unified Studio using new authentication modes in the Amazon Athena ODBC driver, with no third-party ODBC-JDBC bridge. Part 1 covers IAM Identity Center (IDC)-based domains with both DSN-based and DSN-less connection methods.",
+      "publishedAt": "2026-09-15T20:55:26Z",
+      "trustTier": "live-public",
+      "url": "https://aws.amazon.com/blogs/big-data/connect-amazon-sagemaker-unified-studio-to-microsoft-power-bi-part-1-iam-identity-center-idc-based-domains/",
+      "whyItMatters": {
+        "data-science": "Live public commercial desk item tagged to this workload via headline keywords.",
+        "power-bi": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "aws-big-data"
+    },
+    {
+      "id": "live-commercial-b71424d5603b",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "data-science",
+        "power-bi",
+        "security-governance"
+      ],
+      "source": "AWS Big Data Blog",
+      "title": "Connect Amazon SageMaker Unified Studio to Microsoft Power BI – Part 2: IAM-based domains",
+      "summary": "Connect Microsoft Power BI directly to governed data in Amazon SageMaker Unified Studio using the Amazon Athena ODBC driver. Part 2 covers IAM-based domains with SageMakerIam authentication, including AWS IAM Identity Center administrator setup, for both DSN-based and DSN-less connection methods.",
+      "publishedAt": "2026-09-15T20:55:16Z",
+      "trustTier": "live-public",
+      "url": "https://aws.amazon.com/blogs/big-data/connect-amazon-sagemaker-unified-studio-to-microsoft-power-bi-part-2-iam-based-domains/",
+      "whyItMatters": {
+        "data-science": "Live public commercial desk item tagged to this workload via headline keywords.",
+        "power-bi": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "aws-big-data"
+    },
+    {
+      "id": "live-gov-d118613e364a",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "FedScoop",
+      "title": "Treasury’s Scott Bessent says no liability exemptions for AI labs",
+      "summary": "The secretary told House Financial Services Committee lawmakers that the “best way to guarantee safety” is for AI creators to be held “liable for what they build and generate.” The post Treasury’s Scott Bessent says no liability exemptions for AI labs appeared first on FedScoop .",
+      "publishedAt": "2026-09-15T20:47:18Z",
+      "trustTier": "live-public",
+      "url": "https://fedscoop.com/treasury-scott-bessent-ai-labs-liability-exemptions/",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fedscoop"
+    },
+    {
+      "id": "live-commercial-3e57406c126e",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "data-warehouse"
+      ],
+      "source": "Snowflake Blog",
+      "title": "Per-User Quotas for AI: Govern Individual Spend in Snowflake",
+      "summary": "Per-user quotas are now generally available in Snowflake. Set individual credit limits on AI Functions, Cortex Agents, CoWork and more — with automatic blocking, notifications and custom actions to govern AI spend at the person level.",
+      "publishedAt": "2026-09-15T20:11:36Z",
+      "trustTier": "live-public",
+      "url": "https://www.snowflake.com/content/snowflake-site/global/en/blog/per-user-quotas-ai-generally-available",
+      "whyItMatters": {
+        "data-warehouse": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "snowflake"
+    },
+    {
+      "id": "live-commercial-9d684b5f94dd",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "power-bi"
+      ],
+      "source": "Microsoft Fabric Blog",
+      "title": "Moving off ODBC — A self-serve scanner for your ADBC migration",
+      "summary": "If your Fabric workspace connects to an ODBC driver, and you haven’t already moved to the ADBC driver, you’re on the ODBC → ADBC migration path. The migration window is already open — the sooner you start, the more room you have to validate. What’s happening Power Query is transitioning from legacy embedded ODBC drivers to Apache Arrow Database Connectivity (ADBC) drivers across Power BI Desktop and the Microsoft Fabric service. ADBC keeps data in the Arrow columnar format en",
+      "publishedAt": "2026-09-15T19:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Moving-off-ODBC-A-self-serve-scanner-for-your-ADBC-migration/ba-p/5365622",
+      "whyItMatters": {
+        "power-bi": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fabric-blog"
+    },
+    {
+      "id": "live-commercial-349a31947587",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Databricks Blog",
+      "title": "How energy teams turn theft detection into governed action with Genie and AI business processes",
+      "summary": "Energy theft is the deliberate use of gas or electricity without paying for it, typically...",
+      "publishedAt": "2026-09-15T16:50:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.databricks.com/blog/how-energy-teams-turn-theft-detection-governed-action-genie-and-ai-business-processes",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "databricks"
+    },
+    {
+      "id": "live-commercial-c8176d07aa1b",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "onelake",
+        "data-warehouse",
+        "security-governance"
+      ],
+      "source": "AWS Big Data Blog",
+      "title": "How United Airlines uses Amazon Redshift and AWS Glue Data Catalog federation to query Databricks-managed data",
+      "summary": "Learn how United Airlines uses AWS Glue Data Catalog federation to query Databricks Unity Catalog data directly from Amazon Redshift Serverless without duplicating data, using resource links and AWS Lake Formation for governance.",
+      "publishedAt": "2026-09-15T15:59:48Z",
+      "trustTier": "live-public",
+      "url": "https://aws.amazon.com/blogs/big-data/how-united-airlines-uses-amazon-redshift-and-aws-glue-data-catalog-federation-to-query-databricks-managed-data/",
+      "whyItMatters": {
+        "onelake": "Live public commercial desk item tagged to this workload via headline keywords.",
+        "data-warehouse": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "aws-big-data"
+    },
+    {
+      "id": "live-gov-f60c7dbc617d",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Google News",
+      "title": "Bitwarden Announces Commitment to Achieve FedRAMP Class D (High) Certification - Business Wire",
+      "summary": "Bitwarden Announces Commitment to Achieve FedRAMP Class D (High) Certification Business Wire",
+      "publishedAt": "2026-09-15T14:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQY3VhX1lRZGdrWWhhcXRWNGlzMmdIS0Y4U3VfQ1RKMlhWcGJCLXlhd3BuSEVzeVNOMjdKcmZiWEhKZVNjRlVUWVY4SEhYeERkN050SlVoZ181eDl4cEFaUHY1d29ZM0p1dEJZUFpRc0hwa1BTR2k3MHpJMmc5XzMtT0Y0V2VhU050YTI4NzVNTjV6dm1Xd19oTWNPUjhuM1RUcjVXX2xPMkNvb2E0dnVkM1lMTUk0RzYtU1ZsNXlMdVE4al91Q1c3OTRiMlNqUQ?oc=5",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fed-cloud"
+    },
+    {
+      "id": "live-commercial-fb8841c175d2",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Azure SQL DevBlog",
+      "title": "Coding agents are picking Azure SQL Database",
+      "summary": "I went looking for Azure SQL Database in a recent coding agent benchmark, honestly unsure whether Microsoft SQL would show up. Armature ran a study where real coding agent CLIs (Claude Code, Codex, Cursor) were dropped into six synthetic-but-realistic repositories and asked to pick a database, then actually build with it. 356 runs were completed across […] The post Coding agents are picking Azure SQL Database appeared first on Azure SQL Dev Corner .",
+      "publishedAt": "2026-09-15T12:55:05Z",
+      "trustTier": "live-public",
+      "url": "https://devblogs.microsoft.com/azure-sql/coding-agents-are-picking-azure-sql-database/",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "azure-sql-devblog"
+    },
+    {
+      "id": "live-gov-73133ebf7122",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Google News",
+      "title": "New MSP route enables FedRAMP High data protection services for U.S. federal cybersecurity needs - Pluang",
+      "summary": "New MSP route enables FedRAMP High data protection services for U.S. federal cybersecurity needs Pluang",
+      "publishedAt": "2026-09-15T12:47:29Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOdDBVT2JlRURGWlVIM25oNGVPTVp6d3pMeXl6Wk8td1d4M1NtVVN1RlhZdVVaeTV2SzhpUkFhSlN6SkVpeWptUmt4OTVSMjVZTjFqNXNIMHlaTTJMdmcyZEdaZERNNFZuTzgwSXRFM19DOUpRRXlwYlBwTjczQjRPYTFkbW5iQXhJWVlWOUpwMVFNaDNqMExWSElZWlo1VmgwbENRVWtHOXlGaUU?oc=5",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fed-cloud"
+    },
+    {
+      "id": "live-gov-96cfd2ae4454",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Google News",
+      "title": "Commvault Expands FedRAMP High Authorized Cyber Resilience Services to Managed Service Providers - PR Newswire",
+      "summary": "Commvault Expands FedRAMP High Authorized Cyber Resilience Services to Managed Service Providers PR Newswire",
+      "publishedAt": "2026-09-15T12:30:00Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOZ3hqb0NjcEY3bkljaWgxOEJZSUJJVExzcjBRYk9NM25pZm5OdE8xdlcxaTU5N1JLc1prOFhzaDFDckV2YjVQOUFFU3VCSHVoR1dCSVhOM1NVMlVBTllPakJ5UTkzbEp6endhWS1xR0FSVGZXZWlUMHRSdkZIRHpsZUFLOTJxTUlQNlJZQ2Y1cEJQOHpTbkY4aFpINk5KZ2hDR1dhamtUMkZWdGZxd1p5YVJsLUxfYlE5UmRBcnY2YjVid0R1TVRGcE96bFphakZZTUFnVWR2RjlYNEwxNTl2Wjdsd3hfYlU?oc=5",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fed-cloud"
+    },
+    {
+      "id": "live-gov-f2cb05609550",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Google News",
+      "title": "Service providers can now help protect and recover sensitive government data with Commvault. - Stock Titan",
+      "summary": "Service providers can now help protect and recover sensitive government data with Commvault. Stock Titan",
+      "publishedAt": "2026-09-15T12:30:00Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOcHRMNHBYQ2p0bzVwdHJyWHpuTzVFUEtzOTdoaG5yZ3UwamljLU9Pd2tIbGRLUG1EMll4cHdxdVBZaTVGVWJTaXh2RW5NdnlQY2lmSGt1a1YtT3dJdXVsbkVzQ2J1TGVPTEE1MkNTNGpobXA4Q0swZlVGUUZmQ0pscEEtRl9CeUZDdGlYUWFtZ2xFdEEwRjVRLUstam9Bd0FicHVvUjhuSkhqbGFPemw2b2RNTWV3dHhPejh4TVdzNnY?oc=5",
+      "whyItMatters": {
+        "other": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fed-cloud"
+    },
+    {
+      "id": "live-commercial-f100a6ef3768",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Google News",
+      "title": "KINETIQ Launches 60–90 Day Microsoft Fabric Implementation Offer on Microsoft Marketplace - EIN News",
+      "summary": "KINETIQ Launches 60–90 Day Microsoft Fabric Implementation Offer on Microsoft Marketplace EIN News",
+      "publishedAt": "2026-09-15T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPbUlzTGhfcnB1RnVmOXliT0FJVTNyV2pWSG9HbkdZZmNvQUN1VlJkZ2NrQWVKa05tQWtTUkVydzhjSFBVcGxrMlVRZXVjRHZiNEtGcG83Z0FtS2ZrSS14a1FJVEJnbHRmNTFudEg0M1g5M2NUNWttbmh0azB1dUM5cjg3RmdHWGo5ZXd1TWpPWDFTSVptLTRwYUM4eXN6SllXV0JEN0ZXUndhQ01QYURxU2lSendnMm5INWdDWUR3MU8zV0sySmlhemgxaw?oc=5",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fabric"
+    },
+    {
+      "id": "live-gov-548ce1461685",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA News",
+      "title": "CISA and NIST Release Guidelines to Protect Federal Cloud Identity Systems from Token Theft, Forgery, and Misuse",
+      "summary": "Public headline from CISA News (live RSS).",
+      "publishedAt": "2026-09-15T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/news/cisa-and-nist-release-guidelines-protect-federal-cloud-identity-systems-token-theft-forgery-and",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-news"
+    },
+    {
+      "id": "live-commercial-0133542cccee",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Databricks Blog",
+      "title": "How Databricks’ marketers use data 3x more with Genie, an AI analytics assistant",
+      "summary": "Most marketing teams aspire to be data-driven. In practice, getting a trusted answer,...",
+      "publishedAt": "2026-09-15T00:36:33Z",
+      "trustTier": "live-public",
+      "url": "https://www.databricks.com/blog/databricks-marketers-use-data-3x-genie-ai-analytics-assistant",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "databricks"
+    },
+    {
+      "id": "live-commercial-379e80c78b5f",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Databricks Blog",
+      "title": "Managed Postgres: What Lakebase Actually Takes Off Your Plate",
+      "summary": "Every Postgres vendor calls itself \"managed.\" Few of them agree on what that word...",
+      "publishedAt": "2026-09-14T23:36:59Z",
+      "trustTier": "live-public",
+      "url": "https://www.databricks.com/blog/managed-postgres",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "databricks"
+    },
+    {
+      "id": "live-gov-5f269d81511f",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "copilot-ai",
+        "security-governance"
+      ],
+      "source": "FedScoop",
+      "title": "ICE plans AI assistant to have role in use case development, document shows",
+      "summary": "While the system’s deployment timeline is unclear, the Department of Homeland Security unit described the platform as providing a secure access point to large language models. The post ICE plans AI assistant to have role in use case development, document shows appeared first on FedScoop .",
+      "publishedAt": "2026-09-14T22:09:31Z",
+      "trustTier": "live-public",
+      "url": "https://fedscoop.com/ice-ai-assistant-stella-dhs-use-case-inventory/",
+      "whyItMatters": {
+        "copilot-ai": "Live public gov desk item tagged to this workload via headline keywords.",
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fedscoop"
+    },
+    {
+      "id": "live-commercial-03ebfc4ba8c8",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "data-warehouse"
+      ],
+      "source": "Snowflake Blog",
+      "title": "Snowflake Data Connectivity Proxy for Private Data",
+      "summary": "Connect private data sources to Snowflake Openflow without changing network rules. Data Connectivity Proxy offers secure, inbound-free integration.",
+      "publishedAt": "2026-09-14T19:58:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.snowflake.com/content/snowflake-site/global/en/blog/data-connectivity-proxy-openflow",
+      "whyItMatters": {
+        "data-warehouse": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "snowflake"
+    },
+    {
+      "id": "live-commercial-af4b479159ca",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "data-warehouse"
+      ],
+      "source": "Microsoft Fabric Blog",
+      "title": "Diagnose Fabric Data Warehouse workloads with the SQL DW operations skill (Generally Available)",
+      "summary": "When a warehouse slows down, the investigation usually starts with more questions than answers. Was there a capacity spike? Did a specific query suddenly become expensive? Are requests failing, being canceled, or simply taking longer than usual? Answering those questions often requires switching between the Fabric Capacity Metrics app, Query Insights, and SQL pool diagnostics while manually correlating time ranges across multiple tools. The SQL DW operations skill brings thos",
+      "publishedAt": "2026-09-14T17:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Diagnose-Fabric-Data-Warehouse-workloads-with-the-SQL-DW/ba-p/5366102",
+      "whyItMatters": {
+        "data-warehouse": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fabric-blog"
+    },
+    {
+      "id": "live-commercial-33d72892b38a",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "realtime-analytics"
+      ],
+      "source": "Microsoft Fabric Blog",
+      "title": "From Business Events, Fabric Events, and Azure Events to Real-Time Hub",
+      "summary": "Welcome to the eighth and final post in our Business Events, Fabric Events, and Azure Events series for Microsoft Fabric. This series takes you from foundational event-driven concepts to practical implementation patterns that help teams turn meaningful business moments into trusted signals, decisions, and actions across Fabric.",
+      "publishedAt": "2026-09-14T16:59:28Z",
+      "trustTier": "live-public",
+      "url": "https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/From-Business-Events-Fabric-Events-and-Azure-Events-to-Real-Time/ba-p/5365864",
+      "whyItMatters": {
+        "realtime-analytics": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fabric-blog"
+    },
+    {
+      "id": "live-commercial-aa3fbc76fe46",
+      "cloudDesk": "commercial",
+      "workloadIds": [
+        "other"
+      ],
+      "source": "Microsoft Fabric Blog",
+      "title": "Designing scalable Business Events in Microsoft Fabric",
+      "summary": "Welcome to the seventh post in our Business Events, Fabric Events, and Azure Events series for Microsoft Fabric. This series takes you from foundational event-driven concepts to practical implementation patterns that help teams turn meaningful business moments into trusted signals, decisions, and actions across Fabric.",
+      "publishedAt": "2026-09-14T16:59:09Z",
+      "trustTier": "live-public",
+      "url": "https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Designing-scalable-Business-Events-in-Microsoft-Fabric/ba-p/5365863",
+      "whyItMatters": {
+        "other": "Live public commercial desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "fabric-blog"
+    },
+    {
+      "id": "live-gov-027b9478618e",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Google News",
+      "title": "Cloudflare Achieves FedRAMP High Authorization to Secure and Accelerate the U.S. Government’s Critical Missions - Cloudflare",
+      "summary": "Cloudflare Achieves FedRAMP High Authorization to Secure and Accelerate the U.S. Government’s Critical Missions Cloudflare",
+      "publishedAt": "2026-09-11T18:49:16Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQZDJxbWZYMUlJM2c2bXM0T284OEJmajcyTEpqN2ZLMmVPemVvQjVXSHJJQnFrNzhZVFlGcThXd0JVUTV6eFR2RWh3VER1NEppRWNPVDBpLWZVcDhCVnJtYUY4T09JOExhTFp0R0pxblhIZ2x4N1dkQkU1M1laTlVpS3ZJa3lQb2ZrUGMxRWpmMm9lNDV1Nk1rMzFVSlhhMlJzeW1TUEJCd3hld2l1ZktUblR5b0VlZWdmb3VHYWZqeEhnV0lUUlJQSW5yQ3JDV2ZsWVVzYndNSTBubmZRb1FxU29QNmVSOGk5SkdlU285RlI5Zkk3OFpYdktoeWNyZw?oc=5",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fed-cloud"
+    },
+    {
+      "id": "live-gov-e343a5c1b4f9",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA News",
+      "title": "CISA Releases Updated Insider Threat Guide With New Insights to Mitigate Physical and Cyber Threats",
+      "summary": "Public headline from CISA News (live RSS).",
+      "publishedAt": "2026-09-09T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/news/cisa-releases-updated-insider-threat-guide-new-insights-mitigate-physical-and-cyber-threats",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-news"
+    },
+    {
+      "id": "live-gov-868ee657d9b7",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "onelake",
+        "security-governance"
+      ],
+      "source": "CISA News",
+      "title": "CISA, NSA and FBI Warn of China-Based AI Companies Targeting US AI Models with Industrial-Scale Knowledge Distillation Campaigns to Shortcut AI Development",
+      "summary": "Public headline from CISA News (live RSS).",
+      "publishedAt": "2026-09-08T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/news/cisa-nsa-and-fbi-warn-china-based-ai-companies-targeting-us-ai-models-industrial-scale-knowledge",
+      "whyItMatters": {
+        "onelake": "Live public gov desk item tagged to this workload via headline keywords.",
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-news"
+    },
+    {
+      "id": "live-gov-ed5e2a0b24b1",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "Google News",
+      "title": "FedRAMP Consolidated Rules 2026: Rev5 Sunset, 20x Transition, and Critical Deadlines for Cloud Providers - Crowell & Moring LLP",
+      "summary": "FedRAMP Consolidated Rules 2026: Rev5 Sunset, 20x Transition, and Critical Deadlines for Cloud Providers Crowell & Moring LLP",
+      "publishedAt": "2026-09-03T07:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPd00xX0ttbG9oNTR0VVNOS2NMSXhzQ0RnM25uMXhYaFJfSElUUDFUZkFOR0pfWmtUd2xuQjBHc24wbWFLX2lwWVVQQTNfZ2xNa1VOZDBwaXVOSDFtRWc5R3YzVjR1WGpTbmFVblZYTE1LLXMtcmdzT0dDa0k4SzVjMmZSSFFTODlnLTFzRV8yRUVMeVAtM3JsLXZUNEV2ZDUyN2VWRDRLNTBfeTFINDdMemNrSVZNSDEzZlBRTUk1ZXVSdWVIM3FSOXRZUDh5TjlJMVd6SA?oc=5",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "gnews-fed-cloud"
+    },
+    {
+      "id": "live-gov-99dfaed39d10",
+      "cloudDesk": "gov",
+      "workloadIds": [
+        "security-governance"
+      ],
+      "source": "CISA News",
+      "title": "CISA Advisory Highlights Red Team Findings to Help Organizations Assess Risk, Identify Threats and Enable Effective Incident Response",
+      "summary": "Public headline from CISA News (live RSS).",
+      "publishedAt": "2026-08-25T12:00:00Z",
+      "trustTier": "live-public",
+      "url": "https://www.cisa.gov/news-events/news/cisa-advisory-highlights-red-team-findings-help-organizations-assess-risk-identify-threats-and",
+      "whyItMatters": {
+        "security-governance": "Live public gov desk item tagged to this workload via headline keywords."
+      },
+      "provenance": "live-public",
+      "feedId": "cisa-news"
+    }
+  ]
+}

@@ -24,6 +24,14 @@ npm run build
 npm run preview
 ```
 
+Refresh **live public** intelligence desks (RSS / Atom / public APIs → committed JSON):
+
+```bash
+npm run fetch:intelligence
+```
+
+See [`docs/INTELLIGENCE-FEEDS.md`](docs/INTELLIGENCE-FEEDS.md) for sources, desk separation, and the UNCLASSIFIED gov banner.
+
 ## What this prototype includes
 
 1. **Sample X mentions** about Microsoft Fabric (58 hand-authored posts, Sep 5–12 2026), including Commercial / USGov / IL7 / IL6 cloud slices.
@@ -99,6 +107,8 @@ Tokens live as CSS variables on `[data-theme="…"]` in `src/index.css` (canvas/
 | `src/data/themes.ts` | Theme keyword definitions + polarity |
 | `src/data/ado.ts` | Demo semester plans, work items, deps, theme mappings |
 | `src/data/actions.ts` / `news.ts` | Suggested actions and news items |
+| `src/data/intelligence.ts` + `intelligenceLive.ts` | Demo + live-public intelligence desks |
+| `docs/INTELLIGENCE-FEEDS.md` | RSS/API sources and `npm run fetch:intelligence` |
 | `src/lib/aggregate.ts` | Theme clustering, cloud/workload filters, KPIs, coverage helpers |
 | `src/theme/` | Aesthetic theme registry, provider, and chart color helpers |
 | `src/layout/` | Presentation layout registry, provider, brief/spike helpers |

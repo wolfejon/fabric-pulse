@@ -1,8 +1,11 @@
 import { useMemo, useState } from 'react'
 import {
+  corpusProvenanceLabel,
   deskBanner,
   deskForCloud,
   deskLabel,
+  isLivePublic,
+  provenanceLabel,
   selectIntelligenceNews,
   trustLabel,
   whyStoryMatters,
@@ -18,6 +21,7 @@ import type {
 /**
  * Cloud-contextual News Desk (#1) + workload linker (#10).
  * USGov / IL7 / IL6 → Fed/Defense/Intel desk; Commercial / All → commercial desk.
+ * Live-public RSS pack is preferred when present; synthetic demo pack remains.
  */
 export function NewsDeskRail({
   cloud,
@@ -39,6 +43,7 @@ export function NewsDeskRail({
     [items, cloud, workload, compact],
   )
   const banner = deskBanner(desk)
+  const provenance = corpusProvenanceLabel(stories)
 
   const shell =
     tone === 'dark'
@@ -66,7 +71,8 @@ export function NewsDeskRail({
             <p className={`mt-0.5 text-[11px] ${mute}`}>
               {stories.length} stories
               {workload !== 'all' ? ' · workload-prioritized' : ''}
-              {' · '}demo corpus only
+              {' · '}
+              {provenance}
             </p>
           </div>
           <button
@@ -96,6 +102,7 @@ export function NewsDeskRail({
             {stories.map((story) => {
               const why = whyStoryMatters(story, workload)
               const linked = workload !== 'all' && story.workloadIds.includes(workload)
+              const live = isLivePublic(story)
               return (
                 <li
                   key={story.id}
@@ -103,6 +110,15 @@ export function NewsDeskRail({
                 >
                   <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.12em]">
                     <span className={accent}>{trustLabel(story.trustTier)}</span>
+                    <span
+                      className={
+                        live
+                          ? 'rounded-full bg-emerald-500/15 px-2 py-0.5 font-semibold text-emerald-800'
+                          : 'rounded-full bg-black/5 px-2 py-0.5 text-current/60'
+                      }
+                    >
+                      {provenanceLabel(story)}
+                    </span>
                     <span className={mute}>{story.source}</span>
                     <span className={mute}>{formatDay(story.publishedAt)}</span>
                     {linked ? (
@@ -111,7 +127,18 @@ export function NewsDeskRail({
                       </span>
                     ) : null}
                   </div>
-                  <p className="mt-1 text-sm font-medium leading-snug">{story.title}</p>
+                  {story.url ? (
+                    <a
+                      href={story.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 block text-sm font-medium leading-snug hover:underline"
+                    >
+                      {story.title}
+                    </a>
+                  ) : (
+                    <p className="mt-1 text-sm font-medium leading-snug">{story.title}</p>
+                  )}
                   <p className={`mt-1 text-xs leading-relaxed ${mute}`}>{story.summary}</p>
                   <p className={`mt-1.5 text-[10px] uppercase tracking-[0.12em] ${mute}`}>
                     Workloads · {workloadLabelsFor(story)}

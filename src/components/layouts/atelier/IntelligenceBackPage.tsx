@@ -1,9 +1,12 @@
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ExternalLink } from 'lucide-react'
 import { motion } from 'motion/react'
 import { WORKLOAD_CATALOG } from '../../../data/catalog'
 import {
+  corpusProvenanceLabel,
   deskBanner,
   deskLabel,
+  isLivePublic,
+  provenanceLabel,
   trustLabel,
   whyStoryMatters,
   workloadLabelsFor,
@@ -18,6 +21,7 @@ import type {
 /**
  * Chronicle B-section / Intelligence back page (#6).
  * Folio + INTELLIGENCE section flag; content from active cloud desk (#1).
+ * Live public feed preferred; demo pack retained with clear provenance.
  */
 export function IntelligenceBackPage({
   desk,
@@ -39,6 +43,7 @@ export function IntelligenceBackPage({
   const banner = deskBanner(desk)
   const workloadNote =
     workload === 'all' ? 'All Fabric' : (WORKLOAD_CATALOG[workload]?.shortLabel ?? workload)
+  const provenance = corpusProvenanceLabel(stories)
 
   return (
     <motion.div
@@ -74,6 +79,7 @@ export function IntelligenceBackPage({
           Market, policy, and industry intelligence for the active cloud slice. Competitor posture
           stays on B1 — jump below when a story cites a rival page.
         </p>
+        <p className="mt-2 text-[11px] uppercase tracking-[0.14em] text-[#00A4A6]">{provenance}</p>
         {banner ? (
           <p
             className="mt-4 rounded-sm border border-amber-700/35 bg-amber-50 px-3 py-2 text-[12px] font-medium text-amber-950"
@@ -97,20 +103,39 @@ export function IntelligenceBackPage({
         ) : (
           stories.map((story, i) => {
             const why = whyStoryMatters(story, workload)
+            const live = isLivePublic(story)
             return (
               <article key={story.id} className="border-b border-[#c8c2b4] pb-6 last:border-b-0">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#00A4A6]">
-                  {trustLabel(story.trustTier)} · {story.source} · {formatDay(story.publishedAt)}
+                  {trustLabel(story.trustTier)} · {provenanceLabel(story)} · {story.source} ·{' '}
+                  {formatDay(story.publishedAt)}
                   <span className="ml-2 text-[#9a968c]">B2 / {i + 1}</span>
                 </p>
                 <h3 className="font-display mt-2 text-xl font-semibold leading-snug text-[#141412]">
-                  {story.title}
+                  {story.url ? (
+                    <a
+                      href={story.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-start gap-1.5 hover:underline"
+                    >
+                      <span>{story.title}</span>
+                      <ExternalLink
+                        size={14}
+                        className="mt-1.5 shrink-0 text-[#7a7870]"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  ) : (
+                    story.title
+                  )}
                 </h3>
                 <p className="mt-3 font-serif text-[15px] leading-relaxed text-[#4a4842]">
                   {story.summary}
                 </p>
                 <p className="mt-3 text-[10px] uppercase tracking-[0.12em] text-[#7a7870]">
                   Workloads · {workloadLabelsFor(story)}
+                  {live ? ' · Live public feed' : ' · Demo pack'}
                 </p>
                 {why ? (
                   <p className="mt-2 text-[12px] text-[#0a6e7a]">
@@ -138,7 +163,7 @@ export function IntelligenceBackPage({
         <span>Page B2</span>
       </div>
       <p className="mt-4 text-center font-serif text-[11px] italic text-[#9a968c]">
-        Intelligence section · demo / synthetic only · not a live wire
+        Intelligence section · live public RSS/API pack + synthetic demo · not operational intel
       </p>
     </motion.div>
   )

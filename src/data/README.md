@@ -22,3 +22,12 @@ This runs `scripts/generate-demo-corpus.py` (fixed seed `20260913`) and writes `
 - Dates: 2026-08-15 → 2026-09-13 (Aug 15 – Sep 13, 2026)
 
 Hand-authored `SAMPLE_*` modules re-export slices from the generated corpus so imports stay stable.
+
+## Live intelligence pack
+
+```bash
+npm run fetch:intelligence
+```
+
+Writes `generated/intelligence-live.json` from public RSS/Atom/APIs (see `docs/INTELLIGENCE-FEEDS.md`).
+`MockPulseDataProvider` merges live + synthetic demo packs; UI prefers live headlines.
